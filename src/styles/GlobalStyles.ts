@@ -36,6 +36,21 @@ body {
   line-height: 1.6;
 }
 
+h1 {
+  font-size: 4.6rem;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--color-light--3);
+}
+
+h3 {
+  font-size: 2rem;
+    letter-spacing: 0.2px;
+    text-align: center;
+    color: var(--color-light--1);
+}
+
 label {
   font-size: 1.6rem;
   font-weight: 600;
@@ -51,6 +66,14 @@ textarea {
   border-radius: 5px;
   background-color: var(--color-light--3);
   transition: all 0.2s;
+}
+
+button{
+  font-family: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.5s;
 }
 
 input:focus {

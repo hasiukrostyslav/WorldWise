@@ -14,7 +14,7 @@ const sizes = {
   `,
   medium: css`
     font-size: 1.6rem;
-    padding: 1.4rem 1.6rem;
+    padding: 1.2rem 1.8rem;
   `,
   large: css`
     font-size: 1.8rem;
@@ -50,10 +50,6 @@ const variations = {
 };
 
 const Button = styled(Link)<ButtonProps>`
-  font-family: inherit;
-  text-transform: uppercase;
-  font-weight: 600;
-  cursor: pointer;
   border: none;
   border-radius: 1rem;
 
