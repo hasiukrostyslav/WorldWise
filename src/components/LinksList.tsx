@@ -27,12 +27,12 @@ function LinksList() {
       </li>
       <li>
         <NavLink
-          to="price"
+          to="pricing"
           style={({ isActive }) =>
             isActive ? { color: PRIMARY_COLOR } : undefined
           }
         >
-          Price
+          Pricing
         </NavLink>
       </li>
 

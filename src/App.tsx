@@ -4,7 +4,7 @@ import GlobalStyles from './styles/GlobalStyles';
 import HomeLayout from './pages/HomeLayout';
 import Home from './pages/Home';
 import About from './pages/About';
-import Price from './pages/Price';
+import Pricing from './pages/Pricing';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import HomeErrorPage from './pages/HomeErrorPage';
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<HomeLayout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="price" element={<Price />} />
+            <Route path="pricing" element={<Pricing />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
             <Route path="*" element={<HomeErrorPage />} />
