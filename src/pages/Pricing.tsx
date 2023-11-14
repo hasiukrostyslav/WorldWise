@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import PriceCard from '../components/PriceCard';
 
 const StyledPricing = styled.section`

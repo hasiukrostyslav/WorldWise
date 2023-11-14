@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import ButtonLink from '../components/ButtonLink';
 
 const StyledHome = styled.section`

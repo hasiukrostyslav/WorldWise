@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import GlobalStyles from './styles/GlobalStyles';
+
 import HomeLayout from './pages/HomeLayout';
 import Home from './pages/Home';
 import About from './pages/About';
