@@ -25,8 +25,8 @@ function Login() {
   return (
     <StyledLogin>
       <Form>
-        <Input label="Email" />
-        <Input label="Password" />
+        <Input label="Email" type="email" name="email" />
+        <Input label="Password" type="password" name="password" />
         <div>
           <Button>Login</Button>
           <Button

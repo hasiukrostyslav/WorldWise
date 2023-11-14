@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 interface InputProps {
   label: string;
+  type: 'text' | 'email' | 'password';
+  name: string;
 }
 
 const StyledInput = styled.label`
@@ -11,11 +13,11 @@ const StyledInput = styled.label`
   margin-bottom: 2rem;
 `;
 
-function Input({ label }: InputProps) {
+function Input({ label, type, name }: InputProps) {
   return (
     <StyledInput>
       {label}
-      <input type="text" />
+      <input type={type} name={name} />
     </StyledInput>
   );
 }
