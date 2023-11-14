@@ -12,7 +12,7 @@ const StyledForm = styled.form`
 `;
 
 function Form({ children }: FormProps) {
-  return <StyledForm>{children}</StyledForm>;
+  return <StyledForm autoComplete="off">{children}</StyledForm>;
 }
 
 export default Form;
