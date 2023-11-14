@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ButtonLinkProps {
   size?: 'small' | 'medium' | 'large';
-  $variation?: 'primary' | 'secondary';
+  $variation?: 'primary' | 'secondary' | 'danger';
   onClick?: () => void;
 }
 
@@ -36,6 +36,14 @@ const variations = {
 
     &:hover {
       background-color: var(--color-secondary--1);
+    }
+  `,
+  danger: css`
+    background-color: var(--color-danger--0);
+    color: var(--color-dark--1);
+
+    &:hover {
+      background-color: var(--color-danger--1);
     }
   `,
 };

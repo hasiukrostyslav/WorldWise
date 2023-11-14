@@ -7,6 +7,8 @@ const GlobalStyles = createGlobalStyle`
   --color-secondary--0: rgb(59,130,246);
   --color-secondary--1: rgba(59,130,246, 0.8);
   --color-third: rgb(255,181,69);
+  --color-danger--0: rgb(239, 68, 68);
+  --color-danger--1: rgba(239, 68, 68, 0.8);
 
   --color-dark--0: #242a2e;
   --color-dark--1: #2d3439;
@@ -77,7 +79,7 @@ button{
 }
 
 input:focus {
-  outline: none;
+  outline: 4px solid var(--color-primary--0);
   background-color: #fff;
 }
 
