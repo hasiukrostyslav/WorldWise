@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-interface ButtonLinkProps {
+interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
   $variation?: 'primary' | 'secondary' | 'danger';
   onClick?: () => void;
@@ -48,7 +48,7 @@ const variations = {
   `,
 };
 
-const ButtonLink = styled.button<ButtonLinkProps>`
+const Button = styled.button<ButtonProps>`
   border: none;
   border-radius: 1rem;
 
@@ -56,9 +56,9 @@ const ButtonLink = styled.button<ButtonLinkProps>`
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
 `;
 
-ButtonLink.defaultProps = {
+Button.defaultProps = {
   $variation: 'primary',
   size: 'medium',
 };
 
-export default ButtonLink;
+export default Button;

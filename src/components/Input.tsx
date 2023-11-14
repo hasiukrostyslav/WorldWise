@@ -9,8 +9,9 @@ interface InputProps {
 const StyledInput = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+  font-size: 1.8rem;
 `;
 
 function Input({ label, type, name }: InputProps) {
