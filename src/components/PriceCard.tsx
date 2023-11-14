@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from './Button';
+import ButtonLink from './ButtonLink';
 
 interface PriceCardProps {
   plan: string;
@@ -35,7 +35,7 @@ function PriceCard({ plan, price, device }: PriceCardProps) {
       <span>
         {device} {device === 1 ? 'device' : 'devices'}
       </span>
-      <Button to="/login">Get started</Button>
+      <ButtonLink to="/login">Get started</ButtonLink>
     </StyledPriceCard>
   );
 }

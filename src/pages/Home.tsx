@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../components/Button';
+import ButtonLink from '../components/ButtonLink';
 
 const StyledHome = styled.section`
   flex-grow: 1;
@@ -24,9 +24,9 @@ function Home() {
         Never forget your wonderful experiences, and show your friends how you
         have wandered the world.
       </h3>
-      <Button to="login" size="large">
+      <ButtonLink to="login" size="large">
         Start tracking now
-      </Button>
+      </ButtonLink>
     </StyledHome>
   );
 }

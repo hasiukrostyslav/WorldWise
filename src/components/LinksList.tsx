@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { PRIMARY_COLOR } from '../utils/constant';
 
-import Button from './Button';
+import ButtonLink from './ButtonLink';
 
 const StyledLinksList = styled.ul`
   list-style: none;
@@ -37,12 +37,12 @@ function LinksList() {
       </li>
 
       <li>
-        <Button to="login">Sign In</Button>
+        <ButtonLink to="login">Sign In</ButtonLink>
       </li>
       <li>
-        <Button $variation="secondary" to="register">
+        <ButtonLink $variation="secondary" to="register">
           Register
-        </Button>
+        </ButtonLink>
       </li>
     </StyledLinksList>
   );
