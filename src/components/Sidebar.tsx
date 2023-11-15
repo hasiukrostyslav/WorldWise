@@ -20,6 +20,7 @@ const StyledSidebar = styled.aside`
   border-bottom-left-radius: 1rem;
 
   .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +33,7 @@ function Sidebar({ children }: SidebarProps) {
       <div className="container">
         <Logo />
         <ToggleLinks />
-        <EmptyList />
+        {/* <EmptyList /> */}
         {children}
       </div>
       <Footer />
