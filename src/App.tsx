@@ -13,6 +13,7 @@ import AppLayout from './pages/AppLayout';
 import CitiesList from './components/CitiesList';
 import CountriesList from './components/CountriesList';
 import City from './components/City';
+import Country from './components/Country';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="cities" element={<CitiesList />} />
             <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountriesList />} />
+            <Route path="countries/:name" element={<Country />} />
           </Route>
         </Routes>
       </BrowserRouter>
