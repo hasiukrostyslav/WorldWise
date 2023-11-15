@@ -12,6 +12,7 @@ import HomeErrorPage from './pages/HomeErrorPage';
 import AppLayout from './pages/AppLayout';
 import CitiesList from './components/CitiesList';
 import CountriesList from './components/CountriesList';
+import City from './components/City';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="app" element={<AppLayout />}>
             <Route index element={<Navigate replace to="cities" />} />
             <Route path="cities" element={<CitiesList />} />
+            <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountriesList />} />
           </Route>
         </Routes>

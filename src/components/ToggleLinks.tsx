@@ -8,7 +8,7 @@ const StyledToggleLinks = styled.ul`
   justify-content: center;
   background-color: var(--color-dark--2);
   border-radius: 0.6rem;
-  margin: 1rem 0 1.4rem;
+  margin: 1rem 0 2rem;
 
   a {
     font-size: 1.3rem;

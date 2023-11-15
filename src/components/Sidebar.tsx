@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
-import EmptyList from './EmptyList';
+// import EmptyList from './EmptyList';
 
 interface SidebarProps {
   children: React.ReactNode;

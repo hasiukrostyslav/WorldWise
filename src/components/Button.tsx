@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
-  $variation?: 'primary' | 'secondary' | 'danger';
+  $variation?: 'primary' | 'secondary' | 'danger' | 'outline';
   onClick?: () => void;
 }
 
@@ -46,9 +46,17 @@ const variations = {
       background-color: var(--color-danger--1);
     }
   `,
+  outline: css`
+    background-color: transparent;
+    color: var(--color-light--2);
+    border: 1px solid var(--color-light--2);
+  `,
 };
 
 const Button = styled.button<ButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   text-transform: uppercase;
   border-radius: 1rem;
