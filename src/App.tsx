@@ -1,7 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import GlobalStyles from './styles/GlobalStyles';
-
 import HomeLayout from './pages/HomeLayout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -14,6 +13,7 @@ import CitiesList from './components/CitiesList';
 import CountriesList from './components/CountriesList';
 import City from './components/City';
 import Country from './components/Country';
+import Error from './components/Error';
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
             <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountriesList />} />
             <Route path="countries/:name" element={<Country />} />
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       </BrowserRouter>
