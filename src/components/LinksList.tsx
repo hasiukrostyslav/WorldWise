@@ -9,6 +9,7 @@ const StyledLinksList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
+  text-transform: uppercase;
   gap: 5rem;
 `;
 

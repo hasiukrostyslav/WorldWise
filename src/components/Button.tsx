@@ -50,6 +50,7 @@ const variations = {
 
 const Button = styled.button<ButtonProps>`
   border: none;
+  text-transform: uppercase;
   border-radius: 1rem;
 
   ${(props) => (props.size ? sizes[props?.size] : '')};

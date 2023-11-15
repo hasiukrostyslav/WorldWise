@@ -14,6 +14,7 @@ const StyledToggleLinks = styled.ul`
     font-size: 1.3rem;
     padding: 0.6rem 1.6rem;
     border-radius: 0.6rem;
+    text-transform: uppercase;
   }
 `;
 
