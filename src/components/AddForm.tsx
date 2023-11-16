@@ -5,7 +5,7 @@ import { HiArrowLongLeft } from 'react-icons/hi2';
 import Form from './Form';
 import Input from './Input';
 import TextArea from './TextArea';
-import Button from './Button';
+import { Button } from './Button';
 
 const ButtonsBox = styled.div`
   margin-top: 2.6rem;

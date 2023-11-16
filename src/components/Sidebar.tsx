@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Footer from './Footer';
+
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
+import Footer from './Footer';
 // import EmptyList from './EmptyList';
 
 interface SidebarProps {

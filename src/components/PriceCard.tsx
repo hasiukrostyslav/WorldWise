@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ButtonLink from './ButtonLink';
+import { ButtonLink } from './Button';
 
 interface PriceCardProps {
   plan: string;

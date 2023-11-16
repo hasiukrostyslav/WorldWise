@@ -79,9 +79,9 @@ button{
   font-family: inherit;
   text-transform: uppercase;
   font-weight: 600;
+  line-height: inherit;
   cursor: pointer;
   transition: all 0.5s;
-
 }
 
 input:focus, textarea:focus {

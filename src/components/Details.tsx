@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HiArrowLongLeft } from 'react-icons/hi2';
 
 import OuterLink from './OuterLink';
-import Button from './Button';
+import { Button } from './Button';
 
 interface DetailsProps {
   type: 'City' | 'Country';

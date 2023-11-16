@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { PRIMARY_COLOR } from '../utils/constant';
 
-import ButtonLink from './ButtonLink';
+import { ButtonLink } from './Button';
 
 const StyledLinksList = styled.ul`
   list-style: none;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 interface ButtonProps {
@@ -5,6 +6,14 @@ interface ButtonProps {
   $variation?: 'primary' | 'secondary' | 'danger' | 'outline';
   onClick?: () => void;
 }
+
+const basicStyles = `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 1rem;`;
 
 const sizes = {
   small: css`
@@ -26,6 +35,10 @@ const variations = {
     background-color: var(--color-primary--0);
     color: var(--color-dark--2);
 
+    &:link,
+    &:visited {
+      color: var(--color-dark--2);
+    }
     &:hover {
       background-color: var(--color-primary--1);
     }
@@ -37,6 +50,10 @@ const variations = {
     background-color: var(--color-secondary--0);
     color: var(--color-dark--2);
 
+    &:link,
+    &:visited {
+      color: var(--color-dark--2);
+    }
     &:hover {
       background-color: var(--color-secondary--1);
     }
@@ -66,14 +83,14 @@ const variations = {
   `,
 };
 
-const Button = styled.button<ButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  text-transform: uppercase;
-  border-radius: 1rem;
+export const Button = styled.button<ButtonProps>`
+  ${basicStyles}
+  ${(props) => (props.size ? sizes[props?.size] : '')};
+  ${(props) => (props.$variation ? variations[props.$variation] : '')}
+`;
 
+export const ButtonLink = styled(Link)<ButtonProps>`
+  ${basicStyles}
   ${(props) => (props.size ? sizes[props?.size] : '')};
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
 `;
@@ -83,4 +100,7 @@ Button.defaultProps = {
   size: 'medium',
 };
 
-export default Button;
+ButtonLink.defaultProps = {
+  $variation: 'primary',
+  size: 'medium',
+};
