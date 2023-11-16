@@ -45,6 +45,9 @@ const variations = {
     &:focus {
       outline: 4px solid var(--color-primary--0);
     }
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
   `,
   secondary: css`
     background-color: var(--color-secondary--0);
@@ -60,6 +63,9 @@ const variations = {
     &:focus {
       outline: 4px solid var(--color-secondary--0);
     }
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
   `,
   danger: css`
     background-color: var(--color-danger--0);
@@ -71,6 +77,9 @@ const variations = {
     &:focus {
       outline: 4px solid var(--color-danger--0);
     }
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
   `,
   outline: css`
     background-color: transparent;
@@ -79,6 +88,9 @@ const variations = {
 
     &:focus {
       outline: 4px solid var(--color-light--2);
+    }
+    &:focus:not(:focus-visible) {
+      outline: none;
     }
   `,
 };
