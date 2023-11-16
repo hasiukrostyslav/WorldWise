@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { HiArrowLongLeft } from 'react-icons/hi2';
-import Button from './Button';
+
 import Form from './Form';
 import Input from './Input';
 import TextArea from './TextArea';
-import styled from 'styled-components';
+import Button from './Button';
 
 const ButtonsBox = styled.div`
   margin-top: 2.6rem;
@@ -23,7 +24,7 @@ function AddForm() {
       <TextArea city="London" />
       <ButtonsBox>
         <Button>Add</Button>
-        <Button $variation="outline" onClick={() => navigate(-1)}>
+        <Button type="button" $variation="outline" onClick={() => navigate(-1)}>
           <HiArrowLongLeft /> Back
         </Button>
       </ButtonsBox>

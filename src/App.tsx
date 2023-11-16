@@ -14,6 +14,7 @@ import CountriesList from './components/CountriesList';
 import City from './components/City';
 import Country from './components/Country';
 import Error from './components/Error';
+import AddForm from './components/AddForm';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountriesList />} />
             <Route path="countries/:name" element={<Country />} />
+            <Route path="form" element={<AddForm />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

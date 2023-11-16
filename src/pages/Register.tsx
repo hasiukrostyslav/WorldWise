@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import Form from '../components/Form';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import { useNavigate } from 'react-router-dom';
 
 const StyledRegister = styled.section`
   flex-grow: 1;
