@@ -4,7 +4,7 @@ import CityItem from './CityItem';
 
 const StyledCitiesList = styled.ul`
   width: 100%;
-  height: 65vh;
+  max-height: 60vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -22,7 +22,6 @@ const StyledCitiesList = styled.ul`
 function CitiesList() {
   return (
     <StyledCitiesList>
-      <CityItem />
       <CityItem />
       <CityItem />
       <CityItem />
