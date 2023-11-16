@@ -33,6 +33,9 @@ const variations = {
     &:visited {
       color: var(--color-dark--2);
     }
+    &:focus {
+      outline: 4px solid var(--color-primary--0);
+    }
   `,
   secondary: css`
     background-color: var(--color-secondary--0);
@@ -44,6 +47,9 @@ const variations = {
     &:link,
     &:visited {
       color: var(--color-dark--2);
+    }
+    &:focus {
+      outline: 4px solid var(--color-secondary--0);
     }
   `,
 };

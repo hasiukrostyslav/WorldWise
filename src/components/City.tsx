@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiArrowLongLeft, HiArrowLongRight } from 'react-icons/hi2';
+import { HiArrowLongLeft } from 'react-icons/hi2';
 
 import Button from './Button';
+import OuterLink from './OuterLink';
 
 const StyledCity = styled.div`
   padding: 2rem 3rem;
@@ -29,13 +30,6 @@ const StyledCity = styled.div`
   h4 {
     font-size: 2rem;
   }
-
-  a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--color-third);
-  }
 `;
 
 function City() {
@@ -55,9 +49,7 @@ function City() {
       </div>
       <div className="box">
         <h5>Learn more</h5>
-        <a target="_blank" href={`https://en.wikipedia.org/wiki/London`}>
-          Check out London on Wikipedia <HiArrowLongRight />
-        </a>
+        <OuterLink link="London" />
       </div>
       <Button $variation="outline" onClick={() => navigate(-1)}>
         <HiArrowLongLeft /> Back

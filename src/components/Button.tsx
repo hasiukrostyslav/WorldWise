@@ -29,6 +29,9 @@ const variations = {
     &:hover {
       background-color: var(--color-primary--1);
     }
+    &:focus {
+      outline: 4px solid var(--color-primary--0);
+    }
   `,
   secondary: css`
     background-color: var(--color-secondary--0);
@@ -36,6 +39,9 @@ const variations = {
 
     &:hover {
       background-color: var(--color-secondary--1);
+    }
+    &:focus {
+      outline: 4px solid var(--color-secondary--0);
     }
   `,
   danger: css`
@@ -45,11 +51,18 @@ const variations = {
     &:hover {
       background-color: var(--color-danger--1);
     }
+    &:focus {
+      outline: 4px solid var(--color-danger--0);
+    }
   `,
   outline: css`
     background-color: transparent;
     color: var(--color-light--2);
     border: 1px solid var(--color-light--2);
+
+    &:focus {
+      outline: 4px solid var(--color-light--2);
+    }
   `,
 };
 

@@ -27,13 +27,6 @@ function CitiesList() {
       <CityItem />
       <CityItem />
       <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
     </StyledCitiesList>
   );
 }

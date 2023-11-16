@@ -15,6 +15,14 @@ const StyledToggleLinks = styled.ul`
     padding: 0.6rem 1.6rem;
     border-radius: 0.6rem;
     text-transform: uppercase;
+
+    &:focus {
+      outline: solid var(--color-primary--0);
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
   }
 `;
 

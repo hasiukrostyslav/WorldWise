@@ -81,9 +81,10 @@ button{
   font-weight: 600;
   cursor: pointer;
   transition: all 0.5s;
+
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: 4px solid var(--color-primary--0);
   background-color: #fff;
 }
@@ -95,7 +96,6 @@ a:visited {
   color: var(--color-light--2);
   transition: all 0.5s;
 }
-
 
 `;
 

@@ -13,28 +13,40 @@ const StyledLinksList = styled.ul`
   gap: 5rem;
 `;
 
+const StyledNavLink = styled(NavLink)`
+  border-radius: 0.6rem;
+  padding: 0.6rem 1rem;
+  &:focus {
+    outline: solid var(--color-primary--0);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+`;
+
 function LinksList() {
   return (
     <StyledLinksList>
       <li>
-        <NavLink
+        <StyledNavLink
           to="about"
           style={({ isActive }) =>
             isActive ? { color: PRIMARY_COLOR } : undefined
           }
         >
           About
-        </NavLink>
+        </StyledNavLink>
       </li>
       <li>
-        <NavLink
+        <StyledNavLink
           to="pricing"
           style={({ isActive }) =>
             isActive ? { color: PRIMARY_COLOR } : undefined
           }
         >
           Pricing
-        </NavLink>
+        </StyledNavLink>
       </li>
 
       <li>
