@@ -13,6 +13,7 @@ const StyledUser = styled.div`
   width: fit-content;
   background-color: var(--color-dark--1);
   border-radius: 1rem;
+  z-index: 999;
 
   img {
     width: 4rem;
