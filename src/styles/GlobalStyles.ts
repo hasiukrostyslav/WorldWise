@@ -93,7 +93,6 @@ a:link,
 a:visited {
   text-decoration: none;
   font-weight: 600;
-  color: var(--color-light--2);
   transition: all 0.5s;
 }
 

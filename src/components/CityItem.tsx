@@ -10,6 +10,7 @@ const StyledLink = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 1rem 2rem 1rem 2.4rem;
+  color: var(--color-light--2);
 
   &:focus {
     border: 3px solid var(--color-primary--0);

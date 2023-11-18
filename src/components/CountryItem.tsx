@@ -12,6 +12,8 @@ const StyledLink = styled(Link)`
   align-items: center;
   justify-content: center;
   outline: none;
+  color: var(--color-light--2);
+
   &:focus {
     border: 3px solid var(--color-third);
     border-left: 6px solid var(--color-third);

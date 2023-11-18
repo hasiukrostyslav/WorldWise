@@ -15,6 +15,7 @@ const StyledToggleLinks = styled.ul`
     padding: 0.6rem 1.6rem;
     border-radius: 0.6rem;
     text-transform: uppercase;
+    color: var(--color-light--2);
 
     &:focus {
       outline: solid var(--color-primary--0);

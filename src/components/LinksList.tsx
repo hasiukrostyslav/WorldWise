@@ -16,6 +16,8 @@ const StyledLinksList = styled.ul`
 const StyledNavLink = styled(NavLink)`
   border-radius: 0.6rem;
   padding: 0.6rem 1rem;
+  color: var(--color-light--2);
+
   &:focus {
     outline: solid var(--color-primary--0);
   }
