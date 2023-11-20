@@ -9,7 +9,7 @@ Live demo: https://world-wise-reactapp.netlify.app/
 - [React](https://react.dev/) - version 18.2.0
 - [TypeScript](https://www.typescriptlang.org/) - version 5.0.2
 - [React Router](https://reactrouter.com/en/main) - version 6.18.0
-- [React Query](https://tanstack.com/) - version 3.39.3
+- [Tanstack / React Query](https://tanstack.com/) - version 5.8.4
 - [Axios](https://axios-http.com/) - version 1.6.1
 - [React Hook Form](https://react-hook-form.com) - version 7.48.2
 - [React Hot Toast](https://react-hot-toast.com) - version 2.4.1
