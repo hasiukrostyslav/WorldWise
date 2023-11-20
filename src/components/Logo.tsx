@@ -20,7 +20,7 @@ const StyledLink = styled(Link)`
 function Logo() {
   return (
     <StyledLink to="/">
-      <Img src="./logo.png" alt="WorldWise logo" />
+      <Img src="/logo.png" alt="WorldWise logo" />
     </StyledLink>
   );
 }
