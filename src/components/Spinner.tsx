@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 const StyledSpinner = styled.div`
-  .spinnerContainer {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .spinner {
     width: 6rem;
@@ -30,7 +28,7 @@ const StyledSpinner = styled.div`
 
 function Spinner() {
   return (
-    <StyledSpinner className="spinnerContainer">
+    <StyledSpinner>
       <div className="spinner"></div>
     </StyledSpinner>
   );

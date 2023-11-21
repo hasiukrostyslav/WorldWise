@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 const StyledError = styled.p`
   font-size: 1.8rem;
-  margin-top: 3rem;
+  margin-bottom: 3rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 `;
 
 function Error() {
