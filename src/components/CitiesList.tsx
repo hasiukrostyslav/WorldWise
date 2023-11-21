@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import useCities from '../hooks/useCities';
+
 import CityItem from './CityItem';
 
 const StyledCitiesList = styled.ul`
@@ -20,12 +22,23 @@ const StyledCitiesList = styled.ul`
 `;
 
 function CitiesList() {
+  const { cities } = useCities();
+
   return (
     <StyledCitiesList>
-      <CityItem />
-      <CityItem />
-      <CityItem />
-      <CityItem />
+      {cities?.map((city) => {
+        const { id, name, countryFlag, date } = city;
+
+        return (
+          <CityItem
+            key={id}
+            id={id}
+            name={name}
+            imgSrc={countryFlag}
+            date={new Date(date)}
+          />
+        );
+      })}
     </StyledCitiesList>
   );
 }

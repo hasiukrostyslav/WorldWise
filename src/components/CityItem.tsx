@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { getFormatDate } from '../utils/helper';
+
 const StyledLink = styled(NavLink)`
   background-color: var(--color-dark--2);
   border: 3px solid var(--color-dark--2);
@@ -20,6 +22,10 @@ const StyledLink = styled(NavLink)`
   &:focus:not(:focus-visible) {
     border: 3px solid var(--color-dark--2);
     border-left: 6px solid var(--color-primary--0);
+  }
+
+  img {
+    width: 3rem;
   }
 
   h4 {
@@ -60,13 +66,22 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-function CityItem() {
+type CityItemProps = {
+  id: number;
+  name: string;
+  imgSrc: string;
+  date: Date;
+};
+
+function CityItem({ id, name, imgSrc, date }: CityItemProps) {
+  const formatDate = getFormatDate(date);
+
   return (
     <li>
-      <StyledLink to={'id'}>
-        <span>GB</span>
-        <h4>London</h4>
-        <time>(November 15, 2023)</time>
+      <StyledLink to={`${id}`}>
+        <img src={imgSrc} alt="Country flags" />
+        <h4>{name}</h4>
+        <time>({formatDate})</time>
         <button>x</button>
       </StyledLink>
     </li>

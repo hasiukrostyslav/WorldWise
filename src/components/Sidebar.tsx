@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
+import useCities from '../hooks/useCities';
+
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
 import Footer from './Footer';
-// import EmptyList from './EmptyList';
+import Spinner from './Spinner';
+import Error from './Error';
+import EmptyList from './EmptyList';
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -23,6 +27,7 @@ const StyledSidebar = styled.aside`
 
   .container {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,12 +35,16 @@ const StyledSidebar = styled.aside`
 `;
 
 function Sidebar({ children }: SidebarProps) {
+  const { cities, isLoading, isError } = useCities();
+
   return (
     <StyledSidebar>
       <div className="container">
         <Logo />
         <ToggleLinks />
-        {/* <EmptyList /> */}
+        {isLoading && <Spinner />}
+        {isError && <Error />}
+        {cities?.length === 0 && <EmptyList />}
         {children}
       </div>
       <Footer />
