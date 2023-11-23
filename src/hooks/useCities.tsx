@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getCities } from '../services/apiCities';
 
-function useCities() {
+export function useCities() {
   const {
     data: cities,
     isLoading,
@@ -10,5 +10,3 @@ function useCities() {
 
   return { cities, isLoading, isError };
 }
-
-export default useCities;
