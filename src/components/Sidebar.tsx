@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import useCities from '../hooks/useCities';
+import { useCities } from '../hooks/useCities';
 
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
