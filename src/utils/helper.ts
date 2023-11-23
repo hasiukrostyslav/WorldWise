@@ -1,12 +1,28 @@
 import type { City, Country } from '../types';
 
-export const getFormatDate = function (date: Date) {
-  const formatter = new Intl.DateTimeFormat('en-Us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-  return formatter.format(date);
+export const getFormatDate = function (
+  date: string | undefined,
+  weekday?: boolean
+) {
+  if (!date) return;
+
+  const formatDate = new Date(date);
+  let formatter;
+
+  if (!weekday)
+    formatter = new Intl.DateTimeFormat('en-Us', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  else
+    formatter = new Intl.DateTimeFormat('en-Us', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  return formatter.format(formatDate);
 };
 
 export const getCountries = function (cities: City[] | undefined) {
