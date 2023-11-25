@@ -9,7 +9,10 @@ export function useCity() {
     data: city,
     isLoading,
     isError,
-  } = useQuery({ queryKey: ['cities', id], queryFn: () => getCity(id) });
+  } = useQuery({
+    queryKey: ['cities', id],
+    queryFn: () => getCity(id),
+  });
 
   return { city, isLoading, isError };
 }

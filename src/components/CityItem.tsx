@@ -70,7 +70,7 @@ type CityItemProps = {
   id: number;
   name: string;
   imgSrc: string;
-  date: Date;
+  date: string;
 };
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {

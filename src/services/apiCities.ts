@@ -36,7 +36,7 @@ export async function getCity(
       },
     });
 
-    return res.data;
+    return res.data.at(0);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error();

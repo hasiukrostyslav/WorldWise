@@ -35,7 +35,7 @@ function CitiesList() {
             id={id}
             name={name}
             imgSrc={countryFlag}
-            date={new Date(date)}
+            date={date}
           />
         );
       })}

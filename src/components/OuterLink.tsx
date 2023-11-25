@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { HiArrowLongRight } from 'react-icons/hi2';
 
 interface OuterLinkProps {
-  link: string;
+  link: string | undefined;
 }
 
 const StyledOuterLink = styled.a`
@@ -25,6 +25,8 @@ const StyledOuterLink = styled.a`
 `;
 
 function OuterLink({ link }: OuterLinkProps) {
+  if (!link) return;
+
   const formattedLink =
     link.split(' ').length === 1 ? link : link.split(' ').join('_');
 

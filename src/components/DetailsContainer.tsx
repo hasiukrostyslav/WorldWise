@@ -5,12 +5,12 @@ import { HiArrowLongLeft } from 'react-icons/hi2';
 import OuterLink from './OuterLink';
 import { Button } from './Button';
 
-interface DetailsProps {
-  type: 'City' | 'Country';
-  name: string;
+interface DetailsContainerProps {
+  name: string | undefined;
+  children: React.ReactNode;
 }
 
-const StyledDetails = styled.div`
+const StyledDetailsContainer = styled.div`
   padding: 2rem 3rem;
   width: 100%;
   display: flex;
@@ -26,46 +26,57 @@ const StyledDetails = styled.div`
     gap: 0.8rem;
   }
 
-  h5 {
+  h4 {
     font-size: 1.1rem;
     text-transform: uppercase;
     color: var(--color-light--1);
   }
 
-  h4 {
+  span {
+    font-size: 1.4rem;
+  }
+
+  p {
     font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      font-size: inherit;
+    }
+
+    img {
+      width: 4rem;
+    }
+  }
+  .flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .half {
+      flex-basis: 50%;
+    }
+  }
+  .notes {
+    font-size: 1.4rem;
   }
 `;
 
-function Details({ type, name }: DetailsProps) {
+function DetailsContainer({ name, children }: DetailsContainerProps) {
   const navigate = useNavigate();
-
   return (
-    <StyledDetails>
+    <StyledDetailsContainer>
+      {children}
       <div className="box">
-        <h5>{type} name</h5>
-        <h4>
-          <span>GB</span> {name}
-        </h4>
-      </div>
-      <div className="box">
-        <h5>
-          {type === 'City'
-            ? `You went to ${name} on`
-            : 'List of visited cities'}
-        </h5>
-        {type === 'City' && <time>Wednesday, November 15, 2023</time>}
-        {type === 'Country' && <p>London, Liverpool, Manchester</p>}
-      </div>
-      <div className="box">
-        <h5>Learn more</h5>
+        <h4>Learn more</h4>
         <OuterLink link={name} />
       </div>
       <Button $variation="outline" onClick={() => navigate(-1)}>
         <HiArrowLongLeft /> Back
       </Button>
-    </StyledDetails>
+    </StyledDetailsContainer>
   );
 }
 
-export default Details;
+export default DetailsContainer;
