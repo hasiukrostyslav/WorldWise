@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SUPABASE_KEY, SUPABASE_URL } from './supabase';
-import type { City } from '../types';
+import type { City, CityBase, VisitedCities } from '../types';
 
 const HEADERS = {
   apikey: SUPABASE_KEY,
@@ -37,6 +37,32 @@ export async function getCity(
     });
 
     return res.data.at(0);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error();
+    } else if (error instanceof Error) {
+      throw error.message;
+    }
+  }
+}
+
+export async function getVisitedCities(country: string) {
+  try {
+    const res = await axios(`${SUPABASE_URL}/rest/v1/Cities`, {
+      params: { select: 'name,country,latitude,longitude' },
+      headers: {
+        ...HEADERS,
+      },
+    });
+
+    const data = res.data.filter((city: CityBase) => city.country === country);
+
+    const visitedCities: VisitedCities[] = data.map((city: CityBase) => ({
+      cityName: city.name,
+      coordinate: { lat: city.latitude, lng: city.longitude },
+    }));
+
+    return visitedCities;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw Error();

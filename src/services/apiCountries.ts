@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { Country, BordersCountries } from '../types';
+import { getVisitedCities } from './apiCities';
 
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
@@ -16,6 +17,8 @@ export async function getCountry(
       borders = await getBorders(data.borders);
     }
 
+    const visitedCities = await getVisitedCities(data.name.common);
+
     const country: Country = {
       countryName: data.name.common,
       countryFlag: data.flags.png,
@@ -26,6 +29,7 @@ export async function getCountry(
       },
       region: data.region,
       borders: borders || [],
+      visitedCities: visitedCities || [],
     };
 
     return country;

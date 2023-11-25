@@ -48,7 +48,9 @@ function Country() {
       )}
       <div className="box">
         <h4>Visited cities</h4>
-        <span>Lviv, Dnipro, Kyiv</span>
+        {country?.visitedCities.map((city) => (
+          <span>{city.cityName}</span>
+        ))}
       </div>
     </DetailsContainer>
   );
