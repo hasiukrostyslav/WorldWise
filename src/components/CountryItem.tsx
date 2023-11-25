@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { formatCountryNameToURL } from '../utils/helper';
 
 const StyledLink = styled(Link)`
   background-color: var(--color-dark--2);
@@ -8,6 +9,7 @@ const StyledLink = styled(Link)`
   border-left: 6px solid var(--color-third);
   border-radius: 0.7rem;
   padding: 1rem 2rem;
+  height: 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,10 +44,11 @@ type CountryItemProps = {
 };
 
 function CountryItem({ imgSrc, countryName }: CountryItemProps) {
-  
+  const countryNameURL = formatCountryNameToURL(countryName);
+
   return (
     <li>
-      <StyledLink to={countryName}>
+      <StyledLink to={countryNameURL}>
         <img src={imgSrc} alt="Country flag" />
         <h3>{countryName}</h3>
       </StyledLink>

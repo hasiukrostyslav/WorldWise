@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {useCities} from '../hooks/useCities';
+import { useCities } from '../hooks/useCities';
 import { getCountries } from '../utils/helper';
 
 import CountryItem from './CountryItem';
@@ -30,7 +30,7 @@ function CountriesList() {
   return (
     <StyledCountriesList>
       {countries?.map((country) => {
-        const { country: countryName, countryFlag } = country;
+        const { countryName, countryFlag } = country;
         return (
           <CountryItem
             key={countryName}

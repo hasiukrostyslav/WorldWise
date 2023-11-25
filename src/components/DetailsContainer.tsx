@@ -24,6 +24,7 @@ const StyledDetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    width: 100%;
   }
 
   h4 {
@@ -60,6 +61,24 @@ const StyledDetailsContainer = styled.div`
   }
   .notes {
     font-size: 1.4rem;
+  }
+
+  .border-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    p {
+      display: flex;
+      img {
+        width: 2rem;
+      }
+      span {
+        font-size: 1.2rem;
+      }
+    }
   }
 `;
 

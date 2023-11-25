@@ -10,7 +10,21 @@ export interface City {
   description: string | null;
 }
 
-export interface Country {
-  country: string;
+export type CountryBase = {
+  countryName: string;
   countryFlag: string;
+};
+
+type Coordinate = {
+  lat: number;
+  lng: number;
+};
+
+export type BordersCountries = CountryBase & Coordinate;
+
+export interface Country extends CountryBase {
+  capital: string;
+  coordinate: Coordinate;
+  region: string;
+  borders?: BordersCountries[];
 }
