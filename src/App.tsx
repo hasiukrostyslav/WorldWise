@@ -39,7 +39,7 @@ function App() {
             <Route path="cities" element={<CitiesList />} />
             <Route path="cities/:id" element={<City />} />
             <Route path="countries" element={<CountriesList />} />
-            <Route path="countries/:name" element={<Country />} />
+            <Route path="countries/:countryName" element={<Country />} />
             <Route path="form" element={<AddForm />} />
             <Route path="*" element={<Error />} />
           </Route>
