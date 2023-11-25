@@ -10,11 +10,12 @@ export async function getCountry(
     const res = await axios(`${BASE_URL}name/${countryName}`);
 
     const data = res.data.at(0);
-    let borders = [];
+    let borders: BordersCountries[] | undefined;
+
     if (data.borders) {
       borders = await getBorders(data.borders);
     }
-    console.log(data);
+
     const country: Country = {
       countryName: data.name.common,
       countryFlag: data.flags.png,
@@ -24,7 +25,7 @@ export async function getCountry(
         lng: data.latlng.at(-1),
       },
       region: data.region,
-      borders,
+      borders: borders || [],
     };
 
     return country;
@@ -37,22 +38,26 @@ export async function getCountry(
   }
 }
 
-async function getBorders(borders: string[]) {
+async function getBorders(
+  borders: string[]
+): Promise<BordersCountries[] | undefined> {
   try {
     const bordersCountries = await Promise.all(
       borders.map(async (countryCode) => {
         try {
           const res = await axios(`${BASE_URL}alpha/${countryCode}`);
-          const country = res.data.at(0);
+          const data = res.data.at(0);
 
-          return {
-            countryName: country.name.common,
-            countryFlag: country.flags.png,
+          const country = {
+            countryName: data.name.common,
+            countryFlag: data.flags.png,
             coordinate: {
-              lat: country.latlng.at(0),
-              lng: country.latlng.at(-1),
+              lat: data.latlng.at(0),
+              lng: data.latlng.at(-1),
             },
           };
+
+          return country;
         } catch (error) {
           throw new Error();
         }

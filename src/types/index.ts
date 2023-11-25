@@ -10,21 +10,23 @@ export interface City {
   description: string | null;
 }
 
-export type CountryBase = {
+export interface CountryBase {
   countryName: string;
   countryFlag: string;
-};
+}
 
-type Coordinate = {
+interface Coordinate {
   lat: number;
   lng: number;
-};
+}
 
-export type BordersCountries = CountryBase & Coordinate;
+export interface BordersCountries extends CountryBase {
+  coordinate: Coordinate;
+}
 
 export interface Country extends CountryBase {
   capital: string;
   coordinate: Coordinate;
   region: string;
-  borders?: BordersCountries[];
+  borders: BordersCountries[];
 }
