@@ -1,4 +1,4 @@
-import type { City, Country } from '../types';
+import type { City, CountryBase } from '../types';
 
 export const getFormatDate = function (
   date: string | undefined,
@@ -29,14 +29,25 @@ export const getCountries = function (cities: City[] | undefined) {
   if (!cities || cities.length === 0) return;
   return cities
     .map((city) => ({
-      country: city.country,
+      countryName: city.country,
       countryFlag: city.countryFlag,
     }))
     .reduce(
-      (arr: Country[], country) =>
-        !arr.map((item) => item.country).includes(country.country)
+      (arr: CountryBase[], country) =>
+        !arr.map((item) => item.countryName).includes(country.countryName)
           ? [...arr, country]
           : arr,
       []
     );
+};
+
+export const formatCountryNameToURL = function (countryName: string) {
+  return countryName.split(' ').join('_');
+};
+
+export const formatCountryNameFromURL = function (
+  urlParam: string | undefined
+) {
+  if (!urlParam) return;
+  return urlParam.split('_').join(' ');
 };

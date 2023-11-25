@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { getCountries } from './helper';
+import {
+  formatCountryNameFromURL,
+  formatCountryNameToURL,
+  getCountries,
+} from './helper';
 
 const testCities = [
   {
@@ -58,5 +62,33 @@ describe('#get unique countries', () => {
       { country: 'Ukraine', countryFlag: 'https://flagcdn.com/w320/ua.png' },
       { country: 'Spain', countryFlag: 'https://flagcdn.com/w320/es.png' },
     ]);
+  });
+});
+
+describe('#format Country name to URL', () => {
+  it('Country name from 1 word', () => {
+    expect(formatCountryNameToURL('Ukraine')).toBe('Ukraine');
+  });
+  it('Country name from 2 word', () => {
+    expect(formatCountryNameToURL('Great Britain')).toBe('Great_Britain');
+  });
+  it('Country name from 3 word', () => {
+    expect(formatCountryNameToURL('United Arab Emirates')).toBe(
+      'United_Arab_Emirates'
+    );
+  });
+});
+
+describe('#format Country name from URL', () => {
+  it('Country name from 1 word', () => {
+    expect(formatCountryNameFromURL('Ukraine')).toBe('Ukraine');
+  });
+  it('Country name from 2 word', () => {
+    expect(formatCountryNameFromURL('Great_Britain')).toBe('Great Britain');
+  });
+  it('Country name from 3 word', () => {
+    expect(formatCountryNameFromURL('United_Arab_Emirates')).toBe(
+      'United Arab Emirates'
+    );
   });
 });
