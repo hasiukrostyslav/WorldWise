@@ -24,6 +24,10 @@ const StyledLink = styled(Link)`
     border-left: 6px solid var(--color-third);
   }
 
+  img {
+    width: 3rem;
+  }
+
   h3 {
     font-size: 1.8rem;
     font-weight: 400;
@@ -31,12 +35,17 @@ const StyledLink = styled(Link)`
   }
 `;
 
-function CountryItem() {
+type CountryItemProps = {
+  imgSrc: string;
+  countryName: string;
+};
+
+function CountryItem({ imgSrc, countryName }: CountryItemProps) {
   return (
     <li>
       <StyledLink to={'name'}>
-        <span>GB</span>
-        <h3>Great Britain</h3>
+        <img src={imgSrc} alt="Country flag" />
+        <h3>{countryName}</h3>
       </StyledLink>
     </li>
   );
