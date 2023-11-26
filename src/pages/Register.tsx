@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { SignUpInputs } from '../types';
 
 import Form from '../components/Form';
 import Input from '../components/Input';
 import { Button } from '../components/Button';
+import InputError from '../components/InputError';
 
 const StyledRegister = styled.section`
   flex-grow: 1;
@@ -11,7 +16,12 @@ const StyledRegister = styled.section`
   align-items: center;
   justify-content: center;
 
-  div {
+  .input-box {
+    position: relative;
+    margin-bottom: 2.2rem;
+  }
+
+  .footer {
     margin-top: 3rem;
     display: flex;
     align-items: end;
@@ -20,20 +30,99 @@ const StyledRegister = styled.section`
 `;
 
 function Register() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setFocus,
+    getValues,
+    formState: { errors },
+  } = useForm<SignUpInputs>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
+
+  const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
+    console.log(data);
+    console.log(getValues());
+    console.log(getValues('password'));
+    reset();
+  };
 
   return (
     <StyledRegister>
-      <Form>
-        <Input label="Name" type="text" name="name" />
-        <Input label="Email" type="email" name="email" />
-        <Input label="Password" type="password" name="password" />
-        <Input
-          label="Confirm Password"
-          type="password"
-          name="confirm-password"
-        />
-        <div>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <div className="input-box">
+          <Input
+            label="Name"
+            type="text"
+            {...register('name', { required: 'Please enter your name' })}
+          />
+          {errors.name && <InputError message={errors.name.message} />}
+        </div>
+
+        <div className="input-box">
+          <Input
+            label="Email"
+            type="email"
+            {...register('email', {
+              required: 'Please enter your email',
+              pattern: {
+                value: /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
+                message: 'Please enter valid email!',
+              },
+            })}
+          />
+          {errors.email && <InputError message={errors.email.message} />}
+        </div>
+
+        <div className="input-box">
+          <Input
+            label="Password"
+            type="password"
+            {...register('password', {
+              required: 'Please enter your password',
+              minLength: 8,
+            })}
+          />
+          {errors.password && (
+            <InputError
+              message={
+                errors.password.type === 'minLength'
+                  ? 'Password should contain at least 8 characters'
+                  : errors.password.message
+              }
+            />
+          )}
+        </div>
+
+        <div className="input-box">
+          <Input
+            label="Confirm Password"
+            type="password"
+            {...register('confirmPassword', {
+              required: 'Please enter confirm password',
+              minLength: 8,
+              validate: (value) =>
+                (getValues('password').length > 7 &&
+                  getValues('password') === value) ||
+                'Password and Confirm Password should be same',
+            })}
+          />
+          {errors.confirmPassword && (
+            <InputError
+              message={
+                errors.confirmPassword.type === 'minLength'
+                  ? 'Password should contain at least 8 characters'
+                  : errors.confirmPassword.message
+              }
+            />
+          )}
+        </div>
+
+        <div className="footer">
           <Button $variation="secondary">Register</Button>
           <Button
             type="button"
