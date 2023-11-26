@@ -6,21 +6,30 @@ Live demo: https://world-wise-reactapp.netlify.app/
 
 ## Technologies Used
 
-- [React](https://react.dev/) - version 18.2.0
-- [TypeScript](https://www.typescriptlang.org/) - version 5.0.2
-- [React Router](https://reactrouter.com/en/main) - version 6.18.0
-- [Tanstack / React Query](https://tanstack.com/) - version 5.8.4
-- [Axios](https://axios-http.com/) - version 1.6.1
-- [React Hook Form](https://react-hook-form.com) - version 7.48.2
-- [React Hot Toast](https://react-hot-toast.com) - version 2.4.1
-- [Supabase](https://supabase.com/) - version 2.38.4
-- [React Icons](https://react-icons.github.io/react-icons/) - version 4.11.0
-- [Leaflet](https://leafletjs.com/) - version 1.9.4
-- [React Leaflet](https://react-leaflet.js.org/) - version 4.2.1
-- [Styled Components](https://styled-components.com/) - version 6.1.1
-- [Framer Motion](https://www.framer.com/motion/) - version 10.16.4
-- [Vite.js](https://vitejs.dev/) - version 4.4.5
-- [Vitest](https://vitest.dev) - version 0.34.6
+- Frontend
+
+  - [Vite](https://vitejs.dev/) - Frontend Framework for building applications.
+  - [React](https://react.dev/) - JavaScript library for building user interfaces
+  - [TypeScript](https://www.typescriptlang.org/) - typed JavaScript syntax
+  - [Styled Components](https://styled-components.com/) - library for styling UI
+  - [React Router](https://reactrouter.com/en/main) - library for page routing
+  - [Tanstack / React Query](https://tanstack.com/) - asynchronous state manager
+  - [Axios](https://axios-http.com/) - Promise based HTTP client
+  - [React Hook Form](https://react-hook-form.com) - library for form validation
+  - [React Hot Toast](https://react-hot-toast.com) - library to adds notifications
+  - [React Icons](https://react-icons.github.io/react-icons/) - library to adds icons
+  - [Leaflet](https://leafletjs.com/) - library for interactive maps
+  - [Framer Motion](https://www.framer.com/motion/) - animation library
+  - [Vitest](https://vitest.dev) - testing framework
+
+- Backend
+
+  - [Supabase](https://supabase.com/) - hosted Postgres database with restful API
+  - [Rest Countries API](https://restcountries.com/) - API with countries data
+  - [BigData Cloud API](https://www.bigdatacloud.com/) - API with reverse goecoding
+
+- Hosting
+  - [Netlify](https://app.netlify.com/)
 
 ## Features
 
@@ -29,4 +38,3 @@ Live demo: https://world-wise-reactapp.netlify.app/
 - Get info about countries
 - Add info about visited cities
 - Get your current geolocations
-
