@@ -1,26 +1,37 @@
+import { forwardRef } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
+
+import type { LoginInputs, SignUpInputs } from '../types';
 
 interface InputProps {
   label: string;
   type: 'text' | 'email' | 'password';
-  name: string;
 }
 
 const StyledInput = styled.label`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin-bottom: 1.4rem;
   font-size: 1.8rem;
 `;
 
-function Input({ label, type, name }: InputProps) {
+const Input = forwardRef<
+  HTMLInputElement,
+  InputProps & ReturnType<UseFormRegister<LoginInputs | SignUpInputs>>
+>(function Input({ onChange, onBlur, name, label, type }, ref) {
   return (
     <StyledInput>
       {label}
-      <input type={type} name={name} />
+      <input
+        name={name}
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
+        type={type}
+      />
     </StyledInput>
   );
-}
+});
 
 export default Input;

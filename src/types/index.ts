@@ -39,3 +39,13 @@ export interface Country extends CountryBase {
   borders: BordersCountries[];
   visitedCities: VisitedCities[];
 }
+
+export interface LoginInputs {
+  email: string;
+  password: string;
+}
+
+export interface SignUpInputs extends LoginInputs {
+  name: string;
+  confirmPassword: string;
+}

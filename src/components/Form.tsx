@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 interface FormProps {
   children: React.ReactNode;
   $variation?: 'primary' | 'secondary';
+  onSubmit: () => void;
 }
 
 const variations = {
@@ -21,9 +22,14 @@ const StyledForm = styled.form<FormProps>`
   border-radius: 1rem;
 `;
 
-function Form({ children, $variation }: FormProps) {
+function Form({ children, $variation, onSubmit }: FormProps) {
   return (
-    <StyledForm $variation={$variation} autoComplete="off">
+    <StyledForm
+      onSubmit={onSubmit}
+      $variation={$variation}
+      noValidate
+      autoComplete="off"
+    >
       {children}
     </StyledForm>
   );
