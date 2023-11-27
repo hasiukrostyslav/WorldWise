@@ -1,33 +1,14 @@
 import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import type { LoginInputs } from '../types';
 
+import FormContainer from '../components/FormContainer';
 import Form from '../components/Form';
 import Input from '../components/Input';
 import InputError from '../components/InputError';
 import { Button } from '../components/Button';
-
-const StyledLogin = styled.section`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .input-box {
-    position: relative;
-    margin-bottom: 2.2rem;
-  }
-
-  .footer {
-    margin-top: 3rem;
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-  }
-`;
 
 function Login() {
   const {
@@ -49,7 +30,7 @@ function Login() {
   };
 
   return (
-    <StyledLogin>
+    <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-box">
           <Input
@@ -95,7 +76,7 @@ function Login() {
           </Button>
         </div>
       </Form>
-    </StyledLogin>
+    </FormContainer>
   );
 }
 

@@ -1,33 +1,14 @@
 import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { SignUpInputs } from '../types';
 
+import FormContainer from '../components/FormContainer';
 import Form from '../components/Form';
 import Input from '../components/Input';
-import { Button } from '../components/Button';
 import InputError from '../components/InputError';
-
-const StyledRegister = styled.section`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .input-box {
-    position: relative;
-    margin-bottom: 2.2rem;
-  }
-
-  .footer {
-    margin-top: 3rem;
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-  }
-`;
+import { Button } from '../components/Button';
 
 function Register() {
   const {
@@ -52,7 +33,7 @@ function Register() {
   };
 
   return (
-    <StyledRegister>
+    <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-box">
           <Input
@@ -133,7 +114,7 @@ function Register() {
           </Button>
         </div>
       </Form>
-    </StyledRegister>
+    </FormContainer>
   );
 }
 

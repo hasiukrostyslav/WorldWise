@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
 
-import type { LoginInputs, SignUpInputs } from '../types';
+import type { CityInput, LoginInputs, SignUpInputs } from '../types';
 
 interface InputProps {
   label: string;
@@ -18,7 +18,8 @@ const StyledInput = styled.label`
 
 const Input = forwardRef<
   HTMLInputElement,
-  InputProps & ReturnType<UseFormRegister<LoginInputs | SignUpInputs>>
+  InputProps &
+    ReturnType<UseFormRegister<LoginInputs | SignUpInputs | CityInput>>
 >(function Input({ onChange, onBlur, name, label, type }, ref) {
   return (
     <StyledInput>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const StyledInputError = styled.span`
   color: var(--color-danger--0);
   font-size: 1.2rem;
+  font-weight: 500;
   position: absolute;
   bottom: -2.4rem;
 `;

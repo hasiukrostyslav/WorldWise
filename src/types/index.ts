@@ -49,3 +49,9 @@ export interface SignUpInputs extends LoginInputs {
   name: string;
   confirmPassword: string;
 }
+
+export interface CityInput {
+  city: string;
+  date: string;
+  note: string;
+}
