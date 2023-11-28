@@ -7,6 +7,8 @@ import type { CityInput, LoginInputs, SignUpInputs } from '../types';
 interface InputProps {
   label: string;
   type: 'text' | 'email' | 'password';
+  defaultValue?: string;
+  disabled?: boolean;
 }
 
 const StyledInput = styled.label`
@@ -14,13 +16,19 @@ const StyledInput = styled.label`
   flex-direction: column;
   gap: 0.8rem;
   font-size: 1.8rem;
+  input:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const Input = forwardRef<
   HTMLInputElement,
   InputProps &
     ReturnType<UseFormRegister<LoginInputs | SignUpInputs | CityInput>>
->(function Input({ onChange, onBlur, name, label, type }, ref) {
+>(function Input(
+  { onChange, onBlur, name, label, type, defaultValue, disabled },
+  ref
+) {
   return (
     <StyledInput>
       {label}
@@ -30,6 +38,8 @@ const Input = forwardRef<
         onChange={onChange}
         onBlur={onBlur}
         type={type}
+        defaultValue={defaultValue}
+        disabled={disabled}
       />
     </StyledInput>
   );

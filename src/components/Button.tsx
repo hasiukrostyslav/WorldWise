@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 interface ButtonProps {
   size?: 'extraSmall' | 'small' | 'medium' | 'large';
   $variation?: 'primary' | 'secondary' | 'danger' | 'outline' | 'dark';
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -13,7 +14,11 @@ const basicStyles = `
   justify-content: center;
   border: none;
   text-transform: uppercase;
-  border-radius: 1rem;`;
+  border-radius: 1rem;
+  &:disabled {
+      cursor: not-allowed;
+    }
+  `;
 
 const sizes = {
   extraSmall: css`
@@ -46,6 +51,9 @@ const variations = {
     &:hover {
       background-color: var(--color-primary--1);
     }
+    &:disabled {
+      background-color: var(--color-primary--2);
+    }
     &:focus {
       outline: 4px solid var(--color-primary--0);
     }
@@ -64,6 +72,9 @@ const variations = {
     &:hover {
       background-color: var(--color-secondary--1);
     }
+    &:disabled {
+      background-color: var(--color-secondary--2);
+    }
     &:focus {
       outline: 4px solid var(--color-secondary--0);
     }
@@ -77,6 +88,9 @@ const variations = {
 
     &:hover {
       background-color: var(--color-danger--1);
+    }
+    &:disabled {
+      background-color: var(--color-danger--2);
     }
     &:focus {
       outline: 4px solid var(--color-danger--0);

@@ -4,11 +4,14 @@ const GlobalStyles = createGlobalStyle`
 :root {
   --color-primary--0: rgb(0,196,106);
   --color-primary--1: rgba(0,196,106, 0.8);
+  --color-primary--2: rgba(0,196,106, 0.6);
   --color-secondary--0: rgb(59,130,246);
   --color-secondary--1: rgba(59,130,246, 0.8);
+  --color-secondary--2: rgba(59,130,246, 0.6);
   --color-third: rgb(255,181,69);
   --color-danger--0: rgb(239, 68, 68);
   --color-danger--1: rgba(239, 68, 68, 0.8);
+  --color-danger--2: rgba(239, 68, 68, 0.6);
 
   --color-dark--0: #242a2e;
   --color-dark--1: #2d3439;
