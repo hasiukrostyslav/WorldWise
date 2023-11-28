@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import { useLogin } from '../hooks/useLogin';
 import type { LoginInputs } from '../types';
 
 import FormContainer from '../components/FormContainer';
@@ -11,6 +12,7 @@ import InputError from '../components/InputError';
 import { Button } from '../components/Button';
 
 function Login() {
+  const { login, isPending, isSuccess } = useLogin();
   const {
     register,
     handleSubmit,
@@ -25,8 +27,9 @@ function Login() {
   }, [setFocus]);
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    console.log(data);
-    reset();
+    login(data);
+
+    if (isSuccess) reset();
   };
 
   return (
@@ -34,8 +37,10 @@ function Login() {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Email"
             type="email"
+            defaultValue="rostyslav@test.com"
             {...register('email', {
               required: 'Please enter your email',
               pattern: {
@@ -48,8 +53,10 @@ function Login() {
         </div>
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Password"
             type="password"
+            defaultValue="123456789"
             {...register('password', {
               required: 'Please enter your password',
               minLength: 8,
@@ -66,8 +73,9 @@ function Login() {
           )}
         </div>
         <div className="footer">
-          <Button>Login</Button>
+          <Button disabled={isPending}>Login</Button>
           <Button
+            disabled={isPending}
             type="button"
             $variation="danger"
             onClick={() => navigate('/')}
