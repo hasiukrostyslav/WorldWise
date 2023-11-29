@@ -12,7 +12,7 @@ import InputError from '../components/InputError';
 import { Button } from '../components/Button';
 
 function Login() {
-  const { login, isPending, isSuccess } = useLogin();
+  const { login, isPending } = useLogin();
   const {
     register,
     handleSubmit,
@@ -28,8 +28,7 @@ function Login() {
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     login(data);
-
-    if (isSuccess) reset();
+    reset();
   };
 
   return (
@@ -40,7 +39,7 @@ function Login() {
             disabled={isPending}
             label="Email"
             type="email"
-            defaultValue="rostyslav@test.com"
+            defaultValue="rostyslav@mail.com"
             {...register('email', {
               required: 'Please enter your email',
               pattern: {
@@ -56,7 +55,7 @@ function Login() {
             disabled={isPending}
             label="Password"
             type="password"
-            defaultValue="123456789"
+            defaultValue="12qw34as"
             {...register('password', {
               required: 'Please enter your password',
               minLength: 8,

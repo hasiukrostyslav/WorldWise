@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { SignUpInputs } from '../types';
+import { useSignUp } from '../hooks/useSignUp';
+import type { SignUpInputs } from '../types';
 
 import FormContainer from '../components/FormContainer';
 import Form from '../components/Form';
@@ -11,6 +12,7 @@ import InputError from '../components/InputError';
 import { Button } from '../components/Button';
 
 function Register() {
+  const { signUp, isPending } = useSignUp();
   const {
     register,
     handleSubmit,
@@ -26,9 +28,7 @@ function Register() {
   }, [setFocus]);
 
   const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
-    console.log(data);
-    console.log(getValues());
-    console.log(getValues('password'));
+    signUp(data);
     reset();
   };
 
@@ -37,6 +37,7 @@ function Register() {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Name"
             type="text"
             {...register('name', { required: 'Please enter your name' })}
@@ -46,6 +47,7 @@ function Register() {
 
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Email"
             type="email"
             {...register('email', {
@@ -61,6 +63,7 @@ function Register() {
 
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Password"
             type="password"
             {...register('password', {
@@ -81,6 +84,7 @@ function Register() {
 
         <div className="input-box">
           <Input
+            disabled={isPending}
             label="Confirm Password"
             type="password"
             {...register('confirmPassword', {
@@ -104,8 +108,11 @@ function Register() {
         </div>
 
         <div className="footer">
-          <Button $variation="secondary">Register</Button>
+          <Button disabled={isPending} $variation="secondary">
+            Register
+          </Button>
           <Button
+            disabled={isPending}
             type="button"
             $variation="danger"
             onClick={() => navigate('/')}
