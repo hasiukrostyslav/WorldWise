@@ -14,7 +14,8 @@ export function useUser() {
   return {
     user,
     isLoading,
-    isAuthenticated: user?.role === 'authenticated',
     isFetching,
+    isAuthenticated: user?.role === 'authenticated',
+    userName: user?.user_metadata.full_name,
   };
 }

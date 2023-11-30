@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Button } from './Button';
+import { useUser } from '../hooks/useUser';
 
 const StyledUser = styled.div`
   position: absolute;
@@ -26,10 +27,12 @@ const StyledUser = styled.div`
 `;
 
 function User() {
+  const { userName } = useUser();
+
   return (
     <StyledUser>
       <img src="/user.png" alt="user" />
-      <span>Welcome, Jack</span>
+      <span>Welcome, {userName}</span>
       <Button size="extraSmall" $variation="dark">
         Logout
       </Button>
