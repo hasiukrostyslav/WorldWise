@@ -23,7 +23,6 @@ export async function signUp({ name, email, password }: SignUpInputs) {
 
 export async function login({ email, password }: LoginInputs) {
   try {
-    console.log(email, password);
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -34,5 +33,21 @@ export async function login({ email, password }: LoginInputs) {
     return data;
   } catch (err) {
     throw new Error('Invalid email or password');
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const { data: session } = await supabase.auth.getSession();
+
+    if (!session.session) return null;
+
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) throw new Error(error.message);
+
+    return data?.user;
+  } catch (error) {
+    console.log(error);
   }
 }

@@ -17,6 +17,7 @@ import City from './components/City';
 import Country from './components/Country';
 import Error from './components/Error';
 import AddForm from './components/AddForm';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const queryClient = new QueryClient();
 
@@ -34,7 +35,14 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="*" element={<HomeErrorPage />} />
           </Route>
-          <Route path="app" element={<AppLayout />}>
+          <Route
+            path="app"
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="cities" />} />
             <Route path="cities" element={<CitiesList />} />
             <Route path="cities/:id" element={<City />} />
