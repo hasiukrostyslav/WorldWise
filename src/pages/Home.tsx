@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useUser } from '../hooks/useUser';
 
 import { ButtonLink } from '../components/Button';
 
@@ -14,6 +15,8 @@ const StyledHome = styled.section`
 `;
 
 function Home() {
+  const { isAuthenticated } = useUser();
+
   return (
     <StyledHome>
       <h1>
@@ -25,7 +28,7 @@ function Home() {
         Never forget your wonderful experiences, and show your friends how you
         have wandered the world.
       </h3>
-      <ButtonLink to="login" size="large">
+      <ButtonLink to={isAuthenticated ? 'app' : 'login'} size="large">
         Start tracking now
       </ButtonLink>
     </StyledHome>

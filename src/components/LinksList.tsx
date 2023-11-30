@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useUser } from '../hooks/useUser';
 import { PRIMARY_COLOR } from '../utils/constant';
 
 import { ButtonLink } from './Button';
@@ -28,6 +29,8 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function LinksList() {
+  const { isAuthenticated } = useUser();
+
   return (
     <StyledLinksList>
       <li>
@@ -51,14 +54,26 @@ function LinksList() {
         </StyledNavLink>
       </li>
 
-      <li>
-        <ButtonLink to="login">Sign In</ButtonLink>
-      </li>
-      <li>
-        <ButtonLink $variation="secondary" to="register">
-          Register
-        </ButtonLink>
-      </li>
+      {!isAuthenticated && (
+        <>
+          <li>
+            <ButtonLink to="login">Sign In</ButtonLink>
+          </li>
+          <li>
+            <ButtonLink $variation="secondary" to="register">
+              Register
+            </ButtonLink>
+          </li>
+        </>
+      )}
+
+      {isAuthenticated && (
+        <li>
+          <ButtonLink $variation="danger" to="login">
+            Log Out
+          </ButtonLink>
+        </li>
+      )}
     </StyledLinksList>
   );
 }

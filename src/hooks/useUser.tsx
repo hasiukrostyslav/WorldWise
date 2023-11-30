@@ -5,18 +5,16 @@ export function useUser() {
   const {
     data: user,
     isLoading,
-    fetchStatus,
+    isFetching,
   } = useQuery({
     queryKey: ['user'],
     queryFn: getCurrentUser,
   });
 
-  console.log(user?.role, isLoading, fetchStatus);
-
   return {
     user,
     isLoading,
     isAuthenticated: user?.role === 'authenticated',
-    fetchStatus,
+    isFetching,
   };
 }

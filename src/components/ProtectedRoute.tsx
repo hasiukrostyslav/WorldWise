@@ -10,12 +10,11 @@ interface ProtectedRouteProps {
 function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
 
-  const { isLoading, isAuthenticated, fetchStatus } = useUser();
+  const { isLoading, isAuthenticated, isFetching } = useUser();
 
   useEffect(() => {
-    if (!isAuthenticated && !isLoading && fetchStatus !== 'fetching')
-      navigate('/login');
-  }, [isAuthenticated, isLoading, fetchStatus, navigate]);
+    if (!isAuthenticated && !isLoading && !isFetching) navigate('/login');
+  }, [isAuthenticated, isLoading, isFetching, navigate]);
 
   if (isLoading) return <Spinner />;
 

@@ -26,8 +26,9 @@ function HomeLayout() {
       <Navbar />
       <Outlet />
       <Toaster
+        position="top-left"
+        containerStyle={{ left: 80, top: 120 }}
         toastOptions={{ style: { backgroundColor: 'var(--color-light--1)' } }}
-        containerStyle={{ top: 60 }}
       />
     </Layout>
   );
