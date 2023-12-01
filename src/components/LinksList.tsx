@@ -5,6 +5,7 @@ import { useUser } from '../hooks/useUser';
 import { PRIMARY_COLOR } from '../utils/constant';
 
 import { ButtonLink } from './Button';
+import { useLogOut } from '../hooks/useLogOut';
 
 const StyledLinksList = styled.ul`
   list-style: none;
@@ -30,6 +31,7 @@ const StyledNavLink = styled(NavLink)`
 
 function LinksList() {
   const { isAuthenticated } = useUser();
+  const { logout } = useLogOut();
 
   return (
     <StyledLinksList>
@@ -69,7 +71,7 @@ function LinksList() {
 
       {isAuthenticated && (
         <li>
-          <ButtonLink $variation="danger" to="login">
+          <ButtonLink onClick={() => logout()} $variation="danger" to="/">
             Log Out
           </ButtonLink>
         </li>

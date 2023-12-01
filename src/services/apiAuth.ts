@@ -51,3 +51,13 @@ export async function getCurrentUser() {
     console.log(error);
   }
 }
+
+export async function logout() {
+  try {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) throw new Error(error.message);
+  } catch (error) {
+    console.log(error);
+  }
+}

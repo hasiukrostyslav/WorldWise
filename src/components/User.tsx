@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Button } from './Button';
 import { useUser } from '../hooks/useUser';
+import { useLogOut } from '../hooks/useLogOut';
+import { useNavigate } from 'react-router-dom';
 
 const StyledUser = styled.div`
   position: absolute;
@@ -28,12 +30,13 @@ const StyledUser = styled.div`
 
 function User() {
   const { userName } = useUser();
+  const { logout } = useLogOut();
 
   return (
     <StyledUser>
       <img src="/user.png" alt="user" />
       <span>Welcome, {userName}</span>
-      <Button size="extraSmall" $variation="dark">
+      <Button onClick={() => logout()} size="extraSmall" $variation="dark">
         Logout
       </Button>
     </StyledUser>
