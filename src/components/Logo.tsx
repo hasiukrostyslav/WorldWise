@@ -7,7 +7,6 @@ const Img = styled.img`
 
 const StyledLink = styled(Link)`
   border-radius: 1rem;
-  padding: 0.6rem 1rem;
   &:focus {
     outline: solid var(--color-primary--0);
   }

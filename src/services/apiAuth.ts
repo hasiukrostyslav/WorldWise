@@ -47,8 +47,8 @@ export async function getCurrentUser() {
     if (error) throw new Error(error.message);
 
     return data?.user;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
   }
 }
 
@@ -57,7 +57,7 @@ export async function logout() {
     const { error } = await supabase.auth.signOut();
 
     if (error) throw new Error(error.message);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
   }
 }

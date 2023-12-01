@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { Toaster } from 'react-hot-toast';
 
 import Navbar from '../components/Navbar';
 
@@ -25,11 +24,6 @@ function HomeLayout() {
     <Layout>
       <Navbar />
       <Outlet />
-      <Toaster
-        position="top-left"
-        containerStyle={{ left: 80, top: 120 }}
-        toastOptions={{ style: { backgroundColor: 'var(--color-light--1)' } }}
-      />
     </Layout>
   );
 }

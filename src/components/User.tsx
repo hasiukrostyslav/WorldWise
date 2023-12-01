@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import { Button } from './Button';
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
-import { useNavigate } from 'react-router-dom';
+
+import { Button } from './Button';
 
 const StyledUser = styled.div`
   position: absolute;
   right: 1.5rem;
-  top: 1.5rem;
+  top: 2rem;
   display: flex;
   align-items: center;
   gap: 1.6rem;

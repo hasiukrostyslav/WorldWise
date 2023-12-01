@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useUser } from '../hooks/useUser';
+import { useLogOut } from '../hooks/useLogOut';
 import { PRIMARY_COLOR } from '../utils/constant';
 
 import { ButtonLink } from './Button';
-import { useLogOut } from '../hooks/useLogOut';
 
 const StyledLinksList = styled.ul`
   list-style: none;

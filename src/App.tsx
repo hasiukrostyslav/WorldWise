@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
 
 import GlobalStyles from './styles/GlobalStyles';
 import HomeLayout from './pages/HomeLayout';
@@ -10,6 +11,7 @@ import Pricing from './pages/Pricing';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import HomeErrorPage from './pages/HomeErrorPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import AppLayout from './pages/AppLayout';
 import CitiesList from './components/CitiesList';
 import CountriesList from './components/CountriesList';
@@ -17,7 +19,6 @@ import City from './components/City';
 import Country from './components/Country';
 import Error from './components/Error';
 import AddForm from './components/AddForm';
-import ProtectedRoute from './components/ProtectedRoute';
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,17 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+      <Toaster
+        containerStyle={{ top: 50 }}
+        toastOptions={{
+          style: {
+            backgroundColor: 'var(--color-dark--0)',
+            color: 'var(--color-light--0)',
+            fontSize: '1.8rem',
+            padding: '1.4rem',
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
