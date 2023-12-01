@@ -16,7 +16,6 @@ function Register() {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
     getValues,
     formState: { errors },
@@ -29,7 +28,6 @@ function Register() {
 
   const onSubmit: SubmitHandler<SignUpInputs> = (data) => {
     signUp(data);
-    reset();
   };
 
   return (

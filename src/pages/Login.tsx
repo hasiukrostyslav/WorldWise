@@ -16,7 +16,6 @@ function Login() {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
     formState: { errors },
   } = useForm<LoginInputs>();
@@ -28,7 +27,6 @@ function Login() {
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     login(data);
-    reset();
   };
 
   return (
