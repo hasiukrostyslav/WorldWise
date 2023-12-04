@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ErrorProps {
+  message?: string;
+}
+
 const StyledError = styled.p`
   font-size: 1.8rem;
   margin-bottom: 3rem;
@@ -8,8 +12,12 @@ const StyledError = styled.p`
   align-items: center;
 `;
 
-function Error() {
-  return <StyledError>⛔ Something went wrong. Please try again.</StyledError>;
+function Error({ message }: ErrorProps) {
+  return (
+    <StyledError>
+      {message ? message : '⛔ Something went wrong. Please try again.'}
+    </StyledError>
+  );
 }
 
 export default Error;

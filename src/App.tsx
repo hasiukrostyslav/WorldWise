@@ -20,7 +20,11 @@ import Country from './components/Country';
 import Error from './components/Error';
 import AddForm from './components/AddForm';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchOnWindowFocus: false },
+  },
+});
 
 function App() {
   return (

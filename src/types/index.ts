@@ -18,7 +18,7 @@ export interface City extends CityBase {
   description: string | null;
 }
 
-interface Coordinate {
+export interface Coordinate {
   lat: number;
   lng: number;
 }

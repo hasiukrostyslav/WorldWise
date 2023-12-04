@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 
 import Logo from './Logo';
@@ -36,6 +37,7 @@ const StyledSidebar = styled.aside`
 
 function Sidebar({ children }: SidebarProps) {
   const { cities, isLoading, isError } = useCities();
+  const { error: geolocationError } = useGeolocation();
 
   return (
     <StyledSidebar>
@@ -43,7 +45,9 @@ function Sidebar({ children }: SidebarProps) {
         <Logo />
         <ToggleLinks />
         {isLoading && <Spinner />}
-        {isError && <Error />}
+        {isError && (
+          <Error message={geolocationError ? geolocationError : ''} />
+        )}
         {cities?.length === 0 && <EmptyList />}
         {children}
       </div>
