@@ -4,13 +4,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { useGeolocation } from '../hooks/useGeolocation';
+import { useLayer } from '../hooks/useLayer';
 import { MAP_CENTER, MAP_LAYERS } from '../utils/constant';
 
 import { ChangeMapCenter, DetectMapClick } from './MapTools';
 import { LayerButton, LocationButton } from './MapButton';
-import User from './User';
 import LayersOption from './LayersOption';
-import { useLayer } from '../hooks/useLayer';
+import User from './User';
 
 const StyledMap = styled.section`
   position: relative;

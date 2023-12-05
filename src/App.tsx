@@ -22,7 +22,7 @@ import AddForm from './components/AddForm';
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false },
+    queries: { refetchOnWindowFocus: false, retry: 2 },
   },
 });
 

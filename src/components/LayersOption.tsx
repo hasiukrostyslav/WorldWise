@@ -1,4 +1,5 @@
-import { MdOutlineLayers, MdLayers, MdSatelliteAlt } from 'react-icons/md';
+import { MdSatelliteAlt } from 'react-icons/md';
+import { BsLayers, BsLayersFill, BsLayersHalf } from 'react-icons/bs';
 
 import { ICON_SIZE } from '../utils/constant';
 
@@ -6,6 +7,7 @@ import { LayerButton } from './MapButton';
 
 enum Layer {
   DEFAULT = 'default',
+  STREET = 'street',
   DARK = 'dark',
   SATELLITE = 'satellite',
 }
@@ -25,17 +27,24 @@ function LayersOption({
     <>
       <LayerButton
         $isActive={Layer.DEFAULT === activeLayer}
-        $translateY={isOpenLayerPanel ? 330 : 0}
+        $translateY={isOpenLayerPanel ? 440 : 0}
         onClick={() => changeLayer(Layer.DEFAULT)}
       >
-        <MdOutlineLayers style={ICON_SIZE} />
+        <BsLayers style={ICON_SIZE} />
+      </LayerButton>
+      <LayerButton
+        $isActive={Layer.STREET === activeLayer}
+        $translateY={isOpenLayerPanel ? 330 : 0}
+        onClick={() => changeLayer(Layer.STREET)}
+      >
+        <BsLayersHalf style={ICON_SIZE} />
       </LayerButton>
       <LayerButton
         $isActive={Layer.DARK === activeLayer}
         $translateY={isOpenLayerPanel ? 220 : 0}
         onClick={() => changeLayer(Layer.DARK)}
       >
-        <MdLayers style={ICON_SIZE} />
+        <BsLayersFill style={ICON_SIZE} />
       </LayerButton>
       <LayerButton
         $isActive={Layer.SATELLITE === activeLayer}

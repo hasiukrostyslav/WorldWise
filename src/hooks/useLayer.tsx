@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-type LayerType = 'default' | 'dark' | 'satellite';
+type LayerType = 'default' | 'street' | 'dark' | 'satellite';
 
 export function useLayer() {
   const [isOpenLayerPanel, setIsOpenLayerPanel] = useState(false);
