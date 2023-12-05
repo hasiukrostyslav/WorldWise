@@ -1,18 +1,21 @@
 import { useMap, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
 interface ChangeMapCenterProps {
   position: [number, number];
 }
 
-export function ChangeMapCenter({ position }: ChangeMapCenterProps) {
+export const ChangeMapCenter = memo(function ChangeMapCenter({
+  position,
+}: ChangeMapCenterProps) {
   const map = useMap();
 
   if (!position) return;
   map.setView(position);
 
   return null;
-}
+});
 
 export function DetectMapClick() {
   const navigate = useNavigate();
