@@ -19,6 +19,8 @@ const StyledMap = styled.section`
 const Tools = styled.div`
   position: absolute;
   z-index: 999;
+  width: 10rem;
+  height: 4.2rem;
   bottom: 2rem;
   right: 1.5rem;
   display: flex;
@@ -27,8 +29,7 @@ const Tools = styled.div`
 `;
 
 const LayersBox = styled.div`
-  display: flex;
-  flex-direction: column;
+  position: relative;
 `;
 
 function Map() {
@@ -63,9 +64,12 @@ function Map() {
           $isRound={true}
         />
         <LayersBox>
-          {isOpenLayerPanel && (
-            <LayersOption changeLayer={changeLayer} activeLayer={activeLayer} />
-          )}
+          <LayersOption
+            changeLayer={changeLayer}
+            activeLayer={activeLayer}
+            isOpenLayerPanel={isOpenLayerPanel}
+          />
+
           <LayerButton
             $isTransparent={isOpenLayerPanel}
             onClick={toggleLayerPanel}

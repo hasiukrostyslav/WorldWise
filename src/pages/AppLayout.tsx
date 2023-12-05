@@ -9,6 +9,7 @@ const StyledAppLayout = styled.section`
   min-height: calc(100vh - 5rem);
   margin: 2.5rem;
   border-radius: 1rem;
+  overflow: hidden;
 `;
 
 function AppLayout() {

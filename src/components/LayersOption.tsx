@@ -1,18 +1,8 @@
-import styled from 'styled-components';
 import { MdOutlineLayers, MdLayers, MdSatelliteAlt } from 'react-icons/md';
 
 import { ICON_SIZE } from '../utils/constant';
 
 import { LayerButton } from './MapButton';
-
-const Select = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
 
 enum Layer {
   DEFAULT = 'default',
@@ -22,34 +12,39 @@ enum Layer {
 
 interface LayersOptionProps {
   activeLayer: string;
+  isOpenLayerPanel: boolean;
   changeLayer: (type: Layer) => void;
 }
 
-function LayersOption({ changeLayer, activeLayer }: LayersOptionProps) {
+function LayersOption({
+  changeLayer,
+  activeLayer,
+  isOpenLayerPanel,
+}: LayersOptionProps) {
   return (
-    <Select>
+    <>
       <LayerButton
         $isActive={Layer.DEFAULT === activeLayer}
-        key={Layer.DEFAULT}
+        $translateY={isOpenLayerPanel ? 330 : 0}
         onClick={() => changeLayer(Layer.DEFAULT)}
       >
         <MdOutlineLayers style={ICON_SIZE} />
       </LayerButton>
       <LayerButton
         $isActive={Layer.DARK === activeLayer}
-        key={Layer.DARK}
+        $translateY={isOpenLayerPanel ? 220 : 0}
         onClick={() => changeLayer(Layer.DARK)}
       >
         <MdLayers style={ICON_SIZE} />
       </LayerButton>
       <LayerButton
         $isActive={Layer.SATELLITE === activeLayer}
-        key={Layer.SATELLITE}
+        $translateY={isOpenLayerPanel ? 110 : 0}
         onClick={() => changeLayer(Layer.SATELLITE)}
       >
         <MdSatelliteAlt style={ICON_SIZE} />
       </LayerButton>
-    </Select>
+    </>
   );
 }
 export default LayersOption;
