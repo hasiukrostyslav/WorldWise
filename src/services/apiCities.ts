@@ -1,26 +1,24 @@
-import axios from 'axios';
-import { SUPABASE_KEY, SUPABASE_URL } from './supabase';
-import type { City, CityBase, VisitedCities } from '../types';
-
-const HEADERS = {
-  apikey: SUPABASE_KEY,
-  Authorization: `Bearer ${SUPABASE_KEY}`,
-};
+import { supabase } from './supabase';
+import { getCurrentUser } from './apiAuth';
+import { convertCityDataAPI } from '../utils/helper';
+import type { City, CityBaseData, VisitedCities } from '../types';
 
 export async function getCities(): Promise<City[] | undefined> {
   try {
-    const res = await axios(`${SUPABASE_URL}/rest/v1/Cities`, {
-      params: { select: '*' },
-      headers: { ...HEADERS },
-    });
+    const user = await getCurrentUser();
 
-    return res.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw Error();
-    } else if (error instanceof Error) {
-      throw error.message;
-    }
+    const { data, error } = await supabase
+      .from('cities')
+      .select('*')
+      .eq('user_id', user?.id);
+
+    if (error) throw new Error(error.message);
+
+    const cities = convertCityDataAPI(data);
+
+    return cities;
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
   }
 }
 
@@ -28,46 +26,46 @@ export async function getCity(
   id: string | undefined
 ): Promise<City | undefined> {
   try {
-    const res = await axios(`${SUPABASE_URL}/rest/v1/Cities`, {
-      params: { select: '*', id: `eq.${id}` },
-      headers: {
-        ...HEADERS,
-        Range: '0-9',
-      },
-    });
+    const { data, error } = await supabase
+      .from('cities')
+      .select('*')
+      .eq('id', id);
 
-    return res.data.at(0);
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw Error();
-    } else if (error instanceof Error) {
-      throw error.message;
-    }
+    if (error) throw new Error(error.message);
+
+    const city = convertCityDataAPI(data).at(0);
+
+    return city;
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
   }
 }
 
 export async function getVisitedCities(country: string) {
   try {
-    const res = await axios(`${SUPABASE_URL}/rest/v1/Cities`, {
-      params: { select: 'name,country,latitude,longitude' },
-      headers: {
-        ...HEADERS,
-      },
-    });
+    const user = await getCurrentUser();
 
-    const data = res.data.filter((city: CityBase) => city.country === country);
+    const { data, error } = await supabase
+      .from('cities')
+      .select('*')
+      .eq('user_id', user?.id)
+      .select('city_name,latitude,longitude,country_name');
 
-    const visitedCities: VisitedCities[] = data.map((city: CityBase) => ({
-      cityName: city.name,
-      coordinate: { lat: city.latitude, lng: city.longitude },
-    }));
+    if (error) throw new Error(error.message);
+
+    const filteredData = data.filter(
+      (city: CityBaseData) => city.country_name === country
+    );
+
+    const visitedCities: VisitedCities[] = filteredData.map(
+      (city: CityBaseData) => ({
+        cityName: city.city_name,
+        coordinate: { latitude: city.latitude, longitude: city.longitude },
+      })
+    );
 
     return visitedCities;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw Error();
-    } else if (error instanceof Error) {
-      throw error.message;
-    }
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
   }
 }

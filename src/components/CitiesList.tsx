@@ -27,13 +27,13 @@ function CitiesList() {
   return (
     <StyledCitiesList>
       {cities?.map((city) => {
-        const { id, name, countryFlag, date } = city;
+        const { id, cityName, countryFlag, date } = city;
 
         return (
           <CityItem
             key={id}
             id={id}
-            name={name}
+            name={cityName}
             imgSrc={countryFlag}
             date={date}
           />

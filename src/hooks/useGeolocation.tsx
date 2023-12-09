@@ -14,7 +14,7 @@ export function useGeolocation() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { coords } = pos;
-        setPosition({ lat: coords.latitude, lng: coords.longitude });
+        setPosition({ latitude: coords.latitude, longitude: coords.longitude });
         setIsLoading(false);
       },
       (error) => {

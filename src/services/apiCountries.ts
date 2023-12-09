@@ -1,6 +1,6 @@
 import axios from 'axios';
-import type { Country, BordersCountries } from '../types';
 import { getVisitedCities } from './apiCities';
+import type { Country, BordersCountries } from '../types';
 
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
@@ -24,8 +24,8 @@ export async function getCountry(
       countryFlag: data.flags.png,
       capital: data.capital.at(0),
       coordinate: {
-        lat: data.latlng.at(0),
-        lng: data.latlng.at(-1),
+        latitude: data.latlng.at(0),
+        longitude: data.latlng.at(-1),
       },
       region: data.region,
       borders: borders || [],
@@ -56,8 +56,8 @@ async function getBorders(
             countryName: data.name.common,
             countryFlag: data.flags.png,
             coordinate: {
-              lat: data.latlng.at(0),
-              lng: data.latlng.at(-1),
+              latitude: data.latlng.at(0),
+              longitude: data.latlng.at(-1),
             },
           };
 

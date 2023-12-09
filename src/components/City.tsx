@@ -12,16 +12,16 @@ function City() {
   if (isError) return <Error />;
 
   return (
-    <DetailsContainer name={city?.name}>
+    <DetailsContainer name={city?.cityName}>
       <div className="box">
         <h4>City name</h4>
         <p>
           <img src={city?.countryFlag} alt="Country flag" />
-          <span>{city?.name}</span>
+          <span>{city?.cityName}</span>
         </p>
       </div>
       <div className="box">
-        <h4>{`You went to ${city?.name} on`}</h4>
+        <h4>{`You went to ${city?.cityName} on`}</h4>
         <time>{getFormatDate(city?.date, true)}</time>
       </div>
       {city?.description && (
