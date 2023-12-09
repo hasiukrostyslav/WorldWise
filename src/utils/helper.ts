@@ -1,4 +1,4 @@
-import type { City, CountryBase } from '../types';
+import type { City, CityData, CountryBase } from '../types';
 
 export const getFormatDate = function (
   date: string | undefined,
@@ -29,7 +29,7 @@ export const getCountries = function (cities: City[] | undefined) {
   if (!cities || cities.length === 0) return;
   return cities
     .map((city) => ({
-      countryName: city.country,
+      countryName: city.countryName,
       countryFlag: city.countryFlag,
     }))
     .reduce(
@@ -50,4 +50,19 @@ export const formatCountryNameFromURL = function (
 ) {
   if (!urlParam) return;
   return urlParam.split('_').join(' ');
+};
+
+export const convertCityDataAPI = function (data: CityData[]) {
+  return data.map((city) => {
+    return {
+      id: city.id,
+      cityName: city.city_name,
+      latitude: city.latitude,
+      longitude: city.longitude,
+      countryName: city.country_name,
+      countryFlag: city.country_flag,
+      date: city.visited_date,
+      description: city.description,
+    };
+  });
 };

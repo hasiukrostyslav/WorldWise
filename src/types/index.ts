@@ -1,31 +1,44 @@
-export interface CountryBase {
-  countryName: string;
-  countryFlag: string;
-}
-
-export interface CityBase {
+export interface CityBaseData {
   latitude: number;
   longitude: number;
-  name: string;
-  country: string;
+  city_name: string;
+  country_name: string;
+}
+
+export interface CityData extends CityBaseData {
+  id: number;
+  country_flag: string;
+  created_at: string;
+  visited_date: string;
+  description: string | null;
+  user_id: string;
+}
+
+export interface Coordinate {
+  latitude: number;
+  longitude: number;
+}
+
+export interface CityBase extends Coordinate {
+  cityName: string;
+  countryName: string;
 }
 
 export interface City extends CityBase {
   id: number;
   countryFlag: string;
-  createdAt: string;
   date: string;
   description: string | null;
-}
-
-export interface Coordinate {
-  lat: number;
-  lng: number;
 }
 
 export interface VisitedCities {
   cityName: string;
   coordinate: Coordinate;
+}
+
+export interface CountryBase {
+  countryName: string;
+  countryFlag: string;
 }
 
 export interface BordersCountries extends CountryBase {
