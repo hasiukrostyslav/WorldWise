@@ -12,6 +12,7 @@ export function useLogOut() {
     onSuccess: () => {
       navigate('/');
       queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.removeQueries({ queryKey: ['cities'], exact: true });
       toast.success('You have been Logged Out');
     },
     onError: (error) => toast.error(error.message),
