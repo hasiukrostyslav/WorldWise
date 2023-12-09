@@ -9,6 +9,7 @@ import Footer from './Footer';
 import Spinner from './Spinner';
 import Error from './Error';
 import EmptyList from './EmptyList';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -38,6 +39,7 @@ const StyledSidebar = styled.aside`
 function Sidebar({ children }: SidebarProps) {
   const { cities, isLoading, isError } = useCities();
   const { error: geolocationError } = useGeolocation();
+  const [searchParams] = useSearchParams();
 
   return (
     <StyledSidebar>
@@ -48,7 +50,7 @@ function Sidebar({ children }: SidebarProps) {
         {isError && (
           <Error message={geolocationError ? geolocationError : ''} />
         )}
-        {cities?.length === 0 && <EmptyList />}
+        {cities?.length === 0 && !searchParams.get('lat') && <EmptyList />}
         {children}
       </div>
       <Footer />
