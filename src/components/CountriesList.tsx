@@ -7,7 +7,7 @@ import CountryItem from './CountryItem';
 
 const StyledCountriesList = styled.ul`
   width: 100%;
-  height: 60vh;
+  max-height: 60vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-content: start;
