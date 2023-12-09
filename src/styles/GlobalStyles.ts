@@ -99,6 +99,37 @@ a:visited {
   transition: all 0.5s;
 }
 
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.leaflet-popup .leaflet-popup-content img {
+  width: 2.5rem;
+}
+
+.leaflet-popup .leaflet-popup-content span {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
+.leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-primary--2);
+}
+
 `;
 
 export default GlobalStyles;

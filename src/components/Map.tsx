@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useLayer } from '../hooks/useLayer';
+import { useCities } from '../hooks/useCities';
 import { MAP_CENTER, MAP_LAYERS } from '../utils/constant';
 
 import { ChangeMapCenter, DetectMapClick } from './MapTools';
@@ -16,6 +17,7 @@ const StyledMap = styled.section`
   position: relative;
   flex-grow: 1;
 `;
+
 const Tools = styled.div`
   position: absolute;
   z-index: 999;
@@ -38,6 +40,7 @@ function Map() {
     useLayer();
 
   const [lat, lng] = useUrlPosition();
+  const { cities } = useCities();
 
   const {
     isLoading: isGeolocationLoading,
@@ -90,11 +93,17 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={MAP_LAYERS[activeLayer]}
         />
-        <Marker position={mapPosition}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {cities?.map((city) => {
+          const { latitude, longitude } = city;
+          return (
+            <Marker key={city.id} position={[latitude, longitude]}>
+              <Popup>
+                <img src={city.countryFlag} />
+                <span>{city.cityName}</span>
+              </Popup>
+            </Marker>
+          );
+        })}
 
         <ChangeMapCenter position={mapPosition} />
         <DetectMapClick />

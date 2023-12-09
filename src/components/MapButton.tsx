@@ -46,6 +46,12 @@ const Button = styled.button<ButtonProps>`
     background-color: var(--color-light--3);
     cursor: not-allowed;
   }
+  &:focus {
+    outline: 4px solid var(--color-primary--0);
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `;
 
 export function LocationButton({ onClick, disabled, $isRound }: ButtonProps) {
