@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCountry } from '../hooks/useCountry';
 
 import DetailsContainer from './DetailsContainer';
@@ -5,13 +7,22 @@ import Error from './Error';
 import Spinner from './Spinner';
 
 function Country() {
+  const navigate = useNavigate();
   const { country, isLoading, isError } = useCountry();
+
+  useEffect(() => {
+    if (!country) return;
+
+    const { latitude, longitude } = country.coordinate;
+
+    navigate(`?lat=${latitude}&lng=${longitude}`);
+  }, [navigate, country]);
 
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
 
   return (
-    <DetailsContainer name="Ukraine">
+    <DetailsContainer type="country" name="Ukraine">
       <div className="box">
         <h4>Country name</h4>
         <p>
@@ -35,7 +46,7 @@ function Country() {
           <h4>Borders with</h4>
           <div className="border-box">
             {country?.borders.map((border) => (
-              <p className="border">
+              <p key={border.countryName} className="border">
                 <img
                   src={border.countryFlag}
                   alt={`${border.countryName} flag`}
@@ -49,7 +60,7 @@ function Country() {
       <div className="box">
         <h4>Visited cities</h4>
         {country?.visitedCities.map((city) => (
-          <span>{city.cityName}</span>
+          <span key={city.cityName}>{city.cityName}</span>
         ))}
       </div>
     </DetailsContainer>

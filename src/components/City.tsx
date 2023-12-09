@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useCity } from '../hooks/useCity';
 import { getFormatDate } from '../utils/helper';
 
@@ -6,13 +9,20 @@ import Error from './Error';
 import Spinner from './Spinner';
 
 function City() {
+  const navigate = useNavigate();
   const { city, isLoading, isError } = useCity();
+
+  useEffect(() => {
+    if (!city) return;
+
+    navigate(`?lat=${city?.latitude}&lng=${city?.longitude}`);
+  }, [city, navigate]);
 
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
 
   return (
-    <DetailsContainer name={city?.cityName}>
+    <DetailsContainer type="city" name={city?.cityName}>
       <div className="box">
         <h4>City name</h4>
         <p>

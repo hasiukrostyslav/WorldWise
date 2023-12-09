@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useSearchParams } from 'react-router-dom';
 
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
@@ -9,7 +10,6 @@ import Footer from './Footer';
 import Spinner from './Spinner';
 import Error from './Error';
 import EmptyList from './EmptyList';
-import { useParams, useSearchParams } from 'react-router-dom';
 
 interface SidebarProps {
   children: React.ReactNode;

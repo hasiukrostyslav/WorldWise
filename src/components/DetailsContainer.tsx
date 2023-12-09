@@ -7,6 +7,7 @@ import { Button } from './Button';
 
 interface DetailsContainerProps {
   name: string | undefined;
+  type: 'city' | 'country';
   children: React.ReactNode;
 }
 
@@ -82,7 +83,7 @@ const StyledDetailsContainer = styled.div`
   }
 `;
 
-function DetailsContainer({ name, children }: DetailsContainerProps) {
+function DetailsContainer({ name, children, type }: DetailsContainerProps) {
   const navigate = useNavigate();
   return (
     <StyledDetailsContainer>
@@ -91,7 +92,10 @@ function DetailsContainer({ name, children }: DetailsContainerProps) {
         <h4>Learn more</h4>
         <OuterLink link={name} />
       </div>
-      <Button $variation="outline" onClick={() => navigate(-1)}>
+      <Button
+        $variation="outline"
+        onClick={() => navigate(type === 'city' ? '/app' : '/app/countries')}
+      >
         <HiArrowLongLeft /> Back
       </Button>
     </StyledDetailsContainer>
