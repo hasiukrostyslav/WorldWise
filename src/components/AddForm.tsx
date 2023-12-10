@@ -2,8 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { HiArrowLongLeft } from 'react-icons/hi2';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import styled from 'styled-components';
 
 import type { CityInput } from '../types';
+import { SX_PROPS } from '../utils/constant';
 
 import FormContainer from './FormContainer';
 import Form from './Form';
@@ -11,11 +15,6 @@ import Input from './Input';
 import TextArea from './TextArea';
 import InputError from './InputError';
 import { Button } from './Button';
-
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import styled from 'styled-components';
-import { SX_PROPS } from '../utils/constant';
 
 const Label = styled.label`
   display: flex;
@@ -28,7 +27,6 @@ function AddForm() {
   const {
     register,
     handleSubmit,
-    reset,
     setFocus,
     control,
     formState: { errors },
@@ -46,7 +44,7 @@ function AddForm() {
 
   const onSubmit: SubmitHandler<CityInput> = (data) => {
     console.log(data);
-    reset();
+    navigate('/app');
   };
 
   return (

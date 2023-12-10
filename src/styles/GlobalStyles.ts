@@ -131,6 +131,26 @@ a:visited {
   border-left: 5px solid var(--color-primary--2);
 }
 
+.MuiDateCalendar-root {
+    border-radius: 5px;
+    background-color: var(--color-light--3);
+    font-weight: 600;
+  }
+
+
+ .css-1u23akw-MuiButtonBase-root-MuiPickersDay-root,.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel  {
+  font-size: 1rem !important;
+ }
+
+ .css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+  font-size: 1.5rem !important;
+}
+
+.css-1vooibu-MuiSvgIcon-root, .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
 `;
 
 export default GlobalStyles;
