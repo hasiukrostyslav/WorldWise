@@ -19,7 +19,7 @@ Live demo: https://world-wise-reactapp.netlify.app/
   - [React Hot Toast](https://react-hot-toast.com) - library to adds notifications
   - [React Icons](https://react-icons.github.io/react-icons/) - library to adds icons
   - [Leaflet](https://leafletjs.com/) - library for interactive maps
-  - [Framer Motion](https://www.framer.com/motion/) - animation library
+  - [Material UI](https://mui.com/) - React UI components library
   - [Vitest](https://vitest.dev) - testing framework
 
 - Backend
