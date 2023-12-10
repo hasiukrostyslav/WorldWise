@@ -87,6 +87,7 @@ button{
   transition: all 0.5s;
 }
 
+
 input:focus, textarea:focus {
   outline: 4px solid var(--color-primary--0);
   background-color: #fff;
