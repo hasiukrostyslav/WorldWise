@@ -22,7 +22,7 @@ function Country() {
   if (isError) return <Error />;
 
   return (
-    <DetailsContainer type="country" name="Ukraine">
+    <DetailsContainer type="country" name={country?.countryName}>
       <div className="box">
         <h4>Country name</h4>
         <p>

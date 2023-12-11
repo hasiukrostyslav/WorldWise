@@ -47,7 +47,7 @@ function Sidebar({ children }: SidebarProps) {
         <Logo />
         <ToggleLinks />
         {isLoading && <Spinner />}
-        {isError && (
+        {isError && !searchParams.get('lat') && (
           <Error message={geolocationError ? geolocationError : ''} />
         )}
         {cities?.length === 0 && !searchParams.get('lat') && <EmptyList />}
