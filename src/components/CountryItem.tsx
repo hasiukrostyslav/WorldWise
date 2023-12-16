@@ -8,8 +8,8 @@ const StyledLink = styled(Link)`
   border: 3px solid var(--color-dark--2);
   border-left: 6px solid var(--color-third);
   border-radius: 0.7rem;
-  padding: 1rem 2rem;
-  height: 7.5rem;
+  padding: 1rem 0;
+  height: 9.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +32,7 @@ const StyledLink = styled(Link)`
   }
 
   h3 {
+    flex-grow: 0;
     font-size: 1.8rem;
     font-weight: 400;
     color: var(--color-light--2);
