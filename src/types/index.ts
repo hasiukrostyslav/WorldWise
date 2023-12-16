@@ -34,6 +34,16 @@ export interface City extends CityBase {
   description: string | null;
 }
 
+export interface CityForm {
+  cityName: string;
+  visitedDate: string | undefined;
+  description: string | null;
+  countryName: string | undefined;
+  countryFlag: string | undefined;
+  latitude: string | null;
+  longitude: string | null;
+}
+
 export interface VisitedCities {
   cityName: string;
   coordinate: Coordinate;
@@ -69,5 +79,5 @@ export interface SignUpInputs extends LoginInputs {
 export interface CityInput {
   city: string;
   date: Dayjs | null;
-  note: null;
+  note: string | null;
 }

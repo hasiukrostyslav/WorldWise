@@ -18,6 +18,7 @@ import InputError from './InputError';
 import Spinner from './Spinner';
 import Error from './Error';
 import { Button } from './Button';
+import { useAddNewCity } from '../hooks/useAddNewCity';
 
 const Label = styled.label`
   display: flex;
@@ -30,6 +31,7 @@ function AddForm() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { city, isPending, isError } = useCityByCoords();
+  const { addCity, isPending: isSendingData } = useAddNewCity();
 
   const {
     register,
@@ -64,9 +66,7 @@ function AddForm() {
       longitude: searchParams.get('lng'),
     };
 
-    console.log(cityData);
-
-    navigate('/app');
+    addCity(cityData);
   };
 
   if (isPending) return <Spinner />;
@@ -78,6 +78,7 @@ function AddForm() {
       <Form $variation="secondary" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-box">
           <Input
+            disabled={isSendingData}
             label="City name"
             type="text"
             {...register('city', { required: 'Please enter city name' })}
@@ -94,6 +95,7 @@ function AddForm() {
               render={({ field: { onChange, ref } }) => (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
+                    disabled={isSendingData}
                     sx={SX_PROPS}
                     onChange={onChange}
                     onAccept={onChange}
@@ -113,11 +115,16 @@ function AddForm() {
         </div>
 
         <div className="input-box">
-          <TextArea city={city?.cityName} {...register('note')} />
+          <TextArea
+            disabled={isSendingData}
+            city={city?.cityName}
+            {...register('note')}
+          />
         </div>
         <div className="footer">
-          <Button>Add</Button>
+          <Button disabled={isSendingData}>Add</Button>
           <Button
+            disabled={isSendingData}
             type="button"
             $variation="outline"
             onClick={() => navigate(-1)}

@@ -67,6 +67,7 @@ function App() {
             color: 'var(--color-light--0)',
             fontSize: '1.8rem',
             padding: '1.4rem',
+            textAlign: 'center',
           },
         }}
       />
