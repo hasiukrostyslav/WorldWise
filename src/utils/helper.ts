@@ -52,6 +52,13 @@ export const formatCountryNameFromURL = function (
   return urlParam.split('_').join(' ');
 };
 
+export const formatCountryName = function (countryName: string) {
+  if (countryName.includes('(')) {
+    const index = countryName.indexOf('(');
+    return countryName.slice(0, index - 1);
+  } else return countryName;
+};
+
 export const convertCityDataAPI = function (data: CityData[]) {
   return data.map((city) => {
     return {

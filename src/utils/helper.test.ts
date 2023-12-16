@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  formatCountryName,
   formatCountryNameFromURL,
   formatCountryNameToURL,
   getCountries,
@@ -92,6 +93,25 @@ describe('#format Country name from URL', () => {
   it('Country name from 3 word', () => {
     expect(formatCountryNameFromURL('United_Arab_Emirates')).toBe(
       'United Arab Emirates'
+    );
+  });
+});
+
+describe('#format Country name without ()', () => {
+  it('Country name from 1 word', () => {
+    expect(formatCountryName('Ukraine')).toBe('Ukraine');
+  });
+  it('Country name from 2 word', () => {
+    expect(formatCountryName('Great Britain')).toBe('Great Britain');
+  });
+  it('Country name with (....)', () => {
+    expect(formatCountryName('Congo (the Democratic Republic of the)')).toBe(
+      'Congo'
+    );
+  });
+  it('Country name with (the)', () => {
+    expect(formatCountryName('United States of America (the)')).toBe(
+      'United States of America'
     );
   });
 });

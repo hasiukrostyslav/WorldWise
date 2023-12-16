@@ -1,7 +1,7 @@
 import { supabase } from './supabase';
 import axios from 'axios';
 import { getCurrentUser } from './apiAuth';
-import { convertCityDataAPI } from '../utils/helper';
+import { convertCityDataAPI, formatCountryName } from '../utils/helper';
 import type {
   City,
   CityBase,
@@ -97,7 +97,7 @@ export async function getCityByCoords(
 
     const data = res.data;
 
-    const countryName = data.countryName.replace(' (the)', '');
+    const countryName = formatCountryName(data.countryName);
     const countryFlag = await getCountryFlag(countryName);
 
     const city = {
