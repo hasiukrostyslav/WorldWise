@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 export interface CityBaseData {
   latitude: number;
   longitude: number;
@@ -22,6 +24,7 @@ export interface Coordinate {
 export interface CityBase extends Coordinate {
   cityName: string;
   countryName: string;
+  countryFlag?: string;
 }
 
 export interface City extends CityBase {
@@ -65,6 +68,6 @@ export interface SignUpInputs extends LoginInputs {
 
 export interface CityInput {
   city: string;
-  date: string;
-  note: string;
+  date: Dayjs | null;
+  note: null;
 }

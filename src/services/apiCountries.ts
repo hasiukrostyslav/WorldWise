@@ -4,8 +4,10 @@ import type { Country, BordersCountries } from '../types';
 
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
+type CountryName = string | undefined;
+
 export async function getCountry(
-  countryName: string | undefined
+  countryName: CountryName
 ): Promise<Country | undefined> {
   try {
     const res = await axios(`${BASE_URL}name/${countryName}`);
@@ -71,6 +73,25 @@ async function getBorders(
     return bordersCountries;
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      throw Error();
+    } else if (error instanceof Error) {
+      throw error.message;
+    }
+  }
+}
+
+export async function getCountryFlag(countryName: CountryName) {
+  try {
+    const res = await axios(`${BASE_URL}name/${countryName}`);
+
+    const data = res.data.at(0);
+
+    const flag = data.flags.png;
+
+    return flag;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(countryName);
       throw Error();
     } else if (error instanceof Error) {
       throw error.message;

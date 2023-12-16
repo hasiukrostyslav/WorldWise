@@ -40,8 +40,8 @@ function AddForm() {
   } = useForm<CityInput>({
     values: {
       city: city?.cityName || '',
-      date: '',
-      note: '',
+      date: null,
+      note: null,
     },
   });
 
@@ -54,7 +54,18 @@ function AddForm() {
   }, [searchParams, navigate]);
 
   const onSubmit: SubmitHandler<CityInput> = (data) => {
-    console.log(data);
+    const cityData = {
+      cityName: data.city,
+      visitedDate: data.date?.format(),
+      description: data.note,
+      countryName: city?.countryName,
+      countryFlag: city?.countryFlag,
+      latitude: searchParams.get('lat'),
+      longitude: searchParams.get('lng'),
+    };
+
+    console.log(cityData);
+
     navigate('/app');
   };
 
@@ -80,7 +91,6 @@ function AddForm() {
             <Controller
               name="date"
               control={control}
-              defaultValue=""
               render={({ field: { onChange, ref } }) => (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker

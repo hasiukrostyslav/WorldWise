@@ -3,8 +3,9 @@ import axios from 'axios';
 import { getCurrentUser } from './apiAuth';
 import { convertCityDataAPI } from '../utils/helper';
 import type { City, CityBase, CityBaseData, VisitedCities } from '../types';
+import { getCountryFlag } from './apiCountries';
 
-const CITY_URL = 'https://api-bdc.net/data/reverse-geocode?';
+const CITY_URL = 'https://api-bdc.net/data/reverse-geocode';
 const API_KEY = 'bdc_0737aab69de84723b4ad0805cba82523';
 
 export async function getCities(): Promise<City[] | undefined> {
@@ -79,17 +80,26 @@ export async function getCityByCoords(
   lng: string | null
 ): Promise<CityBase | undefined> {
   try {
-    const res = await axios(
-      `${CITY_URL}latitude=${lat}&longitude=${lng}&localityLanguage=en&key=${API_KEY}`
-    );
+    const res = await axios(CITY_URL, {
+      params: {
+        latitude: lat,
+        longitude: lng,
+        localityLanguage: 'en',
+        key: API_KEY,
+      },
+    });
 
     const data = res.data;
 
+    const countryName = data.countryName.replace(' (the)', '');
+    const countryFlag = await getCountryFlag(countryName);
+
     const city = {
       cityName: data.city,
-      countryName: data.countryName,
       latitude: data.latitude,
       longitude: data.longitude,
+      countryName,
+      countryFlag,
     };
 
     return city;
@@ -101,3 +111,5 @@ export async function getCityByCoords(
     }
   }
 }
+
+export async function addNewCity() {}
