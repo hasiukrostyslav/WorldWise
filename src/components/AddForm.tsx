@@ -6,6 +6,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import styled from 'styled-components';
 
+import { useCityByCoords } from '../hooks/useCityByCoords';
 import type { CityInput } from '../types';
 import { SX_PROPS } from '../utils/constant';
 
@@ -14,6 +15,8 @@ import Form from './Form';
 import Input from './Input';
 import TextArea from './TextArea';
 import InputError from './InputError';
+import Spinner from './Spinner';
+import Error from './Error';
 import { Button } from './Button';
 
 const Label = styled.label`
@@ -24,15 +27,23 @@ const Label = styled.label`
 `;
 
 function AddForm() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { city, isPending, isError } = useCityByCoords();
+
   const {
     register,
     handleSubmit,
     setFocus,
     control,
     formState: { errors },
-  } = useForm<CityInput>();
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  } = useForm<CityInput>({
+    values: {
+      city: city?.cityName || '',
+      date: '',
+      note: '',
+    },
+  });
 
   useEffect(() => {
     setFocus('city');
@@ -46,6 +57,10 @@ function AddForm() {
     console.log(data);
     navigate('/app');
   };
+
+  if (isPending) return <Spinner />;
+  if (isError || !city?.cityName)
+    return <Error message={!isError ? '⛔ You click on empty area!' : ''} />;
 
   return (
     <FormContainer $grow={0}>
@@ -61,7 +76,7 @@ function AddForm() {
 
         <div className="input-box">
           <Label>
-            {`When did you go to London`}
+            {`When did you go to ${city?.cityName}`}
             <Controller
               name="date"
               control={control}
@@ -88,7 +103,7 @@ function AddForm() {
         </div>
 
         <div className="input-box">
-          <TextArea city="London" {...register('note')} />
+          <TextArea city={city?.cityName} {...register('note')} />
         </div>
         <div className="footer">
           <Button>Add</Button>

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import type { CityInput } from '../types';
 
 interface TextAreaProps {
-  city: string;
+  city: string | undefined;
 }
 
 const StyledTextArea = styled.label`

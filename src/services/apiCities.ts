@@ -1,7 +1,11 @@
 import { supabase } from './supabase';
+import axios from 'axios';
 import { getCurrentUser } from './apiAuth';
 import { convertCityDataAPI } from '../utils/helper';
-import type { City, CityBaseData, VisitedCities } from '../types';
+import type { City, CityBase, CityBaseData, VisitedCities } from '../types';
+
+const CITY_URL = 'https://api-bdc.net/data/reverse-geocode?';
+const API_KEY = 'bdc_0737aab69de84723b4ad0805cba82523';
 
 export async function getCities(): Promise<City[] | undefined> {
   try {
@@ -67,5 +71,33 @@ export async function getVisitedCities(country: string) {
     return visitedCities;
   } catch (err) {
     throw new Error(err instanceof Error ? err.message : '');
+  }
+}
+
+export async function getCityByCoords(
+  lat: string | null,
+  lng: string | null
+): Promise<CityBase | undefined> {
+  try {
+    const res = await axios(
+      `${CITY_URL}latitude=${lat}&longitude=${lng}&localityLanguage=en&key=${API_KEY}`
+    );
+
+    const data = res.data;
+
+    const city = {
+      cityName: data.city,
+      countryName: data.countryName,
+      latitude: data.latitude,
+      longitude: data.longitude,
+    };
+
+    return city;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw Error();
+    } else if (error instanceof Error) {
+      throw error.message;
+    }
   }
 }
