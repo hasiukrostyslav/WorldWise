@@ -1,10 +1,11 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addNewCity } from '../services/apiCities';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export function useAddNewCity() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate: addCity, isPending } = useMutation({
     mutationFn: addNewCity,
@@ -12,6 +13,7 @@ export function useAddNewCity() {
     onSuccess: () => {
       navigate('/app');
       toast.success('City has been added');
+      queryClient.removeQueries({ queryKey: ['newCity'] });
     },
     onError: () =>
       toast.error('There was a problem sending data.\nPlease try again.'),

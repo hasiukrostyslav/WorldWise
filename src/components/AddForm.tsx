@@ -7,6 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import styled from 'styled-components';
 
 import { useCityByCoords } from '../hooks/useCityByCoords';
+import { useAddNewCity } from '../hooks/useAddNewCity';
 import type { CityInput } from '../types';
 import { SX_PROPS } from '../utils/constant';
 
@@ -18,7 +19,7 @@ import InputError from './InputError';
 import Spinner from './Spinner';
 import Error from './Error';
 import { Button } from './Button';
-import { useAddNewCity } from '../hooks/useAddNewCity';
+import { TbRulerOff } from 'react-icons/tb';
 
 const Label = styled.label`
   display: flex;
