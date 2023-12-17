@@ -16,7 +16,7 @@ export function useAddNewCity() {
       queryClient.removeQueries({ queryKey: ['newCity'] });
     },
     onError: () =>
-      toast.error('There was a problem sending data.\nPlease try again.'),
+      toast.error('There was a problem with adding city.\nPlease try again.'),
   });
   return { addCity, isPending };
 }

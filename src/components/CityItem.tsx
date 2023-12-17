@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getFormatDate } from '../utils/helper';
+import { useDeleteCity } from '../hooks/useDeleteCity';
 
 const StyledLink = styled(NavLink)`
   background-color: var(--color-dark--2);
@@ -60,6 +61,10 @@ const StyledLink = styled(NavLink)`
       outline: solid var(--color-primary--0);
     }
 
+    &:disabled {
+      cursor: not-allowed;
+    }
+
     &:focus:not(:focus-visible) {
       outline: none;
     }
@@ -75,14 +80,23 @@ type CityItemProps = {
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   const formatDate = getFormatDate(date);
+  const { deleteCity, isPending } = useDeleteCity();
+
+  function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+
+    deleteCity(id);
+  }
 
   return (
     <li>
-      <StyledLink to={`${id}`}>
+      <StyledLink to={`${id}`} className={isPending ? 'disabled' : ''}>
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
         <time>({formatDate})</time>
-        <button>x</button>
+        <button onClick={handleClick} disabled={isPending}>
+          x
+        </button>
       </StyledLink>
     </li>
   );

@@ -88,6 +88,7 @@ button{
 }
 
 
+
 input:focus, textarea:focus {
   outline: 4px solid var(--color-primary--0);
   background-color: #fff;
@@ -150,6 +151,11 @@ a:visited {
   width: 2rem !important;
   height: 2rem !important;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 
 `;
 

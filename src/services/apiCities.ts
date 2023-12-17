@@ -149,3 +149,13 @@ export async function addNewCity(city: CityForm) {
     throw new Error(err instanceof Error ? err.message : '');
   }
 }
+
+export async function deleteCity(id: number) {
+  try {
+    const { error } = await supabase.from('cities').delete().eq('id', id);
+
+    if (error) throw new Error(error.message);
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
+  }
+}
