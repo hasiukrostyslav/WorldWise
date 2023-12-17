@@ -4,13 +4,13 @@ import type { Country, BordersCountries } from '../types';
 
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
-type CountryName = string | undefined;
+type CountryCode = string | undefined | null;
 
 export async function getCountry(
-  countryName: CountryName
+  countryCode: CountryCode
 ): Promise<Country | undefined> {
   try {
-    const res = await axios(`${BASE_URL}name/${countryName}`);
+    const res = await axios(`${BASE_URL}alpha/${countryCode}`);
 
     const data = res.data.at(0);
     let borders: BordersCountries[] | undefined;
@@ -23,6 +23,7 @@ export async function getCountry(
 
     const country: Country = {
       countryName: data.name.common,
+      countryCode: data.cca2,
       countryFlag: data.flags.png,
       capital: data.capital.at(0),
       coordinate: {
@@ -39,7 +40,7 @@ export async function getCountry(
     if (axios.isAxiosError(error)) {
       throw Error();
     } else if (error instanceof Error) {
-      throw error.message;
+      throw error;
     }
   }
 }
@@ -56,6 +57,7 @@ async function getBorders(
 
           const country = {
             countryName: data.name.common,
+            countryCode: data.cca2,
             countryFlag: data.flags.png,
             coordinate: {
               latitude: data.latlng.at(0),
@@ -75,26 +77,26 @@ async function getBorders(
     if (axios.isAxiosError(error)) {
       throw Error();
     } else if (error instanceof Error) {
-      throw error.message;
+      throw error;
     }
   }
 }
 
-export async function getCountryFlag(countryName: CountryName) {
+export async function getCountryBaseInfo(countryCode: CountryCode) {
   try {
-    const res = await axios(`${BASE_URL}name/${countryName}`);
+    const res = await axios(`${BASE_URL}alpha/${countryCode}`);
 
     const data = res.data.at(0);
 
+    const countryName = data.name.common;
     const flag = data.flags.png;
 
-    return flag;
+    return { countryName, flag };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(countryName);
       throw Error();
     } else if (error instanceof Error) {
-      throw error.message;
+      throw error;
     }
   }
 }

@@ -19,7 +19,6 @@ import InputError from './InputError';
 import Spinner from './Spinner';
 import Error from './Error';
 import { Button } from './Button';
-import { TbRulerOff } from 'react-icons/tb';
 
 const Label = styled.label`
   display: flex;
@@ -31,7 +30,7 @@ const Label = styled.label`
 function AddForm() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { city, isPending, isError } = useCityByCoords();
+  const { city, isPending, isError, error } = useCityByCoords();
   const { addCity, isPending: isSendingData } = useAddNewCity();
 
   const {
@@ -62,6 +61,7 @@ function AddForm() {
       visitedDate: data.date?.format(),
       description: data.note,
       countryName: city?.countryName,
+      countryCode: city?.countryCode,
       countryFlag: city?.countryFlag,
       latitude: searchParams.get('lat'),
       longitude: searchParams.get('lng'),
@@ -71,8 +71,7 @@ function AddForm() {
   };
 
   if (isPending) return <Spinner />;
-  if (isError || !city?.cityName)
-    return <Error message={!isError ? '⛔ You click on empty area!' : ''} />;
+  if (isError) return <Error message={error?.message} />;
 
   return (
     <FormContainer $grow={0}>

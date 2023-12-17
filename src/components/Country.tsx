@@ -15,7 +15,7 @@ function Country() {
 
     const { latitude, longitude } = country.coordinate;
 
-    navigate(`?lat=${latitude}&lng=${longitude}`);
+    navigate(`?code=${country.countryCode}?lat=${latitude}&lng=${longitude}`);
   }, [navigate, country]);
 
   if (isLoading) return <Spinner />;

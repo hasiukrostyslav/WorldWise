@@ -30,10 +30,11 @@ function CountriesList() {
   return (
     <StyledCountriesList>
       {countries?.map((country) => {
-        const { countryName, countryFlag } = country;
+        const { countryName, countryCode, countryFlag } = country;
         return (
           <CountryItem
-            key={countryName}
+            key={countryCode}
+            countryCode={countryCode}
             countryName={countryName}
             imgSrc={countryFlag}
           />

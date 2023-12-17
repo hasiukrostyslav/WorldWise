@@ -30,6 +30,7 @@ export const getCountries = function (cities: City[] | undefined) {
   return cities
     .map((city) => ({
       countryName: city.countryName,
+      countryCode: city.countryCode,
       countryFlag: city.countryFlag,
     }))
     .reduce(
@@ -67,6 +68,7 @@ export const convertCityDataAPI = function (data: CityData[]) {
       latitude: city.latitude,
       longitude: city.longitude,
       countryName: city.country_name,
+      countryCode: city.country_code,
       countryFlag: city.country_flag,
       date: city.visited_date,
       description: city.description,

@@ -1,7 +1,8 @@
 import { supabase } from './supabase';
 import axios from 'axios';
 import { getCurrentUser } from './apiAuth';
-import { convertCityDataAPI, formatCountryName } from '../utils/helper';
+import { getCountryBaseInfo } from './apiCountries';
+import { convertCityDataAPI } from '../utils/helper';
 import type {
   City,
   CityBase,
@@ -9,7 +10,6 @@ import type {
   CityForm,
   VisitedCities,
 } from '../types';
-import { getCountryFlag } from './apiCountries';
 
 const CITY_URL = 'https://api-bdc.net/data/reverse-geocode';
 const API_KEY = 'bdc_0737aab69de84723b4ad0805cba82523';
@@ -60,7 +60,7 @@ export async function getVisitedCities(country: string) {
       .from('cities')
       .select('*')
       .eq('user_id', user?.id)
-      .select('city_name,latitude,longitude,country_name');
+      .select('city_name,latitude,longitude,country_name,country_code');
 
     if (error) throw new Error(error.message);
 
@@ -97,23 +97,26 @@ export async function getCityByCoords(
 
     const data = res.data;
 
-    const countryName = formatCountryName(data.countryName);
-    const countryFlag = await getCountryFlag(countryName);
+    if (!data.city) throw new Error('⛔ You click on empty area!');
+
+    const countryCode = data.countryCode;
+    const country = await getCountryBaseInfo(countryCode);
 
     const city = {
       cityName: data.city,
       latitude: data.latitude,
       longitude: data.longitude,
-      countryName,
-      countryFlag,
+      countryName: country?.countryName,
+      countryFlag: country?.flag,
+      countryCode,
     };
 
     return city;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw Error();
+      throw new Error(error.message);
     } else if (error instanceof Error) {
-      throw error.message;
+      throw error;
     }
   }
 }
@@ -131,6 +134,7 @@ export async function addNewCity(city: CityForm) {
           latitude: city.latitude,
           longitude: city.longitude,
           country_name: city.countryName,
+          country_code: city.countryCode,
           country_flag: city.countryFlag,
           description: city.description,
           visited_date: city.visitedDate,

@@ -12,9 +12,10 @@ export function useCityByCoords() {
     data: city,
     isPending,
     isError,
+    error,
   } = useQuery({
     queryKey: ['newCity', lat],
     queryFn: () => getCityByCoords(lat, lng),
   });
-  return { city, isPending, isError };
+  return { city, isPending, isError, error };
 }

@@ -42,14 +42,15 @@ const StyledLink = styled(Link)`
 type CountryItemProps = {
   imgSrc: string;
   countryName: string;
+  countryCode: string;
 };
 
-function CountryItem({ imgSrc, countryName }: CountryItemProps) {
+function CountryItem({ imgSrc, countryName, countryCode }: CountryItemProps) {
   const countryNameURL = formatCountryNameToURL(countryName);
 
   return (
     <li>
-      <StyledLink to={countryNameURL}>
+      <StyledLink to={`${countryNameURL}?code=${countryCode}`}>
         <img src={imgSrc} alt="Country flag" />
         <h3>{countryName}</h3>
       </StyledLink>

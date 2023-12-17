@@ -5,6 +5,7 @@ export interface CityBaseData {
   longitude: number;
   city_name: string;
   country_name: string;
+  country_code: string;
 }
 
 export interface CityData extends CityBaseData {
@@ -24,6 +25,7 @@ export interface Coordinate {
 export interface CityBase extends Coordinate {
   cityName: string;
   countryName: string;
+  countryCode: string;
   countryFlag?: string;
 }
 
@@ -39,6 +41,7 @@ export interface CityForm {
   visitedDate: string | undefined;
   description: string | null;
   countryName: string | undefined;
+  countryCode: string | undefined;
   countryFlag: string | undefined;
   latitude: string | null;
   longitude: string | null;
@@ -51,6 +54,7 @@ export interface VisitedCities {
 
 export interface CountryBase {
   countryName: string;
+  countryCode: string;
   countryFlag: string;
 }
 
