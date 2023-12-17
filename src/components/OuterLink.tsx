@@ -35,7 +35,7 @@ function OuterLink({ link }: OuterLinkProps) {
       target="_blank"
       href={`https://en.wikipedia.org/wiki/${formattedLink}`}
     >
-      Check out {link} on Wikipedia <HiArrowLongRight />
+      Check out info about Country on Wikipedia <HiArrowLongRight />
     </StyledOuterLink>
   );
 }
