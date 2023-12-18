@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { getFormatDate } from '../utils/helper';
 import { useDeleteCity } from '../hooks/useDeleteCity';
+import { useEffect, useRef } from 'react';
 
 const StyledLink = styled(NavLink)`
   background-color: var(--color-dark--2);
@@ -79,18 +80,24 @@ type CityItemProps = {
 };
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
+  const ref = useRef<HTMLAnchorElement | null>(null);
   const formatDate = getFormatDate(date);
-  const { deleteCity, isPending } = useDeleteCity();
+  const { deleteCity, isPending, isError } = useDeleteCity();
+
+  useEffect(() => {
+    if (isError) ref.current?.classList.remove('disabled');
+  }, [isError]);
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
 
+    ref.current?.classList.add('disabled');
     deleteCity(id);
   }
 
   return (
     <li>
-      <StyledLink to={`${id}`} className={isPending ? 'disabled' : ''}>
+      <StyledLink ref={ref} to={`${id}`}>
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
         <time>({formatDate})</time>

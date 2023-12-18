@@ -4,7 +4,11 @@ import toast from 'react-hot-toast';
 
 export function useDeleteCity() {
   const queryClient = useQueryClient();
-  const { mutate: deleteCity, isPending } = useMutation({
+  const {
+    mutate: deleteCity,
+    isPending,
+    isError,
+  } = useMutation({
     mutationFn: deleteCityAPI,
 
     onSuccess: () => {
@@ -14,5 +18,5 @@ export function useDeleteCity() {
 
     onError: () => toast.error('City can not be deleted.\nPlease try again.'),
   });
-  return { deleteCity, isPending };
+  return { deleteCity, isPending, isError };
 }
