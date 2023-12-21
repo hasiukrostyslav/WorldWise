@@ -37,7 +37,6 @@ function Login() {
             disabled={isPending}
             label="Email"
             type="email"
-            defaultValue="rostyslav@mail.com"
             {...register('email', {
               required: 'Please enter your email',
               pattern: {
@@ -53,7 +52,6 @@ function Login() {
             disabled={isPending}
             label="Password"
             type="password"
-            defaultValue="12qw34as"
             {...register('password', {
               required: 'Please enter your password',
               minLength: 8,

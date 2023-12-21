@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { getCountry } from '../services/apiCountries';
 import { formatCountryNameFromURL } from '../utils/helper';
 

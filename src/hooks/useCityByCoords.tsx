@@ -1,6 +1,6 @@
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCityByCoords } from '../services/apiCities';
-import { useSearchParams } from 'react-router-dom';
 
 export function useCityByCoords() {
   const [searchParams] = useSearchParams();

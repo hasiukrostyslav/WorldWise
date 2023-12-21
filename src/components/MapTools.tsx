@@ -1,6 +1,6 @@
-import { useMap, useMapEvents } from 'react-leaflet';
-import { useNavigate } from 'react-router-dom';
 import { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMap, useMapEvents } from 'react-leaflet';
 
 interface ChangeMapCenterProps {
   position: [number, number];

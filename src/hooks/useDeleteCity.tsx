@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCity as deleteCityAPI } from '../services/apiCities';
 import toast from 'react-hot-toast';
+import { deleteCity as deleteCityAPI } from '../services/apiCities';
 
 export function useDeleteCity() {
   const queryClient = useQueryClient();

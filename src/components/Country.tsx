@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useCountry } from '../hooks/useCountry';
 
 import DetailsContainer from './DetailsContainer';

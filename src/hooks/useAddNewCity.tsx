@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addNewCity } from '../services/apiCities';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { addNewCity } from '../services/apiCities';
 
 export function useAddNewCity() {
   const navigate = useNavigate();
