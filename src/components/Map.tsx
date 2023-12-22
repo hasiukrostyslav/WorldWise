@@ -12,6 +12,7 @@ import { ChangeMapCenter, DetectMapClick, MapResize } from './MapTools';
 import { LayerButton, LocationButton, ScreenButton } from './MapButton';
 import LayersOption from './LayersOption';
 import User from './User';
+import MiniLogo from './MiniLogo';
 
 interface MapProps {
   $size: boolean | undefined;
@@ -86,6 +87,7 @@ function Map() {
 
   return (
     <StyledMap $size={isFullScreen}>
+      {isFullScreen && <MiniLogo isShow={isFullScreen} />}
       <User />
       <Tools>
         <LocationButton
