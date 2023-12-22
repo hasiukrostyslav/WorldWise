@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ScreenSizeContext } from '../context/ScreenSizeContext';
 
 type LayerType = 'default' | 'street' | 'dark' | 'satellite';
 
 export function useLayer() {
+  const context = useContext(ScreenSizeContext);
   const [isOpenLayerPanel, setIsOpenLayerPanel] = useState(false);
   const [activeLayer, setActiveLayer] = useState<LayerType>('default');
+
+  const isFullScreen = context?.isFullScreen;
+  const toggleFullScreen = context?.toggleFullScreen;
 
   function toggleLayerPanel() {
     setIsOpenLayerPanel(!isOpenLayerPanel);
@@ -19,5 +24,7 @@ export function useLayer() {
     changeLayer,
     toggleLayerPanel,
     isOpenLayerPanel,
+    isFullScreen,
+    toggleFullScreen,
   };
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -10,13 +10,30 @@ import Footer from './Footer';
 import Spinner from './Spinner';
 import Error from './Error';
 import EmptyList from './EmptyList';
+import { useLayer } from '../hooks/useLayer';
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
-const StyledSidebar = styled.aside`
-  flex-basis: 56rem;
+interface AsideProps {
+  $hide: boolean | undefined;
+}
+
+const hide = {
+  visible: css`
+    left: 0rem;
+  `,
+  hidden: css`
+    left: -56rem;
+  `,
+};
+
+const StyledSidebar = styled.aside<AsideProps>`
+  ${(props) => (props.$hide ? hide.hidden : hide.visible)}
+  position: absolute;
+  top: 0;
+  width: 56rem;
   padding: 3rem 5rem;
   height: calc(100vh - 5rem);
   display: flex;
@@ -26,6 +43,7 @@ const StyledSidebar = styled.aside`
   background-color: var(--color-dark--1);
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  transition: all 1s;
 
   .container {
     width: 100%;
@@ -40,9 +58,10 @@ function Sidebar({ children }: SidebarProps) {
   const { cities, isLoading, isError } = useCities();
   const { error: geolocationError } = useGeolocation();
   const [searchParams] = useSearchParams();
+  const { isFullScreen } = useLayer();
 
   return (
-    <StyledSidebar>
+    <StyledSidebar $hide={isFullScreen}>
       <div className="container">
         <Logo />
         <ToggleLinks />

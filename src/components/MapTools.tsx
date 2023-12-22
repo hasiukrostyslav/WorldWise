@@ -27,3 +27,12 @@ export function DetectMapClick() {
 
   return null;
 }
+
+export function MapResize() {
+  const map = useMap();
+  setTimeout(function () {
+    map.invalidateSize();
+  }, 400);
+
+  return null;
+}

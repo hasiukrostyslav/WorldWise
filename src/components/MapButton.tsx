@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { TbCurrentLocation } from 'react-icons/tb';
 import { LuLayers } from 'react-icons/lu';
+import { RiFullscreenExitLine, RiFullscreenLine } from 'react-icons/ri';
 
 import { ICON_SIZE } from '../utils/constant';
 
@@ -10,12 +11,14 @@ interface ButtonProps {
   $isActive?: boolean;
   $isTransparent?: boolean;
   $isRound?: boolean;
+  $isAbsolute?: boolean;
   $translateY?: number;
-  onClick: () => void;
+  $isFullScreen?: boolean;
+  onClick: (() => void) | undefined;
 }
 
 const Button = styled.button<ButtonProps>`
-  position: ${(props) => (props.$isRound ? '' : 'absolute')};
+  position: ${(props) => (props.$isAbsolute ? 'absolute' : '')};
   bottom: 0;
   left: 0;
   padding: 0.7rem;
@@ -71,12 +74,25 @@ export function LayerButton({
 }: ButtonProps) {
   return (
     <Button
+      $isAbsolute={true}
       $isTransparent={$isTransparent}
       $isActive={$isActive}
       $translateY={$translateY}
       onClick={onClick}
     >
       {children ? children : <LuLayers style={ICON_SIZE} />}
+    </Button>
+  );
+}
+
+export function ScreenButton({ onClick, $isFullScreen }: ButtonProps) {
+  return (
+    <Button onClick={onClick}>
+      {$isFullScreen ? (
+        <RiFullscreenExitLine style={ICON_SIZE} />
+      ) : (
+        <RiFullscreenLine style={ICON_SIZE} />
+      )}
     </Button>
   );
 }
