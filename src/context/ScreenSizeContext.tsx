@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 
 interface ScreenSizeContextType {
   isFullScreen: boolean;
+  exitFullScreen: () => void;
   toggleFullScreen: () => void;
 }
 
@@ -16,12 +17,18 @@ export const ScreenSizeContext = createContext<ScreenSizeContextType | null>(
 export function ScreenSizeProvider({ children }: ScreenSizeProviderProps) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  function exitFullScreen() {
+    setIsFullScreen(false);
+  }
+
   function toggleFullScreen() {
     setIsFullScreen(!isFullScreen);
   }
 
   return (
-    <ScreenSizeContext.Provider value={{ isFullScreen, toggleFullScreen }}>
+    <ScreenSizeContext.Provider
+      value={{ isFullScreen, exitFullScreen, toggleFullScreen }}
+    >
       {children}
     </ScreenSizeContext.Provider>
   );

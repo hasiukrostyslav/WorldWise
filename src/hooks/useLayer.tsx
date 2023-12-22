@@ -9,6 +9,7 @@ export function useLayer() {
   const [activeLayer, setActiveLayer] = useState<LayerType>('default');
 
   const isFullScreen = context?.isFullScreen;
+  const exitFullScreen = context?.exitFullScreen;
   const toggleFullScreen = context?.toggleFullScreen;
 
   function toggleLayerPanel() {
@@ -26,5 +27,6 @@ export function useLayer() {
     isOpenLayerPanel,
     isFullScreen,
     toggleFullScreen,
+    exitFullScreen,
   };
 }

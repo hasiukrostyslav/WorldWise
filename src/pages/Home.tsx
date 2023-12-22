@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useUser } from '../hooks/useUser';
+import { useLayer } from '../hooks/useLayer';
 
 import { ButtonLink } from '../components/Button';
 
@@ -17,6 +19,11 @@ const StyledHome = styled.section`
 
 function Home() {
   const { isAuthenticated } = useUser();
+  const { exitFullScreen, isFullScreen } = useLayer();
+
+  useEffect(() => {
+    if (isFullScreen && exitFullScreen) exitFullScreen();
+  }, [isFullScreen, exitFullScreen]);
 
   return (
     <StyledHome>
