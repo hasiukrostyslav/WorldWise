@@ -19,6 +19,7 @@ export const ChangeMapCenter = memo(function ChangeMapCenter({
 
 export function DetectMapClick() {
   const navigate = useNavigate();
+
   useMapEvents({
     click(e) {
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
@@ -30,6 +31,7 @@ export function DetectMapClick() {
 
 export function MapResize() {
   const map = useMap();
+
   setTimeout(function () {
     map.invalidateSize();
   }, 400);

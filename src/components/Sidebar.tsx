@@ -43,7 +43,7 @@ const StyledSidebar = styled.aside<AsideProps>`
   background-color: var(--color-dark--1);
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  transition: all 1s;
+  transition: left 1s;
 
   .container {
     width: 100%;

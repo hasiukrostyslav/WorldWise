@@ -116,6 +116,11 @@ function Map() {
         zoom={5}
         scrollWheelZoom={true}
         minZoom={3}
+        maxBoundsViscosity={1}
+        maxBounds={[
+          [83, -180],
+          [-84, 225],
+        ]}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
