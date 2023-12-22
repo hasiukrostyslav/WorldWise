@@ -126,7 +126,7 @@ function AddForm() {
             disabled={isSendingData}
             type="button"
             $variation="outline"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/app')}
           >
             <HiArrowLongLeft /> Back
           </Button>
