@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { useLogin } from '../hooks/useLogin';
+import { EMAIL_REGEX } from '../utils/constant';
 import type { LoginInputs } from '../types';
 
 import FormContainer from '../components/FormContainer';
@@ -40,7 +41,7 @@ function Login() {
             {...register('email', {
               required: 'Please enter your email',
               pattern: {
-                value: /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
+                value: EMAIL_REGEX,
                 message: 'Please enter valid email!',
               },
             })}
