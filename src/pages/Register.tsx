@@ -106,9 +106,6 @@ function Register() {
         </div>
 
         <div className="footer">
-          <Button disabled={isPending} $variation="secondary">
-            Register
-          </Button>
           <Button
             disabled={isPending}
             type="button"
@@ -116,6 +113,9 @@ function Register() {
             onClick={() => navigate('/')}
           >
             Cancel
+          </Button>
+          <Button disabled={isPending} $variation="secondary">
+            Register
           </Button>
         </div>
       </Form>

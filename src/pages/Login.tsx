@@ -68,7 +68,6 @@ function Login() {
           )}
         </div>
         <div className="footer">
-          <Button disabled={isPending}>Login</Button>
           <Button
             disabled={isPending}
             type="button"
@@ -77,6 +76,7 @@ function Login() {
           >
             Cancel
           </Button>
+          <Button disabled={isPending}>Login</Button>
         </div>
       </Form>
     </FormContainer>

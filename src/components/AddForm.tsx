@@ -122,7 +122,6 @@ function AddForm() {
           />
         </div>
         <div className="footer">
-          <Button disabled={isSendingData}>Add</Button>
           <Button
             disabled={isSendingData}
             type="button"
@@ -131,6 +130,7 @@ function AddForm() {
           >
             <HiArrowLongLeft /> Back
           </Button>
+          <Button disabled={isSendingData}>Add</Button>
         </div>
       </Form>
     </FormContainer>
