@@ -116,7 +116,7 @@ function Map() {
         zoom={5}
         scrollWheelZoom={true}
         minZoom={3}
-        maxBoundsViscosity={1}
+        maxBoundsViscosity={0.8}
         maxBounds={[
           [83, -185],
           [-84, 230],

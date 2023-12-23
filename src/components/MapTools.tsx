@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMap, useMapEvents } from 'react-leaflet';
+import { useLayer } from '../hooks/useLayer';
 
 interface ChangeMapCenterProps {
   position: [number, number];
@@ -19,9 +20,11 @@ export const ChangeMapCenter = memo(function ChangeMapCenter({
 
 export function DetectMapClick() {
   const navigate = useNavigate();
+  const { exitFullScreen } = useLayer();
 
   useMapEvents({
     click(e) {
+      exitFullScreen();
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
@@ -33,7 +36,7 @@ export function MapResize() {
   const map = useMap();
 
   setTimeout(function () {
-    map.invalidateSize();
+    map.invalidateSize({ pan: false, animate: false });
   }, 400);
 
   return null;
