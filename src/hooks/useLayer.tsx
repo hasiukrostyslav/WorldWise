@@ -8,9 +8,12 @@ export function useLayer() {
   const [isOpenLayerPanel, setIsOpenLayerPanel] = useState(false);
   const [activeLayer, setActiveLayer] = useState<LayerType>('default');
 
-  const isFullScreen = context?.isFullScreen;
-  const exitFullScreen = context?.exitFullScreen;
-  const toggleFullScreen = context?.toggleFullScreen;
+  if (!context)
+    throw new Error('useLayer has to be used within ScreenSizeContext');
+
+  const isFullScreen = context.isFullScreen;
+  const exitFullScreen = context.exitFullScreen;
+  const toggleFullScreen = context.toggleFullScreen;
 
   function toggleLayerPanel() {
     setIsOpenLayerPanel(!isOpenLayerPanel);

@@ -118,8 +118,8 @@ function Map() {
         minZoom={3}
         maxBoundsViscosity={1}
         maxBounds={[
-          [83, -180],
-          [-84, 225],
+          [83, -185],
+          [-84, 230],
         ]}
       >
         <TileLayer

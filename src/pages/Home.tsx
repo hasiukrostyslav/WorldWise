@@ -22,7 +22,7 @@ function Home() {
   const { exitFullScreen, isFullScreen } = useLayer();
 
   useEffect(() => {
-    if (isFullScreen && exitFullScreen) exitFullScreen();
+    if (isFullScreen) exitFullScreen();
   }, [isFullScreen, exitFullScreen]);
 
   return (
