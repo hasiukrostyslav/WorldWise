@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
+import { useLayer } from '../hooks/useLayer';
 
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
@@ -10,7 +11,6 @@ import Footer from './Footer';
 import Spinner from './Spinner';
 import Error from './Error';
 import EmptyList from './EmptyList';
-import { useLayer } from '../hooks/useLayer';
 
 interface SidebarProps {
   children: React.ReactNode;

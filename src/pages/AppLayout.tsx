@@ -1,8 +1,11 @@
+import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Sidebar from '../components/Sidebar';
-import Map from '../components/Map';
+import MapSpinner from '../components/MapSpinner';
+
+const Map = lazy(() => import('../components/Map'));
 
 const StyledAppLayout = styled.section`
   min-height: calc(100vh - 5rem);
@@ -18,7 +21,9 @@ function AppLayout() {
       <Sidebar>
         <Outlet />
       </Sidebar>
-      <Map />
+      <Suspense fallback={<MapSpinner />}>
+        <Map />
+      </Suspense>
     </StyledAppLayout>
   );
 }
