@@ -60,9 +60,13 @@ function Country() {
       )}
       <div className="box">
         <h4>Visited cities</h4>
-        {country?.visitedCities.map((city) => (
-          <span key={city.cityName}>{city.cityName}</span>
-        ))}
+        <div>
+          {country?.visitedCities.map((city, i) => (
+            <span key={city.cityName}>
+              {i + 1}. {city.cityName}{' '}
+            </span>
+          ))}
+        </div>
       </div>
     </DetailsContainer>
   );
