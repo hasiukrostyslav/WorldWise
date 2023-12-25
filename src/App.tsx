@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -14,13 +15,15 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import HomeErrorPage from './pages/HomeErrorPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import AppLayout from './pages/AppLayout';
 import CitiesList from './components/CitiesList';
 import CountriesList from './components/CountriesList';
 import City from './components/City';
 import Country from './components/Country';
 import Error from './components/Error';
-import AddForm from './components/AddForm';
+import AppLayout from './pages/AppLayout';
+import Spinner from './components/Spinner';
+
+const AddForm = lazy(() => import('./components/AddForm'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -56,7 +59,14 @@ function App() {
               <Route path="cities/:id" element={<City />} />
               <Route path="countries" element={<CountriesList />} />
               <Route path="countries/:countryName" element={<Country />} />
-              <Route path="form" element={<AddForm />} />
+              <Route
+                path="form"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <AddForm />
+                  </Suspense>
+                }
+              />
               <Route path="*" element={<Error />} />
             </Route>
           </Routes>
