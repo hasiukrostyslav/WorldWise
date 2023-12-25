@@ -3,6 +3,7 @@ import { HiArrowLongRight } from 'react-icons/hi2';
 
 interface OuterLinkProps {
   link: string | undefined;
+  type?: 'city' | 'country';
 }
 
 const StyledOuterLink = styled.a`
@@ -24,7 +25,7 @@ const StyledOuterLink = styled.a`
   }
 `;
 
-function OuterLink({ link }: OuterLinkProps) {
+function OuterLink({ link, type }: OuterLinkProps) {
   if (!link) return;
 
   const formattedLink =
@@ -32,10 +33,12 @@ function OuterLink({ link }: OuterLinkProps) {
 
   return (
     <StyledOuterLink
+      type={type}
       target="_blank"
       href={`https://en.wikipedia.org/wiki/${formattedLink}`}
     >
-      Check out info about Country on Wikipedia <HiArrowLongRight />
+      Check out info about {type === 'city' ? 'city' : 'country'} on Wikipedia{' '}
+      <HiArrowLongRight />
     </StyledOuterLink>
   );
 }

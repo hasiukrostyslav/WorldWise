@@ -90,7 +90,7 @@ function DetailsContainer({ name, children, type }: DetailsContainerProps) {
       {children}
       <div className="box">
         <h4>Learn more</h4>
-        <OuterLink link={name} />
+        <OuterLink link={name} type={type} />
       </div>
       <Button
         $variation="outline"
