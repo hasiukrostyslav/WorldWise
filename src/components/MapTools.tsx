@@ -25,7 +25,7 @@ export function DetectMapClick() {
   useMapEvents({
     click(e) {
       exitFullScreen();
-      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      navigate(`form/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
 
