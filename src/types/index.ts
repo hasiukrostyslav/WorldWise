@@ -85,3 +85,10 @@ export interface CityInput {
   date: Dayjs | null;
   note: string | null;
 }
+
+export interface CityEditInput {
+  id: number | undefined;
+  cityName: string;
+  visitedDate: string | undefined;
+  description: string | null;
+}

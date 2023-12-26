@@ -7,6 +7,7 @@ import type {
   City,
   CityBase,
   CityBaseData,
+  CityEditInput,
   CityForm,
   VisitedCities,
 } from '../types';
@@ -155,6 +156,31 @@ export async function deleteCity(id: number) {
     const { error } = await supabase.from('cities').delete().eq('id', id);
 
     if (error) throw new Error(error.message);
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
+  }
+}
+
+export async function editCity({
+  id,
+  cityName,
+  visitedDate,
+  description,
+}: CityEditInput) {
+  try {
+    const { data, error } = await supabase
+      .from('cities')
+      .update({
+        city_name: cityName,
+        visited_date: visitedDate,
+        description: description,
+      })
+      .eq('id', id)
+      .select();
+
+    if (error) throw new Error(error.message);
+
+    return data;
   } catch (err) {
     throw new Error(err instanceof Error ? err.message : '');
   }

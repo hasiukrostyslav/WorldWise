@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { LuClipboardEdit } from 'react-icons/lu';
 
 import { useCity } from '../hooks/useCity';
 import { getFormatDate } from '../utils/helper';
@@ -7,6 +9,38 @@ import { getFormatDate } from '../utils/helper';
 import DetailsContainer from './DetailsContainer';
 import Error from './Error';
 import Spinner from './Spinner';
+
+const EditIcon = styled(LuClipboardEdit)`
+  width: 2.5rem;
+  height: 2.5rem;
+`;
+
+const EditButton = styled.button`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-light--1);
+  transition: all 0.5s;
+
+  &:hover {
+    color: var(--color-light--2);
+  }
+
+  &:disabled {
+    background-color: var(--color-light--1);
+    cursor: not-allowed;
+  }
+  &:focus {
+    outline: 4px solid var(--color-primary--0);
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+`;
 
 function City() {
   const navigate = useNavigate();
@@ -23,6 +57,9 @@ function City() {
 
   return (
     <DetailsContainer type="city" name={city?.cityName}>
+      <EditButton onClick={() => navigate(`/app/form/edit/${city?.id}`)}>
+        <EditIcon />
+      </EditButton>
       <div className="box">
         <h4>City name</h4>
         <p>

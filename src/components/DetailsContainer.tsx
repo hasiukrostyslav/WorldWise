@@ -12,6 +12,7 @@ interface DetailsContainerProps {
 }
 
 const StyledDetailsContainer = styled.div`
+  position: relative;
   padding: 2rem 3rem;
   width: 100%;
   display: flex;
@@ -85,6 +86,7 @@ const StyledDetailsContainer = styled.div`
 
 function DetailsContainer({ name, children, type }: DetailsContainerProps) {
   const navigate = useNavigate();
+
   return (
     <StyledDetailsContainer>
       {children}

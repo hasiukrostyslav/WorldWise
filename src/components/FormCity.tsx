@@ -41,6 +41,7 @@ interface FormCityProps {
   inputError: FieldErrors<CityInput>;
   onSubmit: () => void;
   isSendingData: boolean;
+  isTouchedField?: boolean;
 }
 
 function FormCity({
@@ -54,6 +55,7 @@ function FormCity({
   inputError,
   onSubmit,
   isSendingData,
+  isTouchedField,
 }: FormCityProps) {
   const navigate = useNavigate();
 
@@ -119,7 +121,11 @@ function FormCity({
           >
             <HiArrowLongLeft /> Back
           </Button>
-          <Button disabled={isSendingData}>{city ? 'Save' : 'Add'}</Button>
+          {date ? (
+            <Button disabled={isSendingData || !isTouchedField}>Save</Button>
+          ) : (
+            <Button disabled={isSendingData}>Add</Button>
+          )}
         </div>
       </Form>
     </FormContainer>

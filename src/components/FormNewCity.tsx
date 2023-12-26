@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
 
@@ -6,7 +6,9 @@ import useNewCityForm from '../hooks/useNewCityForm';
 import { useAddNewCity } from '../hooks/useAddNewCity';
 import { CityInput } from '../types';
 
-import FormCity from './FormCity';
+import Spinner from './Spinner';
+
+const FormCity = lazy(() => import('./FormCity'));
 
 function FormNewCity() {
   const navigate = useNavigate();
@@ -43,17 +45,19 @@ function FormNewCity() {
   };
 
   return (
-    <FormCity
-      city={city}
-      isLoading={isPending}
-      isError={isError}
-      error={error}
-      register={register}
-      control={control}
-      inputError={inputError}
-      onSubmit={handleSubmit(onSubmit)}
-      isSendingData={isSendingData}
-    />
+    <Suspense fallback={<Spinner />}>
+      <FormCity
+        city={city}
+        isLoading={isPending}
+        isError={isError}
+        error={error}
+        register={register}
+        control={control}
+        inputError={inputError}
+        onSubmit={handleSubmit(onSubmit)}
+        isSendingData={isSendingData}
+      />
+    </Suspense>
   );
 }
 
