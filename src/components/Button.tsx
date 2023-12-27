@@ -5,7 +5,7 @@ interface ButtonProps {
   size?: 'extraSmall' | 'small' | 'medium' | 'large';
   $variation?: 'primary' | 'secondary' | 'danger' | 'outline' | 'dark';
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
 }
 
 const basicStyles = `
@@ -104,6 +104,10 @@ const variations = {
     color: var(--color-light--2);
     border: 1px solid var(--color-light--2);
 
+    &:hover {
+      color: var(--color-light--1);
+      border-color: 1px solid var(--color-light--1);
+    }
     &:focus {
       outline: 4px solid var(--color-light--2);
     }
@@ -116,6 +120,10 @@ const variations = {
     color: var(--color-light--2);
     border: 1px solid var(--color-dark--2);
 
+    &:hover {
+      background-color: var(--color-dark--0);
+      border-color: var(--color-dark--0);
+    }
     &:focus {
       outline: 4px solid var(--color-primary--0);
     }
