@@ -1,6 +1,8 @@
 import { SUPABASE_URL, supabase } from './supabase';
 import type { LoginInputs, SignUpInputs } from '../types';
 
+const STORAGE_PATH = '/storage/v1/object/public/avatars/';
+
 export async function signUp({ name, email, password }: SignUpInputs) {
   try {
     const { data, error } = await supabase.auth.signUp({
@@ -67,9 +69,9 @@ export async function updateUserPhoto(file: File | null | undefined) {
     const user = await deleteUserPhoto();
 
     if (!file) throw new Error('Photo could not be found');
-    console.log(user);
+
     const imageName = `${user?.id}-${Math.random()}-user`;
-    const imagePath = `${SUPABASE_URL}/storage/v1/object/public/avatars/${imageName}`;
+    const imagePath = `${SUPABASE_URL}${STORAGE_PATH}${imageName}`;
 
     const { error: storageError } = await supabase.storage
       .from('avatars')
@@ -101,15 +103,31 @@ export async function deleteUserPhoto() {
   try {
     const user = await getCurrentUser();
     const imageName = user?.user_metadata?.avatar_url?.replace(
-      `${SUPABASE_URL}/storage/v1/object/public/avatars/`,
+      `${SUPABASE_URL}${STORAGE_PATH}`,
       ''
     );
+
+    if (!imageName) return user;
 
     const { error } = await supabase.storage
       .from('avatars')
       .remove([imageName]);
 
     if (error) throw new Error('Photo could not be deleted');
+
+    const { error: authError } = await supabase.auth.updateUser({
+      data: { avatar_url: null },
+    });
+
+    if (authError) throw new Error('Photo could not be deleted');
+
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .update({ avatar_url: null })
+      .eq('id', user?.id)
+      .select();
+
+    if (profileError) throw new Error('Photo could not be deleted');
 
     return user;
   } catch (err) {

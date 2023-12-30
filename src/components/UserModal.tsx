@@ -3,11 +3,13 @@ import { createPortal } from 'react-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { useUpdateUserPhoto } from '../hooks/useUpdateUserPhoto';
 import { useUser } from '../hooks/useUser';
+import { useUpdateUserPhoto } from '../hooks/useUpdateUserPhoto';
+import { useDeleteUserPhoto } from '../hooks/useDeleteUserPhoto';
 
 import FileInput from './FileInput';
 import { Button } from './Button';
+import DeleteButton from './DeleteButton';
 
 const Modal = styled.dialog`
   position: absolute;
@@ -52,6 +54,11 @@ const Modal = styled.dialog`
     align-items: center;
     justify-content: space-between;
   }
+
+  .avatar {
+    display: flex;
+    gap: 0.5rem;
+  }
 `;
 
 const InputError = styled.span`
@@ -81,6 +88,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
 ) {
   const { userPhoto } = useUser();
   const { updateUserPhoto, isPending } = useUpdateUserPhoto();
+  const { deleteUserPhoto, isPending: isDeleting } = useDeleteUserPhoto();
   const {
     register,
     handleSubmit,
@@ -96,6 +104,15 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
     reset();
   };
 
+  function handleDeletePhoto(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+    deleteUserPhoto();
+    closeModalBySubmit();
+    reset();
+  }
+
   return createPortal(
     <Modal
       ref={ref}
@@ -107,7 +124,16 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
       <form onSubmit={handleSubmit(onSubmit)}>
         <p>
           Change your profile picture
-          <img src={userPhoto || '/user.png'} alt="User Avatar" />
+          <span className="avatar">
+            <img src={userPhoto || '/user.png'} alt="User Avatar" />
+            {userPhoto && (
+              <DeleteButton
+                onClick={handleDeletePhoto}
+                disabled={isPending || isDeleting}
+                $color="light"
+              />
+            )}
+          </span>
         </p>
         <FileInput
           {...register('image', { required: 'Please upload the file' })}

@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { useDeleteCity } from '../hooks/useDeleteCity';
 import { getFormatDate } from '../utils/helper';
 
+import DeleteButton from './DeleteButton';
+
 const StyledLink = styled(NavLink)`
   background-color: var(--color-dark--2);
   border: 3px solid var(--color-dark--2);
@@ -42,34 +44,6 @@ const StyledLink = styled(NavLink)`
     font-weight: 400;
     margin-right: 1.6rem;
   }
-
-  button {
-    font-size: 1rem;
-    font-weight: 600;
-    height: 2rem;
-    aspect-ratio: 1;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--color-dark--0);
-    color: var(--color-light-2);
-    transition: all 0.5s;
-
-    &:hover {
-      background-color: var(--color-third);
-      color: var(--color-dark--1);
-    }
-    &:focus {
-      outline: solid var(--color-primary--0);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
-  }
 `;
 
 type CityItemProps = {
@@ -103,9 +77,11 @@ function CityItem({ id, name, imgSrc, date }: CityItemProps) {
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
         <time>({formatDate})</time>
-        <button onClick={handleClickDelete} disabled={isPending}>
-          x
-        </button>
+        <DeleteButton
+          onClick={handleClickDelete}
+          disabled={isPending}
+          $color="dark"
+        />
       </StyledLink>
     </li>
   );
