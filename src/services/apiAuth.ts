@@ -64,10 +64,10 @@ export async function logout() {
 
 export async function updateUserPhoto(file: File | null | undefined) {
   try {
-    const user = await getCurrentUser();
+    const user = await deleteUserPhoto();
 
     if (!file) throw new Error('Photo could not be found');
-
+    console.log(user);
     const imageName = `${user?.id}-${Math.random()}-user`;
     const imagePath = `${SUPABASE_URL}/storage/v1/object/public/avatars/${imageName}`;
 
@@ -92,6 +92,26 @@ export async function updateUserPhoto(file: File | null | undefined) {
     if (error) throw new Error('Photo could not be added');
 
     return data;
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
+  }
+}
+
+export async function deleteUserPhoto() {
+  try {
+    const user = await getCurrentUser();
+    const imageName = user?.user_metadata?.avatar_url?.replace(
+      `${SUPABASE_URL}/storage/v1/object/public/avatars/`,
+      ''
+    );
+
+    const { error } = await supabase.storage
+      .from('avatars')
+      .remove([imageName]);
+
+    if (error) throw new Error('Photo could not be deleted');
+
+    return user;
   } catch (err) {
     throw new Error(err instanceof Error ? err.message : '');
   }
