@@ -43,12 +43,13 @@ const AvatarButton = styled.button`
 
   img {
     width: 100%;
+    border-radius: 50%;
   }
 `;
 
 function User() {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { userName } = useUser();
+  const { userName, userPhoto } = useUser();
   const { logout } = useLogOut();
 
   function openModal() {
@@ -67,10 +68,14 @@ function User() {
     if (e.target === e.currentTarget) dialogRef.current?.close();
   }
 
+  function closeModalBySubmit() {
+    dialogRef.current?.close();
+  }
+
   return (
     <StyledUser>
       <AvatarButton onClick={openModal}>
-        <img src="/user.png" alt="User Avatar" />
+        <img src={userPhoto || '/user.png'} alt="User Avatar" />
       </AvatarButton>
       <span>Welcome, {userName}</span>
       <Button onClick={() => logout()} size="extraSmall" $variation="dark">
@@ -80,6 +85,7 @@ function User() {
         ref={dialogRef}
         closeModal={closeModal}
         closeModalByBackdropClick={closeModalByBackdropClick}
+        closeModalBySubmit={closeModalBySubmit}
       />
     </StyledUser>
   );

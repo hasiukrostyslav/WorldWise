@@ -1,6 +1,10 @@
 import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
+
+import { useUpdateUserPhoto } from '../hooks/useUpdateUserPhoto';
+import { useUser } from '../hooks/useUser';
 
 import FileInput from './FileInput';
 import { Button } from './Button';
@@ -38,6 +42,7 @@ const Modal = styled.dialog`
     img {
       width: 6rem;
       height: 6rem;
+      border-radius: 50%;
     }
   }
 
@@ -49,31 +54,77 @@ const Modal = styled.dialog`
   }
 `;
 
+const InputError = styled.span`
+  color: var(--color-danger--0);
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: absolute;
+  top: 9rem;
+`;
+
 type Ref = HTMLDialogElement;
 interface UserModalProps {
   closeModal: (e: React.MouseEvent<HTMLElement>) => void;
   closeModalByBackdropClick: (
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>
   ) => void;
+  closeModalBySubmit: () => void;
+}
+
+interface FormValues {
+  image: FileList | null;
 }
 
 const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
-  { closeModal, closeModalByBackdropClick }: UserModalProps,
+  { closeModal, closeModalByBackdropClick, closeModalBySubmit }: UserModalProps,
   ref
 ) {
+  const { userPhoto } = useUser();
+  const { updateUserPhoto, isPending } = useUpdateUserPhoto();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const image = data?.image?.item(0);
+
+    updateUserPhoto(image);
+    closeModalBySubmit();
+    reset();
+  };
+
   return createPortal(
-    <Modal ref={ref} onClick={closeModalByBackdropClick}>
-      <form>
+    <Modal
+      ref={ref}
+      onClick={(e) => {
+        closeModalByBackdropClick(e);
+        // reset();
+      }}
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <p>
           Change your profile picture
-          <img src="/user.png" alt="User Avatar" />
+          <img src={userPhoto || '/user.png'} alt="User Avatar" />
         </p>
-        <FileInput />
+        <FileInput
+          {...register('image', { required: 'Please upload the file' })}
+        />
+        {errors.image && <InputError>{errors.image.message}</InputError>}
         <div>
-          <Button $variation="outline" onClick={closeModal}>
+          <Button
+            disabled={isPending}
+            $variation="outline"
+            onClick={(e) => {
+              closeModal(e);
+              // reset();
+            }}
+          >
             Cancel
           </Button>
-          <Button>Save</Button>
+          <Button disabled={isPending}>Upload</Button>
         </div>
       </form>
     </Modal>,

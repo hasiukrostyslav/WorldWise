@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { SUPABASE_URL, supabase } from './supabase';
 import type { LoginInputs, SignUpInputs } from '../types';
 
 export async function signUp({ name, email, password }: SignUpInputs) {
@@ -57,6 +57,41 @@ export async function logout() {
     const { error } = await supabase.auth.signOut();
 
     if (error) throw new Error(error.message);
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
+  }
+}
+
+export async function updateUserPhoto(file: File | null | undefined) {
+  try {
+    const user = await getCurrentUser();
+
+    if (!file) throw new Error('Photo could not be found');
+
+    const imageName = `${user?.id}-${Math.random()}-user`;
+    const imagePath = `${SUPABASE_URL}/storage/v1/object/public/avatars/${imageName}`;
+
+    const { error: storageError } = await supabase.storage
+      .from('avatars')
+      .upload(imageName, file);
+
+    if (storageError) throw new Error('Photo could not be uploaded');
+
+    const { error: authError } = await supabase.auth.updateUser({
+      data: { avatar_url: imagePath },
+    });
+
+    if (authError) throw new Error('Photo could not be added');
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .update({ avatar_url: imagePath })
+      .eq('id', user?.id)
+      .select();
+
+    if (error) throw new Error('Photo could not be added');
+
+    return data;
   } catch (err) {
     throw new Error(err instanceof Error ? err.message : '');
   }

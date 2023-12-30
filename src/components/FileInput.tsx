@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
 import { LiaCloudUploadAltSolid } from 'react-icons/lia';
 
@@ -43,19 +45,33 @@ const Icon = styled(LiaCloudUploadAltSolid)`
   color: var(--color-light--2);
 `;
 
-function FileInput() {
-  return (
-    <Label>
-      <input type="file" />
-      <Icon />
-      <p>
-        Drag&Drop files here
-        <br />
-        or
-      </p>
-      <span>Browse File</span>
-    </Label>
-  );
+type Ref = HTMLInputElement;
+interface ImgInput {
+  image: FileList | null;
 }
+
+const FileInput = forwardRef<Ref, ReturnType<UseFormRegister<ImgInput>>>(
+  function FileInput({ onChange, onBlur, name }, ref) {
+    return (
+      <Label>
+        <input
+          type="file"
+          accept="image/*"
+          ref={ref}
+          onChange={onChange}
+          onBlur={onBlur}
+          name={name}
+        />
+        <Icon />
+        <p>
+          Drag&Drop files here
+          <br />
+          or
+        </p>
+        <span>Browse File</span>
+      </Label>
+    );
+  }
+);
 
 export default FileInput;

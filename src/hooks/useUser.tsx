@@ -17,5 +17,6 @@ export function useUser() {
     isFetching,
     isAuthenticated: user?.role === 'authenticated',
     userName: user?.user_metadata.full_name,
+    userPhoto: user?.user_metadata.avatar_url,
   };
 }
