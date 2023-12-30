@@ -118,7 +118,8 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
       ref={ref}
       onClick={(e) => {
         closeModalByBackdropClick(e);
-        // reset();
+        console.log(e);
+        if (e.target === e.currentTarget) reset();
       }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -145,7 +146,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
             $variation="outline"
             onClick={(e) => {
               closeModal(e);
-              // reset();
+              reset();
             }}
           >
             Cancel
