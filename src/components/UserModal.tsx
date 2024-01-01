@@ -93,6 +93,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -118,7 +119,6 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
       ref={ref}
       onClick={(e) => {
         closeModalByBackdropClick(e);
-        console.log(e);
         if (e.target === e.currentTarget) reset();
       }}
     >
@@ -137,7 +137,11 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
           </span>
         </p>
         <FileInput
-          {...register('image', { required: 'Please upload the file' })}
+          setValue={setValue}
+          {...register('image', {
+            validate: (value) =>
+              value?.length !== 0 || 'Please upload the file',
+          })}
         />
         {errors.image && <InputError>{errors.image.message}</InputError>}
         <div>

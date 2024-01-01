@@ -158,6 +158,10 @@ a:visited {
   opacity: 0.6;
 }
 
+.draggable {
+  opacity: 0.6;
+}
+
 `;
 
 export default GlobalStyles;

@@ -1,5 +1,5 @@
-import { forwardRef } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { forwardRef, useRef } from 'react';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import styled from 'styled-components';
 import { LiaCloudUploadAltSolid } from 'react-icons/lia';
 
@@ -17,6 +17,7 @@ const Label = styled.label`
 
   input {
     display: none;
+    /* opacity: 0; */
   }
 
   p {
@@ -49,29 +50,55 @@ type Ref = HTMLInputElement;
 interface ImgInput {
   image: FileList | null;
 }
+interface FileInputProps {
+  setValue: UseFormSetValue<ImgInput>;
+}
 
-const FileInput = forwardRef<Ref, ReturnType<UseFormRegister<ImgInput>>>(
-  function FileInput({ onChange, onBlur, name }, ref) {
-    return (
-      <Label>
-        <input
-          type="file"
-          accept="image/*"
-          ref={ref}
-          onChange={onChange}
-          onBlur={onBlur}
-          name={name}
-        />
-        <Icon />
-        <p>
-          Drag&Drop files here
-          <br />
-          or
-        </p>
-        <span>Browse File</span>
-      </Label>
-    );
-  }
-);
+const FileInput = forwardRef<
+  Ref,
+  FileInputProps & ReturnType<UseFormRegister<ImgInput>>
+>(function FileInput({ onChange, onBlur, name, setValue }, ref) {
+  const wrapperRef = useRef<HTMLLabelElement>(null);
+
+  const onDragEnter = () => wrapperRef.current?.classList.add('draggable');
+
+  const onDragLeave = () => wrapperRef.current?.classList.remove('draggable');
+
+  const onDragOver = (e: React.DragEvent<HTMLLabelElement>) =>
+    e.preventDefault();
+
+  const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+
+    const data = e.dataTransfer.files;
+    setValue('image', data, { shouldTouch: true });
+  };
+
+  return (
+    <Label
+      ref={wrapperRef}
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+    >
+      <input
+        type="file"
+        accept="image/*"
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
+        name={name}
+      />
+      <Icon />
+      <p>
+        Drag&Drop files here
+        <br />
+        or
+      </p>
+      <span>Browse File</span>
+    </Label>
+  );
+});
 
 export default FileInput;
