@@ -152,7 +152,9 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
               value?.length !== 0 || 'Please upload the file',
           })}
         />
-        {errors.image && <InputError>{errors.image.message}</InputError>}
+        {errors.image && !watch('image')?.item(0)?.name && (
+          <InputError>{errors.image.message}</InputError>
+        )}
         <div>
           <Button
             disabled={isPending}

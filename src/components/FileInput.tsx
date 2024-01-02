@@ -3,7 +3,7 @@ import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import styled from 'styled-components';
 import { LiaCloudUploadAltSolid } from 'react-icons/lia';
 
-const Label = styled.label`
+const DropZone = styled.div`
   padding: 2rem 4rem;
   border: 2px dotted var(--color-light--2);
   border-radius: 8px;
@@ -13,12 +13,6 @@ const Label = styled.label`
   align-items: center;
   justify-content: center;
   transition: all.5s;
-  cursor: pointer;
-
-  input {
-    display: none;
-    /* opacity: 0; */
-  }
 
   p {
     font-size: 1.4rem;
@@ -26,17 +20,22 @@ const Label = styled.label`
     margin-bottom: 1rem;
   }
 
-  span {
+  label {
     background-color: var(--color-dark--2);
     padding: 1rem 2rem;
     font-size: 1.2rem;
     border-radius: 8px;
     transition: all 0.5s;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--color-dark--1);
       color: var(--color-light--1);
     }
+  }
+
+  input {
+    display: none;
   }
 `;
 
@@ -58,16 +57,15 @@ const FileInput = forwardRef<
   Ref,
   FileInputProps & ReturnType<UseFormRegister<ImgInput>>
 >(function FileInput({ onChange, onBlur, name, setValue }, ref) {
-  const wrapperRef = useRef<HTMLLabelElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const onDragEnter = () => wrapperRef.current?.classList.add('draggable');
 
   const onDragLeave = () => wrapperRef.current?.classList.remove('draggable');
 
-  const onDragOver = (e: React.DragEvent<HTMLLabelElement>) =>
-    e.preventDefault();
+  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
 
-  const onDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     const data = e.dataTransfer.files;
@@ -75,29 +73,32 @@ const FileInput = forwardRef<
   };
 
   return (
-    <Label
+    <DropZone
       ref={wrapperRef}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
       onDragOver={onDragOver}
       onDrop={onDrop}
     >
-      <input
-        type="file"
-        accept="image/*"
-        ref={ref}
-        onChange={onChange}
-        onBlur={onBlur}
-        name={name}
-      />
       <Icon />
       <p>
         Drag&Drop files here
         <br />
         or
       </p>
-      <span>Browse File</span>
-    </Label>
+
+      <label>
+        <input
+          type="file"
+          accept="image/*"
+          ref={ref}
+          onChange={onChange}
+          onBlur={onBlur}
+          name={name}
+        />
+        Browse file
+      </label>
+    </DropZone>
   );
 });
 
