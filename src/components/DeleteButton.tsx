@@ -1,15 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface DeleteButtonProps {
   disabled: boolean;
   $color: 'dark' | 'light';
+  $size?: 'small';
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+const position = css`
+  position: absolute;
+  top: -0.6rem;
+  right: -1.2rem;
+`;
+
 const StyledDeleteButton = styled.button<DeleteButtonProps>`
-  font-size: 1rem;
+  ${(props) => (props.$size ? position : '')};
+  font-size: ${(props) => (props.$size ? '0.8rem' : '1rem')};
+  height: ${(props) => (props.$size ? '1.2rem' : '2rem')};
   font-weight: 600;
-  height: 2rem;
   aspect-ratio: 1;
   border: none;
   border-radius: 50%;
@@ -37,9 +45,14 @@ const StyledDeleteButton = styled.button<DeleteButtonProps>`
   }
 `;
 
-function DeleteButton({ disabled, onClick, $color }: DeleteButtonProps) {
+function DeleteButton({ disabled, onClick, $color, $size }: DeleteButtonProps) {
   return (
-    <StyledDeleteButton onClick={onClick} disabled={disabled} $color={$color}>
+    <StyledDeleteButton
+      onClick={onClick}
+      disabled={disabled}
+      $color={$color}
+      $size={$size}
+    >
       x
     </StyledDeleteButton>
   );

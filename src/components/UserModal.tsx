@@ -10,6 +10,7 @@ import { useDeleteUserPhoto } from '../hooks/useDeleteUserPhoto';
 import FileInput from './FileInput';
 import { Button } from './Button';
 import DeleteButton from './DeleteButton';
+import File from './File';
 
 const Modal = styled.dialog`
   position: absolute;
@@ -94,6 +95,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
     handleSubmit,
     reset,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -136,6 +138,13 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
             )}
           </span>
         </p>
+        {watch('image')?.item(0)?.name && (
+          <File
+            disabled={isPending}
+            fileName={watch('image')?.item(0)?.name}
+            onClick={() => reset()}
+          />
+        )}
         <FileInput
           setValue={setValue}
           {...register('image', {
