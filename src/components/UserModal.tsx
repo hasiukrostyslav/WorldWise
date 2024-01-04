@@ -72,11 +72,16 @@ const InputError = styled.span`
 
 type Ref = HTMLDialogElement;
 interface UserModalProps {
-  closeModal: (e: React.MouseEvent<HTMLElement>) => void;
-  closeModalByBackdropClick: (
-    e: React.MouseEvent<HTMLDialogElement, MouseEvent>
+  closeModal: (
+    e: React.MouseEvent<HTMLElement>,
+    ref: React.RefObject<HTMLDialogElement>
   ) => void;
-  closeModalBySubmit: () => void;
+  closeModalByBackdropClick: (
+    e: React.MouseEvent<HTMLDialogElement, MouseEvent>,
+    ref: React.RefObject<HTMLDialogElement>
+  ) => void;
+  closeModalBySubmit: (ref: React.RefObject<HTMLDialogElement>) => void;
+  imgDialogRef: React.RefObject<HTMLDialogElement>;
 }
 
 interface FormValues {
@@ -84,7 +89,12 @@ interface FormValues {
 }
 
 const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
-  { closeModal, closeModalByBackdropClick, closeModalBySubmit }: UserModalProps,
+  {
+    closeModal,
+    closeModalByBackdropClick,
+    closeModalBySubmit,
+    imgDialogRef,
+  }: UserModalProps,
   ref
 ) {
   const { userPhoto } = useUser();
@@ -103,7 +113,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
     const image = data?.image?.item(0);
 
     updateUserPhoto(image);
-    closeModalBySubmit();
+    closeModalBySubmit(imgDialogRef);
     reset();
   };
 
@@ -112,7 +122,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
   ) {
     e.preventDefault();
     deleteUserPhoto();
-    closeModalBySubmit();
+    closeModalBySubmit(imgDialogRef);
     reset();
   }
 
@@ -120,7 +130,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
     <Modal
       ref={ref}
       onClick={(e) => {
-        closeModalByBackdropClick(e);
+        closeModalByBackdropClick(e, imgDialogRef);
         if (e.target === e.currentTarget) reset();
       }}
     >
@@ -160,7 +170,7 @@ const UserModal = forwardRef<Ref, UserModalProps>(function UserModal(
             disabled={isPending}
             $variation="outline"
             onClick={(e) => {
-              closeModal(e);
+              closeModal(e, imgDialogRef);
               reset();
             }}
           >

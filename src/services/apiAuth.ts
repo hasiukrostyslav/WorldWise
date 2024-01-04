@@ -134,3 +134,21 @@ export async function deleteUserPhoto() {
     throw new Error(err instanceof Error ? err.message : '');
   }
 }
+
+export async function deleteUser() {
+  try {
+    const user = await getCurrentUser();
+    if (!user) throw new Error('User account could not be deleted');
+
+    await deleteUserPhoto();
+    await logout();
+
+    const { data, error } = await supabase.auth.admin.deleteUser(user.id);
+
+    if (error) throw new Error('User account could not be deleted');
+
+    return data;
+  } catch (err) {
+    throw new Error(err instanceof Error ? err.message : '');
+  }
+}

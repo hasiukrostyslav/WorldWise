@@ -1,11 +1,13 @@
-import { useRef } from 'react';
 import styled from 'styled-components';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 
+import { useModal } from '../hooks/useModal';
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
 
 import { Button } from './Button';
 import UserModal from './UserModal';
+import DeleteModal from './DeleteModal';
 
 const StyledUser = styled.div`
   position: absolute;
@@ -47,42 +49,51 @@ const AvatarButton = styled.button`
   }
 `;
 
+const DeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+`;
+
+const Icon = styled(RiDeleteBin2Line)`
+  color: var(--color-danger--0);
+`;
+
 function User() {
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const { userName, userPhoto } = useUser();
   const { logout } = useLogOut();
-
-  function openModal() {
-    dialogRef.current?.showModal();
-  }
-
-  function closeModal(e: React.MouseEvent<HTMLElement>) {
-    e.preventDefault();
-
-    dialogRef.current?.close();
-  }
-
-  function closeModalByBackdropClick(
-    e: React.MouseEvent<HTMLDialogElement, MouseEvent>
-  ) {
-    if (e.target === e.currentTarget) dialogRef.current?.close();
-  }
-
-  function closeModalBySubmit() {
-    dialogRef.current?.close();
-  }
+  const {
+    imgDialogRef,
+    deleteDialogRef,
+    openModal,
+    closeModal,
+    closeModalBySubmit,
+    closeModalByBackdropClick,
+  } = useModal();
 
   return (
     <StyledUser>
-      <AvatarButton onClick={openModal}>
+      <AvatarButton onClick={() => openModal(imgDialogRef)}>
         <img src={userPhoto || '/user.png'} alt="User Avatar" />
       </AvatarButton>
       <span>Welcome, {userName}</span>
+      <DeleteButton onClick={() => openModal(deleteDialogRef)}>
+        <Icon />
+      </DeleteButton>
       <Button onClick={() => logout()} size="extraSmall" $variation="dark">
         Logout
       </Button>
       <UserModal
-        ref={dialogRef}
+        ref={imgDialogRef}
+        imgDialogRef={imgDialogRef}
+        closeModal={closeModal}
+        closeModalByBackdropClick={closeModalByBackdropClick}
+        closeModalBySubmit={closeModalBySubmit}
+      />
+      <DeleteModal
+        ref={deleteDialogRef}
+        deleteDialogRef={deleteDialogRef}
         closeModal={closeModal}
         closeModalByBackdropClick={closeModalByBackdropClick}
         closeModalBySubmit={closeModalBySubmit}
