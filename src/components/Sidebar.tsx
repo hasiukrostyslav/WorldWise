@@ -70,7 +70,7 @@ function Sidebar({ children }: SidebarProps) {
           <Error message={geolocationError ? geolocationError : ''} />
         )}
         {cities?.length === 0 && !searchParams.get('lat') && <EmptyList />}
-        {children}
+        {!isLoading && children}
       </div>
       <Footer />
     </StyledSidebar>
