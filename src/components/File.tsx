@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BsFileEarmark } from 'react-icons/bs';
+
 import DeleteButton from './DeleteButton';
 
 const StyledFile = styled.div`
