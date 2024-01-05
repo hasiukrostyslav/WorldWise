@@ -24,9 +24,11 @@ const StyledCitiesList = styled.ul`
 function CitiesList() {
   const { cities } = useCities();
 
+  const sortedCities = cities?.slice().sort((a, b) => b.id - a.id);
+
   return (
     <StyledCitiesList>
-      {cities?.map((city) => {
+      {sortedCities?.map((city) => {
         const { id, cityName, countryFlag, date } = city;
 
         return (

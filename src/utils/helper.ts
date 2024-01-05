@@ -27,7 +27,9 @@ export const getFormatDate = function (
 
 export const getCountries = function (cities: City[] | undefined) {
   if (!cities || cities.length === 0) return;
-  return cities
+  const citiesCopy = cities.slice();
+
+  return citiesCopy
     .map((city) => ({
       countryName: city.countryName,
       countryCode: city.countryCode,
@@ -39,7 +41,12 @@ export const getCountries = function (cities: City[] | undefined) {
           ? [...arr, country]
           : arr,
       []
-    );
+    )
+    .sort((a, b) => {
+      const countryA = a.countryName.toUpperCase();
+      const countryB = b.countryName.toUpperCase();
+      return countryA < countryB ? -1 : 1;
+    });
 };
 
 export const formatCountryNameToURL = function (countryName: string) {
