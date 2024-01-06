@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { SCREEN_SIZE, mediaQueries } from './mediaQueries';
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -28,10 +29,15 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-  font-size: 62.5%;
+  ${mediaQueries(SCREEN_SIZE.Mobile)` font-size: 40%;`}
+  ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 45%;`}
+  ${mediaQueries(SCREEN_SIZE.LaptopSmall)` font-size: 50%;`}
+  ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 55%;`}
+  ${mediaQueries(SCREEN_SIZE.Desktop)` font-size: 62.5%;`}
   box-sizing: border-box;
-  
 }
+
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -56,9 +62,9 @@ h1 {
 
 h3 {
   font-size: 2rem;
-    letter-spacing: 0.2px;
-    text-align: center;
-    color: var(--color-light--1);
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: var(--color-light--1);
 }
 
 label {
