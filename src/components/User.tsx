@@ -54,6 +54,13 @@ const DeleteButton = styled.button`
   border: none;
   display: flex;
   align-items: center;
+  border-radius: 4px;
+  &:focus {
+    outline: solid var(--color-primary--0);
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `;
 
 const Icon = styled(RiDeleteBin2Line)`
