@@ -10,13 +10,19 @@ const StyledLink = styled(Link)`
   border-left: 6px solid var(--color-third);
   border-radius: 0.7rem;
   padding: 1rem 0;
-  height: 8.5rem;
+  height: 5rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   outline: none;
   color: var(--color-light--2);
+
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+    height: 8.5rem;
+    flex-direction: column;
+    gap: 0;
+  `}
 
   &:focus {
     border: 3px solid var(--color-third);

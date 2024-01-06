@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 import { useCities } from '../hooks/useCities';
 import { getCountries } from '../utils/helper';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import CountryItem from './CountryItem';
 
 const StyledCountriesList = styled.ul`
   width: 100%;
-  max-height: 60vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-content: start;
-  gap: 1.6rem;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none;
@@ -20,6 +20,13 @@ const StyledCountriesList = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+    gap: 1.6rem;
+  `}
 `;
 
 function CountriesList() {

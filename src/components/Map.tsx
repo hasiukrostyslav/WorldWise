@@ -15,7 +15,6 @@ import LayersOption from './LayersOption';
 import User from './User';
 import MiniLogo from './MiniLogo';
 
-
 interface MapProps {
   $size: boolean | undefined;
 }
@@ -25,8 +24,10 @@ const size = {
     width: 100%;
   `,
   medium: css`
+    ${mediaQueries(SCREEN_SIZE.Tablet)` width: calc(100% - 45rem);`}
+    ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: calc(100% - 50rem);`}
     ${mediaQueries(SCREEN_SIZE.Laptop)` width: calc(100% - 55rem);`}
-    width: calc(100% - 50rem);
+    width: calc(100% - 40rem);
   `,
 };
 

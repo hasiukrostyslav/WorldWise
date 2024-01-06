@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface ButtonProps {
   size?: 'extraSmall' | 'small' | 'medium' | 'large';
@@ -36,12 +37,20 @@ const sizes = {
     padding: 0.8rem 1rem;
   `,
   medium: css`
-    font-size: 1.6rem;
-    padding: 1.2rem 1.8rem;
+    font-size: 1.4rem;
+    padding: 1rem 1.6rem;
+    ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+      font-size: 1.6rem;
+      padding: 1.2rem 1.8rem;
+    `}
   `,
   large: css`
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    padding: 1.2rem 1.8rem;
+    ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+      font-size: 1.8rem;
     padding: 1.6rem 2.6rem;
+    `}
   `,
 };
 

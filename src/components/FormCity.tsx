@@ -13,6 +13,7 @@ import { Dayjs } from 'dayjs';
 
 import { SX_PROPS } from '../utils/constant';
 import type { City, CityBase, CityInput } from '../types';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import FormContainer from './FormContainer';
 import Form from './Form';
@@ -27,7 +28,9 @@ const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 1.6rem;`}
+  ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 1.8rem;`}
 `;
 
 interface FormCityProps {

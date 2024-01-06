@@ -6,7 +6,7 @@ import CityItem from './CityItem';
 
 const StyledCitiesList = styled.ul`
   width: 100%;
-  max-height: 60vh;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;

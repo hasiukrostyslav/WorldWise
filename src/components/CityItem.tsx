@@ -56,9 +56,13 @@ type CityItemProps = {
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   const ref = useRef<HTMLAnchorElement | null>(null);
-  const [matches, setMatches] = useState(
+  const [matchesLaptop, setMatchesLaptop] = useState(
     window.matchMedia('(min-width: 1280px)').matches
   );
+  const [matchesSmallLaptop, setMatchesSmallLaptop] = useState(
+    window.matchMedia('(min-width: 1024px)').matches
+  );
+
   const { deleteCity, isPending, isError } = useDeleteCity();
   const longDate = getFormatDate(date);
   const shortDate = getShortDate(date);
@@ -66,7 +70,13 @@ function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   useEffect(() => {
     window
       .matchMedia('(min-width: 1280px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
+      .addEventListener('change', (e) => setMatchesLaptop(e.matches));
+  }, []);
+
+  useEffect(() => {
+    window
+      .matchMedia('(min-width: 1024px)')
+      .addEventListener('change', (e) => setMatchesSmallLaptop(e.matches));
   }, []);
 
   useEffect(() => {
@@ -87,7 +97,9 @@ function CityItem({ id, name, imgSrc, date }: CityItemProps) {
       <StyledLink ref={ref} to={`${id}`}>
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
-        <time>{matches ? longDate : shortDate}</time>
+        {matchesSmallLaptop && !matchesLaptop && <time>{shortDate}</time>}
+        {matchesLaptop && <time>{longDate}</time>}
+
         <DeleteButton
           onClick={handleClickDelete}
           disabled={isPending}

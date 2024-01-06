@@ -26,8 +26,10 @@ const hide = {
     left: 0rem;
   `,
   hidden: css`
+    ${mediaQueries(SCREEN_SIZE.Tablet)` left: -45rem;`}
+    ${mediaQueries(SCREEN_SIZE.SmallLaptop)` left: -50rem;`}
     ${mediaQueries(SCREEN_SIZE.Laptop)` left: -56rem;`}
-    left: -50rem;
+    left: -40rem;
   `,
 };
 
@@ -35,23 +37,26 @@ const StyledSidebar = styled.aside<AsideProps>`
   ${(props) => (props.$hide ? hide.hidden : hide.visible)}
   position: absolute;
   top: 0;
-  width: 50rem;
+  width: 40rem;
   padding: 3rem 5rem;
   height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   background-color: var(--color-dark--1);
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   transition: left 1s;
 
+  ${mediaQueries(SCREEN_SIZE.Tablet)` width: 45rem;`}
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 50rem;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` width: 56rem;`}
 
   .container {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 5rem);
     display: flex;
     flex-direction: column;
     align-items: center;

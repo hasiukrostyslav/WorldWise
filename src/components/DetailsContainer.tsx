@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLongLeft } from 'react-icons/hi2';
 
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
 import OuterLink from './OuterLink';
 import { Button } from './Button';
 
@@ -21,6 +23,13 @@ const StyledDetailsContainer = styled.div`
   gap: 1.4rem;
   background-color: var(--color-dark--2);
   border-radius: 0.8rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .box {
     display: flex;
@@ -40,13 +49,13 @@ const StyledDetailsContainer = styled.div`
   }
 
   p {
-    font-size: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
 
     span {
-      font-size: inherit;
+      font-size: 1.8rem;
+      ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 2rem;`}
     }
 
     img {

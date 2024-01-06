@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { HiArrowLongRight } from 'react-icons/hi2';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface OuterLinkProps {
   link: string | undefined;
@@ -11,6 +12,10 @@ const StyledOuterLink = styled.a`
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.6rem;
+  font-size: 1.6rem;
+
+  ${mediaQueries(SCREEN_SIZE.Tablet)`  font-size: 1.4rem;`}
+
   &:link,
   &:visited {
     color: var(--color-third);
@@ -37,7 +42,7 @@ function OuterLink({ link, type }: OuterLinkProps) {
       target="_blank"
       href={`https://en.wikipedia.org/wiki/${formattedLink}`}
     >
-      Check out info about {type === 'city' ? 'city' : 'country'} on Wikipedia{' '}
+      Check out info about {type === 'city' ? 'city' : 'country'} on Wikipedia
       <HiArrowLongRight />
     </StyledOuterLink>
   );
