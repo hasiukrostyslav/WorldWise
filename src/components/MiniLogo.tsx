@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled, css } from 'styled-components';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface LinkProps {
   $visible: boolean;
@@ -16,8 +17,20 @@ const Img = styled.img`
 
 const StyledLink = styled(Link)<LinkProps>`
   position: absolute;
-  top: 1.2rem;
-  left: 7rem;
+  top: 2.2rem;
+  left: 9rem;
+  ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    top: 2rem;
+    left: 8rem;
+  `}
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+    top: 1.6rem;
+    left: 7.5rem;
+  `}
+  ${mediaQueries(SCREEN_SIZE.Laptop)` 
+    top: 1.2rem;
+    left: 7rem;
+  `}
   z-index: 999;
   opacity: 0;
   transition: opacity 1s;
