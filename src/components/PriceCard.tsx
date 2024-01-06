@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
 import { ButtonLink } from './Button';
+import { useUser } from '../hooks/useUser';
 
 interface PriceCardProps {
   plan: string;
   price: string;
   device: number;
+  disabled: boolean;
 }
 
 const StyledPriceCard = styled.div`
   background-color: var(--color-dark--1);
-  width: 35rem;
+  width: 25rem;
   padding: 4rem 5rem;
   border-radius: 1rem;
   display: flex;
@@ -28,7 +30,9 @@ const StyledPriceCard = styled.div`
   }
 `;
 
-function PriceCard({ plan, price, device }: PriceCardProps) {
+function PriceCard({ plan, price, device, disabled }: PriceCardProps) {
+  const { user } = useUser();
+
   return (
     <StyledPriceCard>
       <h3>{plan}</h3>
@@ -36,7 +40,9 @@ function PriceCard({ plan, price, device }: PriceCardProps) {
       <span>
         {device} {device === 1 ? 'device' : 'devices'}
       </span>
-      <ButtonLink to="/login">Get started</ButtonLink>
+      <ButtonLink disabled={disabled} to={user ? '/app' : '/login'}>
+        Get started
+      </ButtonLink>
     </StyledPriceCard>
   );
 }

@@ -20,6 +20,12 @@ const basicStyles = `
     }
   `;
 
+const disabled = `
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: var(--color-primary--2);
+  `;
+
 const sizes = {
   extraSmall: css`
     font-size: 1.2rem;
@@ -143,6 +149,7 @@ export const ButtonLink = styled(Link)<ButtonProps>`
   ${basicStyles}
   ${(props) => (props.size ? sizes[props?.size] : '')};
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
+  ${(props) => (props.disabled ? disabled : '')};
 `;
 
 Button.defaultProps = {
