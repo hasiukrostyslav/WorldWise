@@ -17,41 +17,50 @@ interface ButtonProps {
   onClick: (() => void) | undefined;
 }
 
-const Button = styled.button<ButtonProps>`
-  position: ${(props) => (props.$isAbsolute ? 'absolute' : '')};
+const positionAbsolute = `
+  position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
+  z-index: 0;
+`;
+
+const Button = styled.button<ButtonProps>`
+  ${(props) => (props.$isAbsolute ? positionAbsolute : '')}
   padding: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
   background-color: var(--color-light--2);
   transition: all 0.4s;
+  opacity: ${(props) => (props.$isTransparent ? 0.5 : '')};
+  border-radius: ${(props) => (props.$isRound ? '50%' : '4px')};
+  transform: ${(props) =>
+    props.$translateY ? `translateY(-${props.$translateY}%)` : ''};
   border: ${(props) =>
     props.$isActive
       ? '4px solid var(--color-primary--0)'
       : '4px solid var(--color-light--2)'};
-  border-radius: ${(props) => (props.$isRound ? '50%' : '4px')};
-  opacity: ${(props) => (props.$isTransparent ? 0.5 : '')};
-  z-index: ${(props) => (props.$isTransparent ? 1000 : '')};
-  transform: ${(props) =>
-    props.$translateY ? `translateY(-${props.$translateY}%)` : ''};
 
   &:hover {
     background-color: ${(props) =>
       props.$isTransparent ? '' : 'var(--color-light--3)'};
+
     border: ${(props) =>
       props.$isActive
         ? '4px solid var(--color-primary--0)'
         : '4px solid var(--color-light--3)'};
   }
+
   &:disabled {
     background-color: var(--color-light--3);
     cursor: not-allowed;
   }
+
   &:focus {
     outline: 4px solid var(--color-primary--0);
   }
+
   &:focus:not(:focus-visible) {
     outline: none;
   }
@@ -71,10 +80,12 @@ export function LayerButton({
   $isActive,
   $isTransparent,
   $translateY,
+  $isAbsolute,
 }: ButtonProps) {
   return (
     <Button
-      $isAbsolute={true}
+      // $isAbsolute={true}
+      $isAbsolute={$isAbsolute}
       $isTransparent={$isTransparent}
       $isActive={$isActive}
       $translateY={$translateY}

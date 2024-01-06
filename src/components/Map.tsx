@@ -40,17 +40,12 @@ const StyledMap = styled.section<MapProps>`
 const Tools = styled.div`
   position: absolute;
   z-index: 999;
-  width: 16rem;
   height: 4.2rem;
   bottom: 2rem;
   right: 1.5rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: end;
-`;
-
-const LayersBox = styled.div`
-  position: relative;
 `;
 
 function Map() {
@@ -96,18 +91,17 @@ function Map() {
           $isRound={true}
         />
         <ScreenButton $isFullScreen={isFullScreen} onClick={toggleFullScreen} />
-        <LayersBox>
-          <LayersOption
-            changeLayer={changeLayer}
-            activeLayer={activeLayer}
-            isOpenLayerPanel={isOpenLayerPanel}
-          />
 
-          <LayerButton
-            $isTransparent={isOpenLayerPanel}
-            onClick={toggleLayerPanel}
-          />
-        </LayersBox>
+        <LayersOption
+          changeLayer={changeLayer}
+          activeLayer={activeLayer}
+          isOpenLayerPanel={isOpenLayerPanel}
+        />
+
+        <LayerButton
+          $isTransparent={isOpenLayerPanel}
+          onClick={toggleLayerPanel}
+        />
       </Tools>
 
       <MapContainer
