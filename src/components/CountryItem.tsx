@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { formatCountryNameToURL } from '../utils/helper';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 const StyledLink = styled(Link)`
   background-color: var(--color-dark--2);
@@ -9,7 +10,7 @@ const StyledLink = styled(Link)`
   border-left: 6px solid var(--color-third);
   border-radius: 0.7rem;
   padding: 1rem 0;
-  height: 9.5rem;
+  height: 8.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +34,8 @@ const StyledLink = styled(Link)`
 
   h3 {
     flex-grow: 0;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 1.8rem;`}
     font-weight: 400;
     color: var(--color-light--2);
   }

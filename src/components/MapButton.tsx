@@ -84,7 +84,6 @@ export function LayerButton({
 }: ButtonProps) {
   return (
     <Button
-      // $isAbsolute={true}
       $isAbsolute={$isAbsolute}
       $isTransparent={$isTransparent}
       $isActive={$isActive}

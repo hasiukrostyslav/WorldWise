@@ -29,12 +29,13 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-  ${mediaQueries(SCREEN_SIZE.Mobile)` font-size: 40%;`}
+  box-sizing: border-box;
+  ${mediaQueries(SCREEN_SIZE.Mobile)` font-size: 35%;`}
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` font-size: 40%;`}
   ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 45%;`}
-  ${mediaQueries(SCREEN_SIZE.LaptopSmall)` font-size: 50%;`}
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 50%;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 55%;`}
   ${mediaQueries(SCREEN_SIZE.Desktop)` font-size: 62.5%;`}
-  box-sizing: border-box;
 }
 
 

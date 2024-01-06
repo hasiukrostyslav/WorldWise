@@ -25,6 +25,18 @@ export const getFormatDate = function (
   return formatter.format(formatDate);
 };
 
+export const getShortDate = function (date: string | undefined) {
+  if (!date) return;
+
+  const formatDate = new Date(date);
+  const formatter = new Intl.DateTimeFormat('Uk', {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  return formatter.format(formatDate);
+};
+
 export const getCountries = function (cities: City[] | undefined) {
   if (!cities || cities.length === 0) return;
   const citiesCopy = cities.slice();

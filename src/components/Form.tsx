@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
 interface FormProps {
   children: React.ReactNode;
   $variation?: 'primary' | 'secondary';
@@ -17,9 +19,10 @@ const variations = {
 
 const StyledForm = styled.form<FormProps>`
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
-  width: 50rem;
   padding: 4rem 3rem;
   border-radius: 1rem;
+  ${mediaQueries(SCREEN_SIZE.Laptop)` width: 50rem;`}
+  width: 45rem;
 `;
 
 function Form({ children, $variation, onSubmit }: FormProps) {

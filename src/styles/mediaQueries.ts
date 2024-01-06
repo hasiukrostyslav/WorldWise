@@ -1,15 +1,17 @@
 export enum SCREEN_SIZE {
   Mobile = 'mobile',
+  SmallTablet = 'smallTablet',
   Tablet = 'tablet',
-  LaptopSmall = 'laptopSmall',
+  SmallLaptop = 'smallLaptop',
   Laptop = 'laptop',
   Desktop = 'desktop',
 }
 
 export const BREAKPOINTS = {
   mobile: 320,
+  smallTablet: 540,
   tablet: 768,
-  laptopSmall: 1024,
+  smallLaptop: 1024,
   laptop: 1280,
   desktop: 1537,
 };

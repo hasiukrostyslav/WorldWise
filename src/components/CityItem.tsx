@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useDeleteCity } from '../hooks/useDeleteCity';
-import { getFormatDate } from '../utils/helper';
+import { getFormatDate, getShortDate } from '../utils/helper';
 
 import DeleteButton from './DeleteButton';
 
@@ -33,14 +33,15 @@ const StyledLink = styled(NavLink)`
   }
 
   h4 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 500;
     margin-left: 1.2rem;
     margin-right: auto;
+    white-space: nowrap;
   }
 
   time {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     margin-right: 1.6rem;
   }
@@ -55,8 +56,18 @@ type CityItemProps = {
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   const ref = useRef<HTMLAnchorElement | null>(null);
+  const [matches, setMatches] = useState(
+    window.matchMedia('(min-width: 1280px)').matches
+  );
   const { deleteCity, isPending, isError } = useDeleteCity();
-  const formatDate = getFormatDate(date);
+  const longDate = getFormatDate(date);
+  const shortDate = getShortDate(date);
+
+  useEffect(() => {
+    window
+      .matchMedia('(min-width: 1280px)')
+      .addEventListener('change', (e) => setMatches(e.matches));
+  }, []);
 
   useEffect(() => {
     if (isError) ref.current?.classList.remove('disabled');
@@ -76,7 +87,7 @@ function CityItem({ id, name, imgSrc, date }: CityItemProps) {
       <StyledLink ref={ref} to={`${id}`}>
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
-        <time>({formatDate})</time>
+        <time>{matches ? longDate : shortDate}</time>
         <DeleteButton
           onClick={handleClickDelete}
           disabled={isPending}

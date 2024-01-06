@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 import { useLayer } from '../hooks/useLayer';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
@@ -25,7 +26,8 @@ const hide = {
     left: 0rem;
   `,
   hidden: css`
-    left: -56rem;
+    ${mediaQueries(SCREEN_SIZE.Laptop)` left: -56rem;`}
+    left: -50rem;
   `,
 };
 
@@ -33,7 +35,7 @@ const StyledSidebar = styled.aside<AsideProps>`
   ${(props) => (props.$hide ? hide.hidden : hide.visible)}
   position: absolute;
   top: 0;
-  width: 56rem;
+  width: 50rem;
   padding: 3rem 5rem;
   height: calc(100vh - 5rem);
   display: flex;
@@ -44,6 +46,8 @@ const StyledSidebar = styled.aside<AsideProps>`
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   transition: left 1s;
+
+  ${mediaQueries(SCREEN_SIZE.Laptop)` width: 56rem;`}
 
   .container {
     width: 100%;

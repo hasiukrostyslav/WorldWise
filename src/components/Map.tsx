@@ -7,12 +7,14 @@ import { useGeolocation } from '../hooks/useGeolocation';
 import { useLayer } from '../hooks/useLayer';
 import { useCities } from '../hooks/useCities';
 import { MAP_CENTER, MAP_LAYERS } from '../utils/constant';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import { ChangeMapCenter, DetectMapClick, MapResize } from './MapTools';
 import { LayerButton, LocationButton, ScreenButton } from './MapButton';
 import LayersOption from './LayersOption';
 import User from './User';
 import MiniLogo from './MiniLogo';
+
 
 interface MapProps {
   $size: boolean | undefined;
@@ -23,7 +25,8 @@ const size = {
     width: 100%;
   `,
   medium: css`
-    width: calc(100% - 55rem);
+    ${mediaQueries(SCREEN_SIZE.Laptop)` width: calc(100% - 55rem);`}
+    width: calc(100% - 50rem);
   `,
 };
 
@@ -32,9 +35,8 @@ const StyledMap = styled.section<MapProps>`
   top: 0;
   right: 0;
   height: 100%;
-  width: calc(100% - 55rem);
-  ${(props) => (props.$size ? size.large : size.medium)}
   transition: all 1s;
+  ${(props) => (props.$size ? size.large : size.medium)}
 `;
 
 const Tools = styled.div`
