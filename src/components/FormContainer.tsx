@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 const StyledFormContainer = styled.section<{ $grow?: 0 | 1 }>`

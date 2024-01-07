@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 const StyledToggleLinks = styled.ul`
