@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
 const AboutPage = styled.section`
   flex-grow: 1;
   display: flex;
@@ -14,19 +16,23 @@ const AboutPage = styled.section`
     align-items: end;
 
     h2 {
-      font-size: 4rem;
+      font-size: 3rem;
       margin-bottom: 2rem;
+      ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 4rem;`}
     }
 
     p {
       text-align: end;
       margin-bottom: 1rem;
+      font-size: 1.4rem;
+      ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 1.6rem;`}
     }
   }
 
   & img {
-    width: 50rem;
+    width: 40rem;
     border-radius: 1rem;
+    ${mediaQueries(SCREEN_SIZE.Tablet)` width: 50rem;`}
   }
 `;
 

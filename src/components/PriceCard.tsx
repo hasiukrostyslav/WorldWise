@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-import { ButtonLink } from './Button';
 import { useUser } from '../hooks/useUser';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
+import { ButtonLink } from './Button';
 
 interface PriceCardProps {
   plan: string;
@@ -13,15 +15,19 @@ interface PriceCardProps {
 const StyledPriceCard = styled.div`
   background-color: var(--color-dark--1);
   width: 25rem;
-  padding: 4rem 5rem;
+  padding: 2rem 3rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  ${mediaQueries(SCREEN_SIZE.Tablet)` padding: 4rem 5rem;`}
+
   h2 {
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 2rem 0;
+
+    ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 4rem;`}
   }
 
   span {

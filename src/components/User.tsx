@@ -34,6 +34,7 @@ const AvatarButton = styled.button`
   width: 4rem;
   height: 4rem;
   border: none;
+  overflow: hidden;
 
   &:focus {
     outline: 4px solid var(--color-primary--0);
@@ -44,8 +45,8 @@ const AvatarButton = styled.button`
   }
 
   img {
-    width: 100%;
-    border-radius: 50%;
+    width: 4rem;
+    height: auto;
   }
 `;
 

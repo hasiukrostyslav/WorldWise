@@ -37,8 +37,12 @@ const sizes = {
     padding: 0.8rem 1rem;
   `,
   medium: css`
-    font-size: 1.4rem;
-    padding: 1rem 1.6rem;
+    font-size: 1.2rem;
+    padding: 1rem 1.4rem;
+    ${mediaQueries(SCREEN_SIZE.Tablet)` 
+      font-size: 1.4rem;
+      padding: 1rem 1.6rem;
+    `}
     ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
       font-size: 1.6rem;
       padding: 1.2rem 1.8rem;
