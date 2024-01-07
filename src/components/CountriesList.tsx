@@ -9,9 +9,10 @@ import CountryItem from './CountryItem';
 const StyledCountriesList = styled.ul`
   width: 100%;
   max-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+  gap: 1.6rem;
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none;
@@ -21,12 +22,18 @@ const StyledCountriesList = styled.ul`
     display: none;
   }
 
-  ${mediaQueries(SCREEN_SIZE.SmallLaptop)` 
+  ${mediaQueries(SCREEN_SIZE.Tablet)`  
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  `}
+
+  ${mediaQueries(SCREEN_SIZE.SmallLaptop)`
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-content: start;
     gap: 1.6rem;
-  `}
+    `}
 `;
 
 function CountriesList() {

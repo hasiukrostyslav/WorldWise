@@ -25,21 +25,23 @@ function Country() {
   return (
     <DetailsContainer type="country" name={country?.countryName}>
       <div className="box">
-        <h4>Country name</h4>
-        <p>
-          <img src={country?.countryFlag} alt="flag" />
-          <span>{country?.countryName}</span>
-        </p>
-      </div>
-
-      <div className="flex">
-        <div className="box half">
-          <h4>Capital</h4>
-          <span>{country?.capital}</span>
+        <div className="box">
+          <h4>Country name</h4>
+          <p>
+            <img src={country?.countryFlag} alt="flag" />
+            <span>{country?.countryName}</span>
+          </p>
         </div>
-        <div className="box half">
-          <h4>Region</h4>
-          <span>{country?.region}</span>
+
+        <div className="flex">
+          <div className="box half">
+            <h4>Capital</h4>
+            <span>{country?.capital}</span>
+          </div>
+          <div className="box half">
+            <h4>Region</h4>
+            <span>{country?.region}</span>
+          </div>
         </div>
       </div>
       {country?.borders.length !== 0 && (

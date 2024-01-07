@@ -18,7 +18,12 @@ const StyledDetailsContainer = styled.div`
   padding: 2rem 3rem;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+
+  ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    flex-direction: column;
+  `}
+
   align-items: start;
   gap: 1.4rem;
   background-color: var(--color-dark--2);
@@ -35,7 +40,7 @@ const StyledDetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    width: 100%;
+    align-items: flex-start;
   }
 
   h4 {
@@ -54,7 +59,8 @@ const StyledDetailsContainer = styled.div`
     gap: 1rem;
 
     span {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 1.8rem;`}
       ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 2rem;`}
     }
 
@@ -66,6 +72,8 @@ const StyledDetailsContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 1rem;
+
     .half {
       flex-basis: 50%;
     }
@@ -75,12 +83,10 @@ const StyledDetailsContainer = styled.div`
   }
 
   .border-box {
-    width: 100%;
     display: flex;
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-
     p {
       display: flex;
       img {
@@ -100,15 +106,18 @@ function DetailsContainer({ name, children, type }: DetailsContainerProps) {
     <StyledDetailsContainer>
       {children}
       <div className="box">
-        <h4>Learn more</h4>
-        <OuterLink link={name} type={type} />
+        <div className="box">
+          <h4>Learn more</h4>
+          <OuterLink link={name} />
+        </div>
+
+        <Button
+          $variation="outline"
+          onClick={() => navigate(type === 'city' ? '/app' : '/app/countries')}
+        >
+          <HiArrowLongLeft /> Back
+        </Button>
       </div>
-      <Button
-        $variation="outline"
-        onClick={() => navigate(type === 'city' ? '/app' : '/app/countries')}
-      >
-        <HiArrowLongLeft /> Back
-      </Button>
     </StyledDetailsContainer>
   );
 }

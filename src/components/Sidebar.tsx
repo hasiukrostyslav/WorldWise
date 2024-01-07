@@ -23,36 +23,56 @@ interface AsideProps {
 
 const hide = {
   visible: css`
-    left: 0rem;
+    bottom: 0rem;
+    ${mediaQueries(SCREEN_SIZE.Tablet)` left: 0rem;`}
   `,
   hidden: css`
+    bottom: -25rem;
     ${mediaQueries(SCREEN_SIZE.Tablet)` left: -45rem;`}
     ${mediaQueries(SCREEN_SIZE.SmallLaptop)` left: -50rem;`}
     ${mediaQueries(SCREEN_SIZE.Laptop)` left: -56rem;`}
-    left: -40rem;
   `,
 };
 
 const StyledSidebar = styled.aside<AsideProps>`
   ${(props) => (props.$hide ? hide.hidden : hide.visible)}
   position: absolute;
-  top: 0;
-  width: 40rem;
-  padding: 3rem 5rem;
-  height: calc(100vh - 5rem);
+  left: 0;
+  height: 30rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--color-dark--1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background-color: var(--color-dark--1);
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  transition: left 1s;
+  transition: bottom 1s;
 
-  ${mediaQueries(SCREEN_SIZE.Tablet)` width: 45rem;`}
+  ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    width: 45rem;
+    top: 0;
+    padding: 3rem 5rem;
+    height: calc(100vh - 5rem);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    transition: left 1s;
+  `}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 50rem;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` width: 56rem;`}
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+    `};
+  }
 
   .container {
     width: 100%;
@@ -72,8 +92,10 @@ function Sidebar({ children }: SidebarProps) {
   return (
     <StyledSidebar $hide={isFullScreen}>
       <div className="container">
-        <Logo />
-        <ToggleLinks />
+        <div className="header">
+          <Logo />
+          <ToggleLinks />
+        </div>
         {isLoading && <Spinner />}
         {isError && !searchParams.get('lat') && (
           <Error message={geolocationError ? geolocationError : ''} />

@@ -4,7 +4,6 @@ import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface OuterLinkProps {
   link: string | undefined;
-  type?: 'city' | 'country';
 }
 
 const StyledOuterLink = styled.a`
@@ -12,7 +11,7 @@ const StyledOuterLink = styled.a`
   align-items: center;
   gap: 0.5rem;
   border-radius: 0.6rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 
   ${mediaQueries(SCREEN_SIZE.Tablet)`  font-size: 1.4rem;`}
 
@@ -30,7 +29,7 @@ const StyledOuterLink = styled.a`
   }
 `;
 
-function OuterLink({ link, type }: OuterLinkProps) {
+function OuterLink({ link }: OuterLinkProps) {
   if (!link) return;
 
   const formattedLink =
@@ -38,11 +37,10 @@ function OuterLink({ link, type }: OuterLinkProps) {
 
   return (
     <StyledOuterLink
-      type={type}
       target="_blank"
       href={`https://en.wikipedia.org/wiki/${formattedLink}`}
     >
-      Check out info about {type === 'city' ? 'city' : 'country'} on Wikipedia
+      More info
       <HiArrowLongRight />
     </StyledOuterLink>
   );

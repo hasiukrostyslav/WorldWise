@@ -68,67 +68,74 @@ function FormCity({
   return (
     <FormContainer $grow={0}>
       <Form $variation="secondary" onSubmit={onSubmit}>
-        <div className="input-box">
-          <Input
-            disabled={isSendingData}
-            defaultValue={city?.cityName}
-            label="City name"
-            type="text"
-            {...register('city', { required: 'Please enter city name' })}
-          />
-          {inputError.city && <InputError message={inputError.city.message} />}
-        </div>
-
-        <div className="input-box">
-          <Label>
-            {`When did you go to ${city?.cityName}`}
-            <Controller
-              name="date"
-              control={control}
-              render={({ field: { onChange, ref } }) => (
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    disabled={isSendingData}
-                    sx={SX_PROPS}
-                    onChange={onChange}
-                    onAccept={onChange}
-                    inputRef={ref}
-                    defaultValue={date}
-                  />
-                </LocalizationProvider>
-              )}
-              rules={{
-                required: {
-                  value: true,
-                  message: 'Please select the date',
-                },
-              }}
+        <div className="flex-inputs">
+          <div className="input-box">
+            <Input
+              disabled={isSendingData}
+              defaultValue={city?.cityName}
+              label="City name"
+              type="text"
+              {...register('city', { required: 'Please enter city name' })}
             />
-          </Label>
-          {inputError.date && <InputError message={inputError.date.message} />}
-        </div>
+            {inputError.city && (
+              <InputError message={inputError.city.message} />
+            )}
+          </div>
 
-        <div className="input-box">
-          <TextArea
-            disabled={isSendingData}
-            city={city?.cityName}
-            {...register('note')}
-          />
+          <div className="input-box">
+            <Label>
+              {`When did you go to ${city?.cityName}`}
+              <Controller
+                name="date"
+                control={control}
+                render={({ field: { onChange, ref } }) => (
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      disabled={isSendingData}
+                      sx={SX_PROPS}
+                      onChange={onChange}
+                      onAccept={onChange}
+                      inputRef={ref}
+                      defaultValue={date}
+                    />
+                  </LocalizationProvider>
+                )}
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Please select the date',
+                  },
+                }}
+              />
+            </Label>
+            {inputError.date && (
+              <InputError message={inputError.date.message} />
+            )}
+          </div>
         </div>
-        <div className="footer">
-          <Button
-            disabled={isSendingData}
-            type="button"
-            $variation="outline"
-            onClick={() => navigate('/app')}
-          >
-            <HiArrowLongLeft /> Back
-          </Button>
-          {date ? (
-            <Button disabled={isSendingData || !isTouchedField}>Save</Button>
-          ) : (
-            <Button disabled={isSendingData}>Add</Button>
-          )}
+        <div className="flex-inputs">
+          <div className="input-box">
+            <TextArea
+              disabled={isSendingData}
+              city={city?.cityName}
+              {...register('note')}
+            />
+          </div>
+          <div className="footer">
+            <Button
+              disabled={isSendingData}
+              type="button"
+              $variation="outline"
+              onClick={() => navigate('/app')}
+            >
+              <HiArrowLongLeft /> Back
+            </Button>
+            {date ? (
+              <Button disabled={isSendingData || !isTouchedField}>Save</Button>
+            ) : (
+              <Button disabled={isSendingData}>Add</Button>
+            )}
+          </div>
         </div>
       </Form>
     </FormContainer>

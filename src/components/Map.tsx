@@ -21,13 +21,13 @@ interface MapProps {
 
 const size = {
   large: css`
-    width: 100%;
+    height: 100%;
+    ${mediaQueries(SCREEN_SIZE.Tablet)`  width: 100%;`}
   `,
   medium: css`
     ${mediaQueries(SCREEN_SIZE.Tablet)` width: calc(100% - 45rem);`}
     ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: calc(100% - 50rem);`}
     ${mediaQueries(SCREEN_SIZE.Laptop)` width: calc(100% - 55rem);`}
-    width: calc(100% - 40rem);
   `,
 };
 
@@ -35,9 +35,15 @@ const StyledMap = styled.section<MapProps>`
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
+  width: 100%;
+  height: calc(100% - 30rem);
   transition: all 1s;
   ${(props) => (props.$size ? size.large : size.medium)}
+  ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    top: 0;
+    right: 0;
+    height: 100%;
+  `}
 `;
 
 const Tools = styled.div`

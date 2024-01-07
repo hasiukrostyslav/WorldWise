@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
 import { PRIMARY_COLOR } from '../utils/constant';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import { ButtonLink } from './Button';
 
@@ -12,7 +13,8 @@ const StyledLinksList = styled.ul`
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  gap: 5rem;
+  gap: 3rem;
+  ${mediaQueries(SCREEN_SIZE.Tablet)`  gap: 5rem;`}
 `;
 
 const StyledNavLink = styled(NavLink)`

@@ -19,11 +19,16 @@ const variations = {
 
 const StyledForm = styled.form<FormProps>`
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
-  padding: 4rem 3rem;
+  padding: 1rem 3rem;
   border-radius: 1rem;
+  width: 100%;
+
+  ${mediaQueries(SCREEN_SIZE.Tablet)` 
+    width: 40rem;
+    padding: 4rem 3rem;
+  `}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 45rem;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` width: 50rem;`}
-  width: 40rem;
 `;
 
 function Form({ children, $variation, onSubmit }: FormProps) {

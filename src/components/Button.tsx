@@ -38,7 +38,7 @@ const sizes = {
   `,
   medium: css`
     font-size: 1.2rem;
-    padding: 1rem 1.4rem;
+    padding: 0.8rem 1rem;
     ${mediaQueries(SCREEN_SIZE.Tablet)` 
       font-size: 1.4rem;
       padding: 1rem 1.6rem;

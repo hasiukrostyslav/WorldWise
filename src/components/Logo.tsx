@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
 const Img = styled.img`
-  width: 22rem;
+  width: 18rem;
+  ${mediaQueries(SCREEN_SIZE.Tablet)` width: 22rem;`}
 `;
 
 const StyledLink = styled(Link)`

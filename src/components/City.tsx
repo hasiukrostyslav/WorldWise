@@ -61,15 +61,17 @@ function City() {
         <EditIcon />
       </EditButton>
       <div className="box">
-        <h4>City name</h4>
-        <p>
-          <img src={city?.countryFlag} alt="Country flag" />
-          <span>{city?.cityName}</span>
-        </p>
-      </div>
-      <div className="box">
-        <h4>{`You went to ${city?.cityName} on`}</h4>
-        <time>{getFormatDate(city?.date, true)}</time>
+        <div className="box">
+          <h4>City name</h4>
+          <p>
+            <img src={city?.countryFlag} alt="Country flag" />
+            <span>{city?.cityName}</span>
+          </p>
+        </div>
+        <div className="box">
+          <h4>{`You went to ${city?.cityName} on`}</h4>
+          <time>{getFormatDate(city?.date, true)}</time>
+        </div>
       </div>
       {city?.description && (
         <div className="box">
