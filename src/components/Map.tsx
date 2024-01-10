@@ -39,11 +39,7 @@ const StyledMap = styled.section<MapProps>`
   height: calc(100% - 30rem);
   transition: all 1s;
   ${(props) => (props.$size ? size.large : size.medium)}
-  ${mediaQueries(SCREEN_SIZE.Tablet)` 
-    top: 0;
-    right: 0;
-    height: 100%;
-  `}
+  ${mediaQueries(SCREEN_SIZE.Tablet)` height: 100%;`}
 `;
 
 const Tools = styled.div`
