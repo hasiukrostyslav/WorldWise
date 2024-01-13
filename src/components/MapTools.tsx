@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMap, useMapEvents } from 'react-leaflet';
 
 import { useLayer } from '../hooks/useLayer';
+import { useMatchMedia } from '../hooks/useMatchMedia';
+import { useAppMenu } from '../hooks/useAppMenu';
 
 interface ChangeMapCenterProps {
   position: [number, number];
@@ -20,13 +22,16 @@ export const ChangeMapCenter = memo(function ChangeMapCenter({
 });
 
 export function DetectMapClick() {
-  const navigate = useNavigate();
+  const { matchMedia } = useMatchMedia({ minWidth: '540px' });
   const { exitFullScreen } = useLayer();
+  const { openMenu } = useAppMenu();
+  const navigate = useNavigate();
 
   useMapEvents({
     click(e) {
       exitFullScreen();
       navigate(`form/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      if (!matchMedia) openMenu();
     },
   });
 

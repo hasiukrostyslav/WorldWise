@@ -6,6 +6,8 @@ import { useUrlPosition } from '../hooks/useUrlPosition';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useLayer } from '../hooks/useLayer';
 import { useCities } from '../hooks/useCities';
+import { useAppMenu } from '../hooks/useAppMenu';
+import { useMatchMedia } from '../hooks/useMatchMedia';
 import { MAP_CENTER, MAP_LAYERS } from '../utils/constant';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
@@ -14,6 +16,7 @@ import { LayerButton, LocationButton, ScreenButton } from './MapButton';
 import LayersOption from './LayersOption';
 import User from './User';
 import MiniLogo from './MiniLogo';
+import MenuButton from './MenuButton';
 
 interface MapProps {
   $size: boolean | undefined;
@@ -22,6 +25,7 @@ interface MapProps {
 const size = {
   large: css`
     height: 100%;
+    ${mediaQueries(SCREEN_SIZE.SmallTablet)`  height: 100%`}
     ${mediaQueries(SCREEN_SIZE.Tablet)`  width: 100%;`}
   `,
   medium: css`
@@ -36,10 +40,11 @@ const StyledMap = styled.section<MapProps>`
   top: 0;
   right: 0;
   width: 100%;
-  height: calc(100% - 30rem);
+  height: 100%;
   transition: all 1s;
-  ${(props) => (props.$size ? size.large : size.medium)}
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` height: calc(100% - 30rem)`}
   ${mediaQueries(SCREEN_SIZE.Tablet)` height: 100%;`}
+  ${(props) => (props.$size ? size.large : size.medium)}
 `;
 
 const Tools = styled.div`
@@ -54,6 +59,8 @@ const Tools = styled.div`
 `;
 
 function Map() {
+  const { matchMedia } = useMatchMedia({ minWidth: '540px' });
+  const { isOpenMenu, toggleMenu } = useAppMenu();
   const [mapPosition, setMapPosition] = useState<[number, number]>(MAP_CENTER);
   const [lat, lng] = useUrlPosition();
   const { cities } = useCities();
@@ -89,13 +96,26 @@ function Map() {
     <StyledMap $size={isFullScreen}>
       {isFullScreen && <MiniLogo isShow={isFullScreen} />}
       <User />
+      {!matchMedia && (
+        <MenuButton
+          $position="map"
+          onClick={toggleMenu}
+          // isOpen={isOpenMenu}
+          $isOpen={isOpenMenu}
+        />
+      )}
       <Tools>
         <LocationButton
           onClick={getPosition}
           disabled={isGeolocationLoading}
           $isRound={true}
         />
-        <ScreenButton $isFullScreen={isFullScreen} onClick={toggleFullScreen} />
+        {matchMedia && (
+          <ScreenButton
+            $isFullScreen={isFullScreen}
+            onClick={toggleFullScreen}
+          />
+        )}
 
         <LayersOption
           changeLayer={changeLayer}

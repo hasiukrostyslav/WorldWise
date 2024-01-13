@@ -6,13 +6,19 @@ import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 import CityItem from './CityItem';
 
 const StyledCitiesList = styled.ul`
-  width: 100%;
+  width: 70%;
   max-height: 70vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-content: start;
-  gap: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)`  
+  width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+    gap: 1.6rem;
+  `}
   ${mediaQueries(SCREEN_SIZE.Tablet)`  
     display: flex;
     flex-direction: column;

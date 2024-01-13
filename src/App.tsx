@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 
 import { ScreenSizeProvider } from './context/ScreenSizeContext';
-import { MenuProvider } from './context/MenuContext';
 
 import GlobalStyles from './styles/GlobalStyles';
 import HomeLayout from './pages/HomeLayout';
@@ -35,37 +34,35 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
       <ScreenSizeProvider>
-        <MenuProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<HomeLayout />}>
-                <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
-                <Route path="pricing" element={<Pricing />} />
-                <Route path="register" element={<Register />} />
-                <Route path="login" element={<Login />} />
-                <Route path="*" element={<HomeErrorPage />} />
-              </Route>
-              <Route
-                path="app"
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<Navigate replace to="cities" />} />
-                <Route path="cities" element={<CitiesList />} />
-                <Route path="cities/:id" element={<City />} />
-                <Route path="countries" element={<CountriesList />} />
-                <Route path="countries/:countryName" element={<Country />} />
-                <Route path="form/new" element={<FormNewCity />} />
-                <Route path="form/edit/:id" element={<FormEditCity />} />
-                <Route path="*" element={<Error />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </MenuProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomeLayout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<Login />} />
+              <Route path="*" element={<HomeErrorPage />} />
+            </Route>
+            <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="cities" />} />
+              <Route path="cities" element={<CitiesList />} />
+              <Route path="cities/:id" element={<City />} />
+              <Route path="countries" element={<CountriesList />} />
+              <Route path="countries/:countryName" element={<Country />} />
+              <Route path="form/new" element={<FormNewCity />} />
+              <Route path="form/edit/:id" element={<FormEditCity />} />
+              <Route path="*" element={<Error />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </ScreenSizeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
       <Toaster

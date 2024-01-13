@@ -16,10 +16,15 @@ interface DetailsContainerProps {
 const StyledDetailsContainer = styled.div`
   position: relative;
   padding: 2rem 3rem;
-  width: 100%;
+  width: 70%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    width: 100%;
+    flex-direction: row;
+  `}
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     flex-direction: column;
   `}

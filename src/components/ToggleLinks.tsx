@@ -8,9 +8,11 @@ const StyledToggleLinks = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 1rem 0 2rem;
   background-color: var(--color-dark--2);
   border-radius: 0.6rem;
 
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)`  margin: 0;`}
   ${mediaQueries(SCREEN_SIZE.Tablet)`  margin: 1rem 0 2rem;`}
 
   a {

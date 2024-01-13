@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { MenuProvider } from '../context/MenuContext';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import Navbar from '../components/Navbar';
@@ -27,10 +28,12 @@ const Layout = styled.div`
 
 function HomeLayout() {
   return (
-    <Layout>
-      <Navbar />
-      <Outlet />
-    </Layout>
+    <MenuProvider>
+      <Layout>
+        <Navbar />
+        <Outlet />
+      </Layout>
+    </MenuProvider>
   );
 }
 

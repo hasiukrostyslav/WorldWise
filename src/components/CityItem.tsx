@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useDeleteCity } from '../hooks/useDeleteCity';
+import { useMatchMedia } from '../hooks/useMatchMedia';
 import { getFormatDate, getShortDate } from '../utils/helper';
 
 import DeleteButton from './DeleteButton';
@@ -56,28 +57,16 @@ type CityItemProps = {
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   const ref = useRef<HTMLAnchorElement | null>(null);
-  const [matchesSmallLaptop, setMatchesSmallLaptop] = useState(
-    window.matchMedia('(min-width: 1024px)').matches
-  );
-  const [matchesLaptop, setMatchesLaptop] = useState(
-    window.matchMedia('(min-width: 1280px)').matches
-  );
+  const { matchMedia: matchMediaSmLaptop } = useMatchMedia({
+    minWidth: '1024px',
+  });
+  const { matchMedia: matchMediaLaptop } = useMatchMedia({
+    minWidth: '1280px',
+  });
 
   const { deleteCity, isPending, isError } = useDeleteCity();
   const longDate = getFormatDate(date);
   const shortDate = getShortDate(date);
-
-  useEffect(() => {
-    window
-      .matchMedia('(min-width: 1280px)')
-      .addEventListener('change', (e) => setMatchesLaptop(e.matches));
-  }, []);
-
-  useEffect(() => {
-    window
-      .matchMedia('(min-width: 1024px)')
-      .addEventListener('change', (e) => setMatchesSmallLaptop(e.matches));
-  }, []);
 
   useEffect(() => {
     if (isError) ref.current?.classList.remove('disabled');
@@ -97,8 +86,8 @@ function CityItem({ id, name, imgSrc, date }: CityItemProps) {
       <StyledLink ref={ref} to={`${id}`}>
         <img src={imgSrc} alt="Country flags" />
         <h4>{name}</h4>
-        {matchesSmallLaptop && !matchesLaptop && <time>{shortDate}</time>}
-        {matchesLaptop && <time>{longDate}</time>}
+        {matchMediaSmLaptop && !matchMediaLaptop && <time>{shortDate}</time>}
+        {matchMediaLaptop && <time>{longDate}</time>}
 
         <DeleteButton
           onClick={handleClickDelete}

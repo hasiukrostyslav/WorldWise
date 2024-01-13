@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+
+import { useMenu } from '../hooks/useMenu';
+import { useMatchMedia } from '../hooks/useMatchMedia';
 
 import Logo from './Logo';
 import LinksList from './LinksList';
 import MenuButton from './MenuButton';
-import { useMenu } from '../hooks/useMenu';
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -13,22 +14,20 @@ const StyledNavbar = styled.nav`
 `;
 
 function Navbar() {
-  const { closeMenu } = useMenu();
-  const [matchesTablet, setMatchesTablet] = useState(
-    window.matchMedia('(min-width: 540px)').matches
-  );
-
-  useEffect(() => {
-    window.matchMedia('(min-width: 540px)').addEventListener('change', (e) => {
-      setMatchesTablet(e.matches);
-    });
-  }, []);
+  const { isOpenMenu, toggleMenu, closeMenu } = useMenu();
+  const { matchMedia } = useMatchMedia({ minWidth: '540px' });
 
   return (
     <StyledNavbar>
-      <Logo $zIndex={matchesTablet} onClick={closeMenu} />
+      <Logo $zIndex={matchMedia} onClick={closeMenu} />
       <LinksList />
-      {!matchesTablet && <MenuButton />}
+      {!matchMedia && (
+        <MenuButton
+          $isOpen={isOpenMenu}
+          onClick={toggleMenu}
+          $position="navbar"
+        />
+      )}
     </StyledNavbar>
   );
 }

@@ -1,7 +1,10 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { AppMenuProvider } from '../context/AppMenuContext';
+import { useMatchMedia } from '../hooks/useMatchMedia';
+import { useLayer } from '../hooks/useLayer';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import Sidebar from '../components/Sidebar';
@@ -22,15 +25,24 @@ const StyledAppLayout = styled.section`
 `;
 
 function AppLayout() {
+  const { matchMedia } = useMatchMedia({ minWidth: '540px' });
+  const { isFullScreen, exitFullScreen } = useLayer();
+
+  useEffect(() => {
+    if (isFullScreen && !matchMedia) exitFullScreen();
+  }, [matchMedia, isFullScreen, exitFullScreen]);
+
   return (
-    <StyledAppLayout>
-      <Sidebar>
-        <Outlet />
-      </Sidebar>
-      <Suspense fallback={<MapSpinner />}>
-        <Map />
-      </Suspense>
-    </StyledAppLayout>
+    <AppMenuProvider>
+      <StyledAppLayout>
+        <Sidebar>
+          <Outlet />
+        </Sidebar>
+        <Suspense fallback={<MapSpinner />}>
+          <Map />
+        </Suspense>
+      </StyledAppLayout>
+    </AppMenuProvider>
   );
 }
 

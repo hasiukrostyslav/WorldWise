@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 import { useLayer } from '../hooks/useLayer';
+import { useAppMenu } from '../hooks/useAppMenu';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 import Logo from './Logo';
@@ -19,6 +20,7 @@ interface SidebarProps {
 
 interface AsideProps {
   $hide: boolean | undefined;
+  $isOpen: boolean;
 }
 
 const hide = {
@@ -27,7 +29,7 @@ const hide = {
     ${mediaQueries(SCREEN_SIZE.Tablet)` left: 0rem;`}
   `,
   hidden: css`
-    bottom: -25rem;
+    bottom: -35rem;
     ${mediaQueries(SCREEN_SIZE.Tablet)` left: -45rem;`}
     ${mediaQueries(SCREEN_SIZE.SmallLaptop)` left: -50rem;`}
     ${mediaQueries(SCREEN_SIZE.Laptop)` left: -56rem;`}
@@ -36,27 +38,34 @@ const hide = {
 
 const StyledSidebar = styled.aside<AsideProps>`
   ${(props) => (props.$hide ? hide.hidden : hide.visible)}
+
   position: absolute;
   left: 0;
-  height: 30rem;
+  height: 100%;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 3rem 5rem;
   background-color: var(--color-dark--1);
-  display: flex;
+  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  transition: bottom 1s;
+  transition: all 1s;
+  z-index: 2000;
 
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    display: flex;
+    height: 30rem;
+    width: 100%;
+    padding: 1rem 2rem;
+  `}
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
-    width: 45rem;
     top: 0;
-    padding: 3rem 5rem;
     height: calc(100vh - 5rem);
+    width: 45rem;
+    padding: 3rem 5rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    transition: left 1s;
   `}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 50rem;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` width: 56rem;`}
@@ -65,8 +74,15 @@ const StyledSidebar = styled.aside<AsideProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+
+    ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    flex-direction: row;
     gap: 2rem;
     margin-bottom: 1rem;
+    `};
     ${mediaQueries(SCREEN_SIZE.Tablet)` 
     flex-direction: column;
     gap: 0;
@@ -88,12 +104,13 @@ function Sidebar({ children }: SidebarProps) {
   const { error: geolocationError } = useGeolocation();
   const [searchParams] = useSearchParams();
   const { isFullScreen } = useLayer();
+  const { isOpenMenu, closeMenu } = useAppMenu();
 
   return (
-    <StyledSidebar $hide={isFullScreen}>
+    <StyledSidebar $hide={isFullScreen} $isOpen={isOpenMenu}>
       <div className="container">
         <div className="header">
-          <Logo />
+          <Logo onClick={closeMenu} />
           <ToggleLinks />
         </div>
         {isLoading && <Spinner />}
