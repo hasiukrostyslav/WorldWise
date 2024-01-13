@@ -66,8 +66,8 @@ function FormCity({
   if (isError) return <Error message={error?.message} />;
 
   return (
-    <FormContainer $grow={0}>
-      <Form $variation="secondary" onSubmit={onSubmit}>
+    <FormContainer $grow={0} $shrink={true}>
+      <Form $variation="secondary" onSubmit={onSubmit} $grow={true}>
         <div className="flex-inputs">
           <div className="input-box">
             <Input

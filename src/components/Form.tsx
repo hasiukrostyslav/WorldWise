@@ -5,6 +5,7 @@ import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 interface FormProps {
   children: React.ReactNode;
   $variation?: 'primary' | 'secondary';
+  $grow?: boolean;
   onSubmit: () => void;
 }
 
@@ -19,25 +20,35 @@ const variations = {
 
 const StyledForm = styled.form<FormProps>`
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
-  padding: 1rem 3rem;
+
+  padding: 4rem 3rem;
   border-radius: 1rem;
-  width: 100%;
+  width: 50rem;
+  ${(props) =>
+    !props.$grow
+      ? `${mediaQueries(SCREEN_SIZE.SmallTablet)` width: 50rem;`}`
+      : `${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+          width: 100%;
+          padding: 1rem 3rem;
+        `}`}
 
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     width: 40rem;
     padding: 4rem 3rem;
   `}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 45rem;`}
+  
   ${mediaQueries(SCREEN_SIZE.Laptop)` width: 50rem;`}
 `;
 
-function Form({ children, $variation, onSubmit }: FormProps) {
+function Form({ children, $variation, onSubmit, $grow }: FormProps) {
   return (
     <StyledForm
       onSubmit={onSubmit}
       $variation={$variation}
       noValidate
       autoComplete="off"
+      $grow={$grow}
     >
       {children}
     </StyledForm>
