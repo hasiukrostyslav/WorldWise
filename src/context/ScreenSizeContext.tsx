@@ -17,13 +17,8 @@ export const ScreenSizeContext = createContext<ScreenSizeContextType | null>(
 export function ScreenSizeProvider({ children }: ScreenSizeProviderProps) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  function exitFullScreen() {
-    setIsFullScreen(false);
-  }
-
-  function toggleFullScreen() {
-    setIsFullScreen(!isFullScreen);
-  }
+  const exitFullScreen = () => setIsFullScreen(false);
+  const toggleFullScreen = () => setIsFullScreen(!isFullScreen);
 
   return (
     <ScreenSizeContext.Provider

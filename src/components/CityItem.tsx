@@ -56,11 +56,11 @@ type CityItemProps = {
 
 function CityItem({ id, name, imgSrc, date }: CityItemProps) {
   const ref = useRef<HTMLAnchorElement | null>(null);
-  const [matchesLaptop, setMatchesLaptop] = useState(
-    window.matchMedia('(min-width: 1280px)').matches
-  );
   const [matchesSmallLaptop, setMatchesSmallLaptop] = useState(
     window.matchMedia('(min-width: 1024px)').matches
+  );
+  const [matchesLaptop, setMatchesLaptop] = useState(
+    window.matchMedia('(min-width: 1280px)').matches
   );
 
   const { deleteCity, isPending, isError } = useDeleteCity();

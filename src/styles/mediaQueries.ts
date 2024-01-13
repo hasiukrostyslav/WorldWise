@@ -1,4 +1,5 @@
 export enum SCREEN_SIZE {
+  SmallPhone = 'smallPhone',
   Mobile = 'mobile',
   SmallTablet = 'smallTablet',
   Tablet = 'tablet',
@@ -8,6 +9,7 @@ export enum SCREEN_SIZE {
 }
 
 export const BREAKPOINTS = {
+  smallPhone: 0,
   mobile: 320,
   smallTablet: 540,
   tablet: 768,

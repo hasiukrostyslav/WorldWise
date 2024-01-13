@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+interface StyledLinkProps {
+  $zIndex?: boolean;
+  onClick?: () => void;
+}
 
 const Img = styled.img`
-  width: 18rem;
-  ${mediaQueries(SCREEN_SIZE.Tablet)` width: 22rem;`}
+  width: 22rem;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<StyledLinkProps>`
   border-radius: 1rem;
+  z-index: ${(props) => (props.$zIndex ? 'initial' : 2)};
+
   &:focus {
     outline: solid var(--color-primary--0);
   }
@@ -19,9 +23,9 @@ const StyledLink = styled(Link)`
   }
 `;
 
-function Logo() {
+function Logo({ $zIndex, onClick }: StyledLinkProps) {
   return (
-    <StyledLink to="/">
+    <StyledLink to="/" $zIndex={$zIndex} onClick={onClick}>
       <Img src="/logo.png" alt="WorldWise logo" />
     </StyledLink>
   );

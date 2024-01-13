@@ -18,7 +18,10 @@ const Img = styled.img`
 const StyledLink = styled(Link)<LinkProps>`
   position: absolute;
   top: 2.2rem;
-  left: 9rem;
+  left: 10rem;
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    left: 9rem;
+  `}
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     top: 2rem;
     left: 8rem;

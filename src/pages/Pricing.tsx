@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+
 import PriceCard from '../components/PriceCard';
 
 const StyledPricing = styled.section`
   flex-grow: 1;
   display: flex;
+  flex-direction: column;
+  gap: 4rem;
   align-items: center;
   justify-content: center;
-  gap: 10rem;
+
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    flex-direction: row;
+    gap: 10rem;
+  `}
 `;
 
 function Pricing() {

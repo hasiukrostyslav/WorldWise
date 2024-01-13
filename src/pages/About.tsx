@@ -8,6 +8,11 @@ const AboutPage = styled.section`
   gap: 4rem;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
+    flex-direction: row;
+  `}
 
   & div {
     width: 50rem;
@@ -30,7 +35,7 @@ const AboutPage = styled.section`
   }
 
   & img {
-    width: 40rem;
+    width: 50rem;
     border-radius: 1rem;
     ${mediaQueries(SCREEN_SIZE.Tablet)` width: 50rem;`}
   }

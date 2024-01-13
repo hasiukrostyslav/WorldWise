@@ -30,8 +30,9 @@ const GlobalStyles = createGlobalStyle`
 
 html {
   box-sizing: border-box;
-  ${mediaQueries(SCREEN_SIZE.Mobile)` font-size: 35%;`}
-  ${mediaQueries(SCREEN_SIZE.SmallTablet)` font-size: 40%;`}
+  ${mediaQueries(SCREEN_SIZE.SmallPhone)` font-size: 25%;`}
+  ${mediaQueries(SCREEN_SIZE.Mobile)` font-size: 30%;`}
+  ${mediaQueries(SCREEN_SIZE.SmallTablet)` font-size: 35%;`}
   ${mediaQueries(SCREEN_SIZE.Tablet)` font-size: 45%;`}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 50%;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 55%;`}
