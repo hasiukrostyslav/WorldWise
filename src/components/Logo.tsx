@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
+import { useMatchMediaLandScape } from '../hooks/useMatchMediaLandscape';
+import { mediaQueriesLandscape } from '../styles/mediaQueries';
+
 interface StyledLinkProps {
   $zIndex?: boolean;
   onClick?: () => void;
@@ -8,6 +11,8 @@ interface StyledLinkProps {
 
 const Img = styled.img`
   width: 22rem;
+
+  ${mediaQueriesLandscape()` width: 5rem;`}
 `;
 
 const StyledLink = styled(Link)<StyledLinkProps>`
@@ -24,9 +29,10 @@ const StyledLink = styled(Link)<StyledLinkProps>`
 `;
 
 function Logo({ $zIndex, onClick }: StyledLinkProps) {
+  const { matchMedia } = useMatchMediaLandScape();
   return (
     <StyledLink to="/" $zIndex={$zIndex} onClick={onClick}>
-      <Img src="/logo.png" alt="WorldWise logo" />
+      <Img src={matchMedia ? '/icon.png' : '/logo.png'} alt="WorldWise logo" />
     </StyledLink>
   );
 }

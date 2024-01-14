@@ -5,7 +5,11 @@ import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 import { useLayer } from '../hooks/useLayer';
 import { useAppMenu } from '../hooks/useAppMenu';
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
@@ -88,6 +92,11 @@ const StyledSidebar = styled.aside<AsideProps>`
     gap: 0;
     margin-bottom: 0;
     `};
+
+    ${mediaQueriesLandscape()` 
+    flex-direction: row;
+    gap: 2rem;
+    margin-bottom: 1rem;`}
   }
 
   .container {

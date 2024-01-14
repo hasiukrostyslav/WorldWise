@@ -19,14 +19,16 @@ const StyledDetailsContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
     width: 100%;
     flex-direction: row;
+    justify-content: space-around;
   `}
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     flex-direction: column;
+    justify-content: space-between;
   `}
 
   align-items: start;

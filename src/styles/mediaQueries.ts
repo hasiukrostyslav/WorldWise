@@ -20,5 +20,10 @@ export const BREAKPOINTS = {
 
 export const mediaQueries = (key: SCREEN_SIZE) => {
   return (style: TemplateStringsArray) =>
-    `@media (min-width: ${BREAKPOINTS[key]}px) {${style}}`;
+    `@media only screen and (min-width: ${BREAKPOINTS[key]}px) {${style}}`;
+};
+
+export const mediaQueriesLandscape = () => {
+  return (style: TemplateStringsArray) =>
+    `@media only screen and (orientation: landscape) and (max-height: 500px) {${style}}`;
 };

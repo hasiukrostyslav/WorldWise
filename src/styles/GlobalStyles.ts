@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import { SCREEN_SIZE, mediaQueries } from './mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from './mediaQueries';
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -37,6 +41,8 @@ html {
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` font-size: 50%;`}
   ${mediaQueries(SCREEN_SIZE.Laptop)` font-size: 55%;`}
   ${mediaQueries(SCREEN_SIZE.Desktop)` font-size: 62.5%;`}
+  ${mediaQueriesLandscape()` font-size: 40%;`}
+
 }
 
 
