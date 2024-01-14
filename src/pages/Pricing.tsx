@@ -11,10 +11,12 @@ const StyledPricing = styled.section`
   gap: 4rem;
   align-items: center;
   justify-content: center;
+  margin-top: 5rem;
 
   ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
     flex-direction: row;
     gap: 10rem;
+    margin-top: 0;
   `}
 `;
 

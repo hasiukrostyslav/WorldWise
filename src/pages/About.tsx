@@ -9,13 +9,15 @@ const AboutPage = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 5rem;
 
   ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
     flex-direction: row;
+    margin-top: 0;
   `}
 
   & div {
-    width: 50rem;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -35,9 +37,9 @@ const AboutPage = styled.section`
   }
 
   & img {
-    width: 50rem;
+    width: 80%;
     border-radius: 1rem;
-    ${mediaQueries(SCREEN_SIZE.Tablet)` width: 50rem;`}
+    ${mediaQueries(SCREEN_SIZE.SmallTablet)` width: 50rem;`}
   }
 `;
 
