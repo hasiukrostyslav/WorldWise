@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 import { useUser } from '../hooks/useUser';
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 import { ButtonLink } from './Button';
 
@@ -22,6 +26,7 @@ const StyledPriceCard = styled.div`
   align-items: center;
 
   ${mediaQueries(SCREEN_SIZE.Tablet)` padding: 4rem 5rem;`}
+  ${mediaQueriesLandscape()` padding: 2rem 3rem;`}
 
   h2 {
     font-size: 3rem;
