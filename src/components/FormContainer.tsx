@@ -13,6 +13,17 @@ const StyledFormContainer = styled.section<FormContainerProps>`
   align-items: center;
   justify-content: center;
   width: 100%;
+  max-height: 70vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  border-radius: ${(props) => props.$shrink && '1rem'};
+  background-color: ${(props) => props.$shrink && 'var(--color-dark--2)'};
 
   .input-box {
     position: relative;
@@ -41,6 +52,7 @@ const StyledFormContainer = styled.section<FormContainerProps>`
   .footer {
     display: flex;
     margin-top: 3rem;
+    padding-bottom: 4rem;
     align-items: end;
     justify-content: space-between;
     gap: 5rem;
@@ -53,6 +65,7 @@ const StyledFormContainer = styled.section<FormContainerProps>`
       align-items: center;
       justify-content: space-around;
       width: 50%;
+      padding-bottom: 1rem;
     `}`
         : ` ${mediaQueries(SCREEN_SIZE.SmallTablet)` 
       margin-top: 3rem;
@@ -66,6 +79,7 @@ const StyledFormContainer = styled.section<FormContainerProps>`
       align-items: end;
       justify-content: space-between;
       width: 100%;
+      padding-bottom: 4rem;
     `}
   }
 `;

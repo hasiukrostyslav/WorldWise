@@ -20,8 +20,8 @@ const variations = {
 
 const StyledForm = styled.form<FormProps>`
   ${(props) => (props.$variation ? variations[props.$variation] : '')}
-
-  padding: 4rem 3rem;
+  max-height: 100%;
+  padding: 4rem 3rem 0;
   border-radius: 1rem;
   width: 50rem;
   ${(props) =>
@@ -29,12 +29,12 @@ const StyledForm = styled.form<FormProps>`
       ? `${mediaQueries(SCREEN_SIZE.SmallTablet)` width: 50rem;`}`
       : `${mediaQueries(SCREEN_SIZE.SmallTablet)` 
           width: 100%;
-          padding: 1rem 3rem;
+          padding: 1rem 3rem 0;
         `}`}
 
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     width: 40rem;
-    padding: 4rem 3rem;
+    padding: 4rem 3rem 0;
   `}
   ${mediaQueries(SCREEN_SIZE.SmallLaptop)` width: 45rem;`}
   
