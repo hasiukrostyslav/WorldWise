@@ -18,6 +18,7 @@ import Footer from './Footer';
 import Spinner from './Spinner';
 import Error from './Error';
 import EmptyList from './EmptyList';
+import { useMatchMedia } from '../hooks/useMatchMedia';
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -64,6 +65,7 @@ const StyledSidebar = styled.aside<AsideProps>`
     width: 100%;
     padding: 1rem 2rem;
   `}
+
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     top: 0;
     height: calc(100dvh - 5rem);
@@ -115,13 +117,29 @@ function Sidebar({ children }: SidebarProps) {
   const [searchParams] = useSearchParams();
   const { isFullScreen } = useLayer();
   const { isOpenMenu, closeMenu } = useAppMenu();
-  const { matchMedia } = useMatchMediaLandScape();
+  const { matchMedia: matchMediaTablet } = useMatchMedia({
+    minWidth: '768px',
+  });
+  const { matchMedia: matchMediaLandscape } = useMatchMediaLandScape();
 
   return (
-    <StyledSidebar $hide={isFullScreen} $isOpen={isOpenMenu}>
+    <StyledSidebar
+      $hide={isFullScreen}
+      $isOpen={isOpenMenu}
+      style={{
+        borderRadius: `${
+          matchMediaLandscape && matchMediaTablet ? 'initial' : ''
+        }`,
+
+        height: `${matchMediaLandscape && matchMediaTablet ? '100%' : ''}`,
+      }}
+    >
       <div className="container">
         <div className="header">
-          <Logo onClick={closeMenu} $size={matchMedia ? 'small' : 'large'} />
+          <Logo
+            onClick={closeMenu}
+            $size={matchMediaLandscape ? 'small' : 'large'}
+          />
           <ToggleLinks />
         </div>
         {isLoading && <Spinner />}
