@@ -61,7 +61,7 @@ const StyledSidebar = styled.aside<AsideProps>`
   `}
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     top: 0;
-    height: calc(100vh - 5rem);
+    height: calc(100dvh - 5rem);
     width: 45rem;
     padding: 3rem 5rem;
     border-top-left-radius: 1rem;

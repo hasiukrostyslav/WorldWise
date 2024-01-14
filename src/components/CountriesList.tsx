@@ -8,7 +8,7 @@ import CountryItem from './CountryItem';
 
 const StyledCountriesList = styled.ul`
   width: 70%;
-  max-height: 70vh;
+  max-height: 70dvh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
