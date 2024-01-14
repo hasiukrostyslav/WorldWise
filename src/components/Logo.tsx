@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { useMatchMediaLandScape } from '../hooks/useMatchMediaLandscape';
-import { mediaQueriesLandscape } from '../styles/mediaQueries';
-
 interface StyledLinkProps {
   $zIndex?: boolean;
+  $size?: 'small' | 'large';
   onClick?: () => void;
 }
+interface ImgProps {
+  $size?: 'small' | 'large';
+}
 
-const Img = styled.img`
-  width: 22rem;
-
-  ${mediaQueriesLandscape()` width: 5rem;`}
+const Img = styled.img<ImgProps>`
+  width: ${(props) => (props.$size === 'large' ? '22rem' : '3rem')};
 `;
 
 const StyledLink = styled(Link)<StyledLinkProps>`
@@ -28,13 +27,20 @@ const StyledLink = styled(Link)<StyledLinkProps>`
   }
 `;
 
-function Logo({ $zIndex, onClick }: StyledLinkProps) {
-  const { matchMedia } = useMatchMediaLandScape();
+function Logo({ $zIndex, onClick, $size }: StyledLinkProps) {
   return (
     <StyledLink to="/" $zIndex={$zIndex} onClick={onClick}>
-      <Img src={matchMedia ? '/icon.png' : '/logo.png'} alt="WorldWise logo" />
+      <Img
+        $size={$size}
+        src={$size === 'small' ? '/icon.png' : '/logo.png'}
+        alt="WorldWise logo"
+      />
     </StyledLink>
   );
 }
+
+Img.defaultProps = {
+  $size: 'large',
+};
 
 export default Logo;

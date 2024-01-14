@@ -5,6 +5,7 @@ import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 import { useLayer } from '../hooks/useLayer';
 import { useAppMenu } from '../hooks/useAppMenu';
+import { useMatchMediaLandScape } from '../hooks/useMatchMediaLandscape';
 import {
   SCREEN_SIZE,
   mediaQueries,
@@ -114,12 +115,13 @@ function Sidebar({ children }: SidebarProps) {
   const [searchParams] = useSearchParams();
   const { isFullScreen } = useLayer();
   const { isOpenMenu, closeMenu } = useAppMenu();
+  const { matchMedia } = useMatchMediaLandScape();
 
   return (
     <StyledSidebar $hide={isFullScreen} $isOpen={isOpenMenu}>
       <div className="container">
         <div className="header">
-          <Logo onClick={closeMenu} />
+          <Logo onClick={closeMenu} $size={matchMedia ? 'small' : 'large'} />
           <ToggleLinks />
         </div>
         {isLoading && <Spinner />}

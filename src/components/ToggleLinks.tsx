@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 const StyledToggleLinks = styled.ul`
   list-style: none;
@@ -14,6 +18,8 @@ const StyledToggleLinks = styled.ul`
 
   ${mediaQueries(SCREEN_SIZE.SmallTablet)`  margin: 0;`}
   ${mediaQueries(SCREEN_SIZE.Tablet)`  margin: 1rem 0 2rem;`}
+  ${mediaQueriesLandscape()` 
+    margin: 0;`}
 
   a {
     font-size: 1.3rem;
