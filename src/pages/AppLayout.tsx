@@ -5,7 +5,11 @@ import styled from 'styled-components';
 import { AppMenuProvider } from '../context/AppMenuContext';
 import { useMatchMedia } from '../hooks/useMatchMedia';
 import { useLayer } from '../hooks/useLayer';
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 import Sidebar from '../components/Sidebar';
 import MapSpinner from '../components/MapSpinner';
@@ -16,11 +20,18 @@ const StyledAppLayout = styled.section`
   min-height: 100dvh;
   overflow: hidden;
   position: relative;
+  border-radius: initial;
 
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     margin: 2.5rem;
     border-radius: 1rem;
     min-height: calc(100dvh - 5rem);
+  `}
+
+  ${mediaQueriesLandscape()` 
+    margin: 0;
+    border-radius: initial;
+    min-height: 100dvh;
   `}
 `;
 

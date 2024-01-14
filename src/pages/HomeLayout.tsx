@@ -2,7 +2,11 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { MenuProvider } from '../context/MenuContext';
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 import Navbar from '../components/Navbar';
 
@@ -23,6 +27,11 @@ const Layout = styled.div`
     margin: 2.5rem;
     border-radius: 1rem;
     min-height: calc(100dvh - 5rem);
+  `}
+  ${mediaQueriesLandscape()` 
+    margin: 0;
+    border-radius: initial;
+    min-height: 100dvh;
   `}
 `;
 
