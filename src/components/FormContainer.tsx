@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 interface FormContainerProps {
   $grow?: 0 | 1;
@@ -13,7 +17,8 @@ const StyledFormContainer = styled.section<FormContainerProps>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-height: 70dvh;
+  /* max-height: 70dvh; */
+  max-height: ${(props) => (props.$grow !== 0 ? '90dvh' : '70dvh')};
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
