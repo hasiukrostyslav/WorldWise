@@ -140,6 +140,15 @@ a:visited {
   border-left: 5px solid var(--color-primary--2);
 }
 
+.leaflet-left .leaflet-control {
+  margin-left: 1.5rem;
+}
+
+.leaflet-top .leaflet-control {
+  margin-top: 2rem;
+}
+
+
 .MuiDateCalendar-root {
     border-radius: 5px;
     background-color: var(--color-light--3);

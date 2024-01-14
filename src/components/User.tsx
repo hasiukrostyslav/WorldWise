@@ -4,6 +4,7 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useModal } from '../hooks/useModal';
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
+import { useMatchMedia } from '../hooks/useMatchMedia';
 
 import { Button } from './Button';
 import UserModal from './UserModal';
@@ -65,10 +66,12 @@ const DeleteButton = styled.button`
 `;
 
 const Icon = styled(RiDeleteBin2Line)`
+  font-size: 2.5rem;
   color: var(--color-danger--0);
 `;
 
 function User() {
+  const { matchMedia } = useMatchMedia({ minWidth: '540px' });
   const { userName, userPhoto } = useUser();
   const { logout } = useLogOut();
   const {
@@ -85,7 +88,7 @@ function User() {
       <AvatarButton onClick={() => openModal(imgDialogRef)}>
         <img src={userPhoto || '/user.png'} alt="User Avatar" />
       </AvatarButton>
-      <span>Welcome, {userName}</span>
+      {matchMedia && <span>Welcome, {userName}</span>}
       <DeleteButton onClick={() => openModal(deleteDialogRef)}>
         <Icon />
       </DeleteButton>
