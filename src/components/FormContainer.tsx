@@ -13,7 +13,7 @@ const StyledFormContainer = styled.section<FormContainerProps>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-height: 70vh;
+  max-height: 70dvh;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

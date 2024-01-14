@@ -13,14 +13,14 @@ import MapSpinner from '../components/MapSpinner';
 const Map = lazy(() => import('../components/Map'));
 
 const StyledAppLayout = styled.section`
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   position: relative;
 
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     margin: 2.5rem;
     border-radius: 1rem;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
   `}
 `;
 

@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar';
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 2.5rem 5rem;
   background-image: linear-gradient(
       rgba(36, 42, 46, 0.8),
@@ -22,7 +22,7 @@ const Layout = styled.div`
   ${mediaQueries(SCREEN_SIZE.Tablet)` 
     margin: 2.5rem;
     border-radius: 1rem;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
   `}
 `;
 
