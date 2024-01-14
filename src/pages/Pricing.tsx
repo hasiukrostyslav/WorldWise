@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
+import {
+  SCREEN_SIZE,
+  mediaQueries,
+  mediaQueriesLandscape,
+} from '../styles/mediaQueries';
 
 import PriceCard from '../components/PriceCard';
 
@@ -17,6 +21,9 @@ const StyledPricing = styled.section`
     flex-direction: row;
     gap: 10rem;
     margin-top: 0;
+  `}
+  ${mediaQueriesLandscape()` 
+    gap: 4rem;
   `}
 `;
 
