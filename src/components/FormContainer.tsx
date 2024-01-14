@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  SCREEN_SIZE,
-  mediaQueries,
-  mediaQueriesLandscape,
-} from '../styles/mediaQueries';
+import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface FormContainerProps {
   $grow?: 0 | 1;
