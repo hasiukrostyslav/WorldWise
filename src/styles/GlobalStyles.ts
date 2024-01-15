@@ -177,12 +177,12 @@ a:visited {
 }
 /* Desktop */
 .css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
-  z-index: 2500 !important;
+  z-index: 5000 !important;
 }
 
 /* Phone */
 .css-3dah0e-MuiModal-root-MuiDialog-root {
- z-index: 2500 !important;
+ z-index: 5000 !important;
 }
 
 .disabled {
