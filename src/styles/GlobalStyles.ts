@@ -166,6 +166,7 @@ a:visited {
   font-size: 1rem !important;
  }
 
+/* header */
  .css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
   font-size: 1.5rem !important;
 }
@@ -173,6 +174,15 @@ a:visited {
 .css-1vooibu-MuiSvgIcon-root, .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
   width: 2rem !important;
   height: 2rem !important;
+}
+/* Desktop */
+.css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
+  z-index: 2500 !important;
+}
+
+/* Phone */
+.css-3dah0e-MuiModal-root-MuiDialog-root {
+ z-index: 2500 !important;
 }
 
 .disabled {
