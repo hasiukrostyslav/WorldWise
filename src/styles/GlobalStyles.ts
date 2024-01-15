@@ -185,6 +185,10 @@ a:visited {
  z-index: 5000 !important;
 }
 
+.MuiPopper-root, .MuiModal-root, .MuiDialog-root {
+  z-index: 5000 !important;
+}
+
 .disabled {
   pointer-events: none;
   cursor: not-allowed;
