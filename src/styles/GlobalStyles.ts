@@ -183,7 +183,7 @@ a:visited {
     font-size: 2rem !important;
   }
 
-  & .css-1vooibu-MuiSvgIcon-root, .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
+  & .MuiSvgIcon-root, .MuiPickersCalendarHeader-switchViewIcon {
     width: 2.8rem !important;
     height: 3rem !important;
   }
