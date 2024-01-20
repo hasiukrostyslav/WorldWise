@@ -188,8 +188,8 @@ a:visited {
     height: 3rem !important;
   }
 
-  & .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
-    border: 1px solid var(--color-primary--0);
+  & .MuiPickersDay-today {
+    border: 1px solid var(--color-primary--0) !important;
   }
 
   & .MuiPickersYear-yearButton {
@@ -211,7 +211,7 @@ a:visited {
   }
 
   & .MuiButton-root {
-    font-size:2rem;
+    font-size: 2rem;
   }
 }
 `;
