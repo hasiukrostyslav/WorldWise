@@ -6,15 +6,13 @@ import {
   FieldErrors,
 } from 'react-hook-form';
 import styled from 'styled-components';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { HiArrowLongLeft } from 'react-icons/hi2';
 import { Dayjs } from 'dayjs';
 
-import { SX_PROPS } from '../utils/constant';
 import type { City, CityBase, CityInput } from '../types';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
+import MUIDatePicker from './MUIDatePicker';
 import FormContainer from './FormContainer';
 import Form from './Form';
 import Input from './Input';
@@ -89,16 +87,13 @@ function FormCity({
                 name="date"
                 control={control}
                 render={({ field: { onChange, ref } }) => (
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                      disabled={isSendingData}
-                      sx={SX_PROPS}
-                      onChange={onChange}
-                      onAccept={onChange}
-                      inputRef={ref}
-                      defaultValue={date}
-                    />
-                  </LocalizationProvider>
+                  <MUIDatePicker
+                    onAccept={onChange}
+                    onChange={onChange}
+                    disabled={isSendingData}
+                    inputRef={ref}
+                    defaultValue={date}
+                  />
                 )}
                 rules={{
                   required: {
