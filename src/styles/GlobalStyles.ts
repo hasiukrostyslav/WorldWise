@@ -115,6 +115,16 @@ a:visited {
   transition: all 0.5s;
 }
 
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.draggable {
+  opacity: 0.6;
+}
+
 .leaflet-popup .leaflet-popup-content-wrapper {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);
@@ -154,47 +164,56 @@ a:visited {
   margin-top: 2rem;
 }
 
+.MuiPopper-root, .MuiDialog-root {
+  z-index: 5000 !important;
 
-.MuiDateCalendar-root {
-    border-radius: 5px;
-    background-color: var(--color-light--3);
-    font-weight: 600;
+ & .MuiDateCalendar-root {
+      border-radius:5px;
+    }
+
+  & .MuiPickersDay-root, .MuiDayCalendar-weekDayLabel  {
+    font-size: 1.6rem !important;
   }
 
+  & .MuiDayCalendar-weekDayLabel {
+    font-weight: 900;
+  }
 
- .css-1u23akw-MuiButtonBase-root-MuiPickersDay-root,.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel  {
-  font-size: 1rem !important;
- }
+  & .MuiPickersCalendarHeader-labelContainer {
+    font-size: 2rem !important;
+  }
 
-/* header */
- .css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
-  font-size: 1.5rem !important;
+  & .css-1vooibu-MuiSvgIcon-root, .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
+    width: 2.8rem !important;
+    height: 3rem !important;
+  }
+
+  & .css-jgls56-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected) {
+    border: 1px solid var(--color-primary--0);
+  }
+
+  & .MuiPickersYear-yearButton {
+    font-size: 1.6rem
+  }
+
+  & .Mui-selected {
+    background-color: var(--color-primary--1) !important
+  }
 }
 
-.css-1vooibu-MuiSvgIcon-root, .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
-  width: 2rem !important;
-  height: 2rem !important;
-}
-/* Desktop */
-.css-1anqmj6-MuiPopper-root-MuiPickersPopper-root {
-  z-index: 5000 !important;
-}
+.MuiDialog-root {
+  & .MuiTypography-overline {
+    font-size: 1.6rem;
+  }
 
-/* Phone */
-.css-3dah0e-MuiModal-root-MuiDialog-root {
- z-index: 5000 !important;
-}
+  & .MuiTypography-h4 {
+    font-weight: 700;
+  }
 
-.disabled {
-  pointer-events: none;
-  cursor: not-allowed;
-  opacity: 0.6;
+  & .MuiButton-root {
+    font-size:2rem;
+  }
 }
-
-.draggable {
-  opacity: 0.6;
-}
-
 `;
 
 export default GlobalStyles;

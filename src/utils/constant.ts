@@ -15,27 +15,5 @@ export const MAP_LAYERS = {
 
 export const ICON_SIZE = { fontSize: '2rem' };
 
-export const SX_PROPS = {
-  '.MuiInputBase-root': {
-    width: '100%',
-    backgroundColor: 'var(--color-light--3)',
-    borderRadius: '5px',
-  },
-  '.MuiOutlinedInput-root.Mui-focused': {
-    outline: '4px solid var(--color-primary--0)',
-    backgroundColor: '#fff',
-  },
-  input: {
-    padding: '0.8rem 1.2rem',
-    fontFamily: 'inherit',
-    fontSize: '1.6rem',
-    border: 'none',
-    transition: 'all 0.2s',
-  },
-  fieldset: {
-    border: 'none',
-  },
-};
-
 export const EMAIL_REGEX =
   /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
