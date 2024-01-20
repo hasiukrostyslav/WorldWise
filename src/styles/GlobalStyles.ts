@@ -45,8 +45,6 @@ html {
 
 }
 
-
-
 body {
   font-family: 'Roboto', sans-serif;
   color: var(--color-light--2);
@@ -58,7 +56,6 @@ body {
 ul {
   list-style: none;
 }
-
 
 h1 {
   font-size: 4.6rem;
@@ -101,8 +98,6 @@ button{
   transition: all 0.5s;
 }
 
-
-
 input:focus, textarea:focus {
   outline: 4px solid var(--color-primary--0);
   background-color: #fff;
@@ -125,6 +120,7 @@ a:visited {
   opacity: 0.6;
 }
 
+/* LEAFLET */
 .leaflet-popup .leaflet-popup-content-wrapper {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);
@@ -164,10 +160,11 @@ a:visited {
   margin-top: 2rem;
 }
 
+/* MUI */
 .MuiPopper-root, .MuiDialog-root {
   z-index: 5000 !important;
 
- & .MuiDateCalendar-root {
+  & .MuiDateCalendar-root {
       border-radius:5px;
     }
 

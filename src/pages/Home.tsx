@@ -1,21 +1,8 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
-
 import { useUser } from '../hooks/useUser';
 import { useLayer } from '../hooks/useLayer';
-
+import { StyledHome } from '../styles/components/StyledHomePage';
 import { ButtonLink } from '../components/Button';
-
-const StyledHome = styled.section`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 85%;
-  margin: 0 6rem;
-  gap: 3rem;
-`;
 
 function Home() {
   const { isAuthenticated } = useUser();

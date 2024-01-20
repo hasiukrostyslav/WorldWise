@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
 import { useSignUp } from '../hooks/useSignUp';
 import { EMAIL_REGEX } from '../utils/constant';
 import type { SignUpInputs } from '../types';
-
 import FormContainer from '../components/FormContainer';
 import Form from '../components/Form';
 import Input from '../components/Input';
