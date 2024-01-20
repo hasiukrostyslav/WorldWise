@@ -1,8 +1,6 @@
 import { styled } from 'styled-components';
-
 import { useMenu } from '../hooks/useMenu';
 import { useMatchMedia } from '../hooks/useMatchMedia';
-
 import Logo from './Logo';
 import LinksList from './LinksList';
 import MenuButton from './MenuButton';

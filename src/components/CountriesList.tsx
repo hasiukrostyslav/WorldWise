@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-
 import { useCities } from '../hooks/useCities';
 import { getCountries } from '../utils/helper';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import CountryItem from './CountryItem';
 
 const StyledCountriesList = styled.ul`

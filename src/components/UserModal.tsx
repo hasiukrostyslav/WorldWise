@@ -2,11 +2,9 @@ import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-
 import { useUser } from '../hooks/useUser';
 import { useUpdateUserPhoto } from '../hooks/useUpdateUserPhoto';
 import { useDeleteUserPhoto } from '../hooks/useDeleteUserPhoto';
-
 import FileInput from './FileInput';
 import { Button } from './Button';
 import DeleteButton from './DeleteButton';

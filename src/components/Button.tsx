@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface ButtonProps {

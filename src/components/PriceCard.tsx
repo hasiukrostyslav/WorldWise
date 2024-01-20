@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-
 import { useUser } from '../hooks/useUser';
 import {
   SCREEN_SIZE,
   mediaQueries,
   mediaQueriesLandscape,
 } from '../styles/mediaQueries';
-
 import { ButtonLink } from './Button';
 
 interface PriceCardProps {

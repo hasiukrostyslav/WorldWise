@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { IoMenu, IoClose } from 'react-icons/io5';
-
 import { ICON_SIZE } from '../utils/constant';
 
 interface MenuButtonProps {

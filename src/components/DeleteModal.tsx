@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
-
 import { useDeleteUser } from '../hooks/useDeleteUser';
-
 import { Button } from './Button';
 
 const Modal = styled.dialog`

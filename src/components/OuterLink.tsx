@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { HiArrowLongRight } from 'react-icons/hi2';
-
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 
 interface OuterLinkProps {

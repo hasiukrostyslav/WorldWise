@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
-
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useCities } from '../hooks/useCities';
 import { useLayer } from '../hooks/useLayer';
@@ -11,7 +10,6 @@ import {
   mediaQueries,
   mediaQueriesLandscape,
 } from '../styles/mediaQueries';
-
 import Logo from './Logo';
 import ToggleLinks from './ToggleLinks';
 import Footer from './Footer';

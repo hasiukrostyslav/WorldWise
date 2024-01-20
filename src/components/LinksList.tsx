@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
 import { useMenu } from '../hooks/useMenu';
 import { PRIMARY_COLOR } from '../utils/constant';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import { ButtonLink } from './Button';
 
 interface ListContainerProps {

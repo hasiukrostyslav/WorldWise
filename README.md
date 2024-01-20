@@ -1,6 +1,6 @@
 # WorldWise App
 
-WorldWise - fullstack application to track cities that you have been visited.
+WorldWise - fullstack responsive web application to track cities that you have been visited.
 
 Live demo: https://world-wise-reactapp.netlify.app/
 

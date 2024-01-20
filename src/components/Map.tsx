@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
 import { useUrlPosition } from '../hooks/useUrlPosition';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useLayer } from '../hooks/useLayer';
@@ -10,7 +9,6 @@ import { useAppMenu } from '../hooks/useAppMenu';
 import { useMatchMedia } from '../hooks/useMatchMedia';
 import { MAP_CENTER, MAP_LAYERS } from '../utils/constant';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import { ChangeMapCenter, DetectMapClick, MapResize } from './MapTools';
 import { LayerButton, LocationButton, ScreenButton } from './MapButton';
 import LayersOption from './LayersOption';

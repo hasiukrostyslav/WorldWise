@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { formatCountryNameToURL } from '../utils/helper';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 

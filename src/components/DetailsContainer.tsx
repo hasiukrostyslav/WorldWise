@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLongLeft } from 'react-icons/hi2';
-
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import OuterLink from './OuterLink';
 import { Button } from './Button';
 

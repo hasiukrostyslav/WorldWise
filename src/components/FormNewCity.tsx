@@ -1,11 +1,9 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
-
 import useNewCityForm from '../hooks/useNewCityForm';
 import { useAddNewCity } from '../hooks/useAddNewCity';
 import { CityInput } from '../types';
-
 import Spinner from './Spinner';
 
 const FormCity = lazy(() => import('./FormCity'));

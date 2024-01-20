@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { TbCurrentLocation } from 'react-icons/tb';
 import { LuLayers } from 'react-icons/lu';
 import { RiFullscreenExitLine, RiFullscreenLine } from 'react-icons/ri';
-
 import { ICON_SIZE } from '../utils/constant';
 
 interface ButtonProps {

@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { LuClipboardEdit } from 'react-icons/lu';
-
 import { useCity } from '../hooks/useCity';
 import { getFormatDate } from '../utils/helper';
-
 import DetailsContainer from './DetailsContainer';
 import Error from './Error';
 import Spinner from './Spinner';

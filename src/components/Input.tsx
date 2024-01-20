@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
-
 import type { CityInput, LoginInputs, SignUpInputs } from '../types';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
 

@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { useDeleteCity } from '../hooks/useDeleteCity';
 import { useMatchMedia } from '../hooks/useMatchMedia';
 import { getFormatDate, getShortDate } from '../utils/helper';
-
 import DeleteButton from './DeleteButton';
 
 const StyledLink = styled(NavLink)`

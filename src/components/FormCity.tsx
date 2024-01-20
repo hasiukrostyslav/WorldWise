@@ -8,10 +8,8 @@ import {
 import styled from 'styled-components';
 import { HiArrowLongLeft } from 'react-icons/hi2';
 import { Dayjs } from 'dayjs';
-
 import type { City, CityBase, CityInput } from '../types';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import MUIDatePicker from './MUIDatePicker';
 import FormContainer from './FormContainer';
 import Form from './Form';

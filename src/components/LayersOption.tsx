@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { MdSatelliteAlt } from 'react-icons/md';
 import { BsLayers, BsLayersFill, BsLayersHalf } from 'react-icons/bs';
-
 import { ICON_SIZE } from '../utils/constant';
-
 import { LayerButton } from './MapButton';
 
 enum Layer {

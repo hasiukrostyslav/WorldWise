@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-
 import { useCities } from '../hooks/useCities';
 import { SCREEN_SIZE, mediaQueries } from '../styles/mediaQueries';
-
 import CityItem from './CityItem';
 
 const StyledCitiesList = styled.ul`

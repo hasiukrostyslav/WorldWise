@@ -1,10 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { SubmitHandler } from 'react-hook-form';
-
 import useEditCityForm from '../hooks/useEditCityForm';
 import useEditCity from '../hooks/useEditCity';
 import type { CityInput } from '../types';
-
 import Spinner from './Spinner';
 
 const FormCity = lazy(() => import('./FormCity'));

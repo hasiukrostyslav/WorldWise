@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { RiDeleteBin2Line } from 'react-icons/ri';
-
 import { useModal } from '../hooks/useModal';
 import { useUser } from '../hooks/useUser';
 import { useLogOut } from '../hooks/useLogOut';
 import { useMatchMedia } from '../hooks/useMatchMedia';
-
 import { Button } from './Button';
 import UserModal from './UserModal';
 import DeleteModal from './DeleteModal';
