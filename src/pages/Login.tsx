@@ -31,11 +31,11 @@ function Login() {
   return (
     <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <div className="input-box">
+        <div className='input-box'>
           <Input
             disabled={isPending}
-            label="Email"
-            type="email"
+            label='Email'
+            type='email'
             {...register('email', {
               required: 'Please enter your email',
               pattern: {
@@ -46,11 +46,11 @@ function Login() {
           />
           {errors.email && <InputError message={errors.email.message} />}
         </div>
-        <div className="input-box">
+        <div className='input-box'>
           <Input
             disabled={isPending}
-            label="Password"
-            type="password"
+            label='Password'
+            type='password'
             {...register('password', {
               required: 'Please enter your password',
               minLength: 8,
@@ -66,11 +66,11 @@ function Login() {
             />
           )}
         </div>
-        <div className="footer">
+        <div className='footer'>
           <Button
             disabled={isPending}
-            type="button"
-            $variation="danger"
+            type='button'
+            $variation='danger'
             onClick={() => navigate('/')}
           >
             Cancel
